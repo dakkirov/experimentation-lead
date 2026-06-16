@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Experimentation & Causal Inference Lead — David K.</title>
+<title>Experimentation & Causal Inference Lead — David Arzumanian</title>
 <meta name="description" content="Fractional experimentation lead. I make A/B testing trustworthy for Seed–Series B product teams: pipeline rigor and causal inference for the launches you can't A/B test.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 <style>
   :root{
     --burgundy:#4A1019; --burgundy-2:#3A0C13; --cream:#F2E8D5; --gold:#F2C744;
-    --cream-dim:rgba(242,232,213,.62); --cream-faint:rgba(242,232,213,.14);
+    --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6); --cream-faint:rgba(242,232,213,.14);
     --gold-dim:rgba(242,199,68,.16);
     --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
@@ -19,18 +19,14 @@
   html{scroll-behavior:smooth}
   body{
     background:var(--burgundy); color:var(--cream); font-family:var(--sans);
-    -webkit-font-smoothing:antialiased; line-height:1.6; overflow-x:hidden;
-    background-image:
-      linear-gradient(var(--cream-faint) 1px,transparent 1px),
-      linear-gradient(90deg,var(--cream-faint) 1px,transparent 1px);
-    background-size:64px 64px; background-position:center;
+    -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;
   }
   body::before{
     content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
     background:radial-gradient(120% 80% at 50% -10%,var(--gold-dim),transparent 55%);
   }
   body::after{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.035;
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.02;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
@@ -89,8 +85,8 @@
   /* services */
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
   .card{background:var(--burgundy-2);border:1px solid var(--cream-faint);border-radius:18px;padding:40px 36px;position:relative;overflow:hidden;
-    transition:transform .25s ease, border-color .25s ease}
-  .card:hover{transform:translateY(-4px);border-color:rgba(242,199,68,.4)}
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease}
+  .card:hover{transform:translateY(-4px);border-color:rgba(242,199,68,.4);box-shadow:0 18px 50px rgba(0,0,0,.28)}
   .card .tag{font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
   .card h3{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.1;margin:16px 0 6px}
   .card .price{font-family:var(--serif);font-size:40px;font-weight:500;color:var(--gold);letter-spacing:-.02em}
@@ -148,7 +144,7 @@
 <body>
 <header>
   <nav class="nav">
-    <div class="mark"><span class="badge">D</span><span>David&nbsp;K.</span></div>
+    <div class="mark"><span class="badge">D</span><span>David&nbsp;Arzumanian</span></div>
     <a href="#book" class="cta-mini">Book a call</a>
   </nav>
 </header>
@@ -217,6 +213,14 @@
     </div>
   </section>
 
+  <!-- MID CTA -->
+  <section style="padding:74px 0;border-top:1px solid var(--cream-faint);text-align:center">
+    <div class="wrap">
+      <p class="rv" style="font-family:var(--serif);font-weight:500;font-size:clamp(22px,3.2vw,32px);line-height:1.15;letter-spacing:-.012em;margin:0 auto 26px;color:var(--cream);max-width:22ch">Not sure how much of your test data you can trust?</p>
+      <a href="#book" class="btn btn-primary rv">Book a 20-min call</a>
+    </div>
+  </section>
+
   <!-- WHO -->
   <section style="border-top:1px solid var(--cream-faint)">
     <div class="wrap">
@@ -258,7 +262,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="mark"><span class="badge">D</span><span>David&nbsp;K.</span></div>
+    <div class="mark"><span class="badge">D</span><span>David&nbsp;Arzumanian</span></div>
     <div class="links">
       <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
       <a href="https://www.linkedin.com/in/dkarzumanian">Book a call</a>
