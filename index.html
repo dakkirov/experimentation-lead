@@ -52,7 +52,7 @@
   .hero{padding:120px 0 90px;position:relative}
   .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,8vw,86px);line-height:1.02;
     letter-spacing:-.015em;margin:26px 0 28px;max-width:14ch}
-  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero h1 em{font-style:normal;color:var(--gold)}
   .hero .lead{font-size:clamp(17px,2.1vw,21px);max-width:60ch;color:var(--cream-dim);font-weight:400}
   .hero .lead b{color:var(--cream);font-weight:600}
   .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin:40px 0 22px}
@@ -96,7 +96,7 @@
   .card li{font-size:14.5px;padding:8px 0 8px 26px;position:relative;color:var(--cream)}
   .card li::before{content:"";position:absolute;left:0;top:15px;width:11px;height:11px;border:1.5px solid var(--gold);border-radius:50%}
   .card li b{font-weight:600}
-  .card .note{margin-top:24px;font-size:14px;color:var(--cream-dim);font-style:italic;font-family:var(--serif)}
+  .card .note{margin-top:24px;font-size:14px;color:var(--cream-dim);font-family:var(--serif)}
   .card .note .gold{font-style:normal;font-weight:600}
 
   /* who */
@@ -117,7 +117,7 @@
   /* final cta */
   .final{text-align:center;padding:110px 0 90px}
   .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5.5vw,60px);line-height:1.05;letter-spacing:-.015em;margin-bottom:30px;max-width:20ch;margin-left:auto;margin-right:auto}
-  .final h2 em{font-style:italic;color:var(--gold)}
+  .final h2 em{font-style:normal;color:var(--gold)}
   footer{border-top:1px solid var(--cream-faint);padding:38px 0;text-align:center}
   footer .mark{justify-content:center;margin-bottom:14px}
   footer .links{font-size:14px;color:var(--cream-dim)}
@@ -155,12 +155,29 @@
     <div class="wrap">
       <div class="eyebrow rv" style="--i:0"><span class="bar"></span>Experimentation · Causal Inference</div>
       <h1 class="rv" style="--i:1">I make A/B testing <em>trustworthy.</em></h1>
-      <p class="lead rv" style="--i:2">Most teams don't have a measurement problem — they have a <b>trust</b> problem. They ship wins that are noise and kill tests that were real. I'm the senior owner who fixes that: pipeline rigor, plus causal inference for the launches you can't A/B test.</p>
+      <p class="lead rv" style="--i:2">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious — and tells you which numbers are safe to ship on.</p>
       <div class="cta-row rv" style="--i:3">
         <a href="#book" class="btn btn-primary">Book a 20-min call</a>
         <a href="#services" class="btn btn-ghost">Start with an audit ↓</a>
       </div>
       <div class="avail rv" style="--i:4"><span class="dot"></span>Fractional · 2–3 days/week · remote, full US-timezone overlap</div>
+    </div>
+  </section>
+
+  <!-- WHAT I SELL (fast scan) -->
+  <section style="padding:58px 0;border-top:1px solid var(--cream-faint)">
+    <div class="wrap">
+      <div class="eyebrow rv" style="margin-bottom:30px"><span class="bar"></span>Two ways to work together</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <div class="rv">
+          <div style="font-family:var(--serif);font-size:clamp(21px,2.6vw,27px);font-weight:500;letter-spacing:-.01em;line-height:1.2">The Audit&nbsp;&nbsp;<span class="gold">$4,000 · 2 weeks</span></div>
+          <div style="color:var(--cream-dim);font-size:16px;margin-top:9px">I score exactly where your tests are lying, and hand you the roadmap.</div>
+        </div>
+        <div class="rv">
+          <div style="font-family:var(--serif);font-size:clamp(21px,2.6vw,27px);font-weight:500;letter-spacing:-.01em;line-height:1.2">Fractional Lead&nbsp;&nbsp;<span class="gold">from $8k/mo</span></div>
+          <div style="color:var(--cream-dim);font-size:16px;margin-top:9px">I run the fix — 2–3 days a week — and level up your team.</div>
+        </div>
+      </div>
     </div>
   </section>
 
