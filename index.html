@@ -633,17 +633,19 @@
   @media(prefers-reduced-motion:reduce){.avail .dot, .proj-visual-head .live::before{animation:none}.proj-card-inner{transition:none}}
 
   /* ════════════════ LIGHT "DAY" THEME ════════════════
-     Editorial light theme for everything below the hero: burgundy ink on warm
-     paper, antique-gold accents. The header, hero, diagnostic tool panel, and
-     flip cards stay dark as deliberate anchors floating on the light page. */
+     Editorial light theme below the hero: deep-burgundy ink on warm paper,
+     rich-burgundy accents (gold reads muddy on white, so gold is reserved for
+     CTA/decorative FILLS only). Header, hero, diagnostic panel, and flip cards
+     stay dark anchors in the main brand burgundy. */
   .theme-light{
     --burgundy:#FAF4E8; --burgundy-2:#FFFFFF; --burgundy-3:#F3EAD6;
     --cream:#3A0C13;
     --cream-dim:rgba(58,12,19,.80); --cream-meta:rgba(58,12,19,.56);
     --cream-faint:rgba(58,12,19,.13); --cream-soft:rgba(58,12,19,.22);
-    --gold:#A8780F; --gold-dim:rgba(168,120,15,.18);
+    --gold:#7C1A27; --gold-dim:rgba(124,26,39,.14);   /* accent = rich burgundy, not muddy gold */
   }
-  /* dark islands keep the original dark palette */
+  /* dark islands keep the dark palette; color:var(--cream) so inherited text
+     (hero h1, the "David Arzumanian." mark) stays light instead of inheriting page ink */
   .theme-light header,
   .theme-light .hero,
   .theme-light .diag-panel,
@@ -653,14 +655,27 @@
     --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6);
     --cream-faint:rgba(242,232,213,.14); --cream-soft:rgba(242,232,213,.20);
     --gold-dim:rgba(242,199,68,.16);
+    color:var(--cream);
   }
+  /* dark anchors use the main brand burgundy (redder), not near-black */
+  .theme-light .diag-panel,
+  .theme-light .proj-card-front,
+  .theme-light .proj-card-back{ background:var(--burgundy) }
   /* hero keeps its dark canvas + gold wash now that the page body is light */
   .theme-light .hero{ background:var(--burgundy); overflow:hidden }
   .theme-light .hero::before{
     content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
     background:radial-gradient(120% 80% at 50% -10%, var(--gold-dim), transparent 55%);
   }
-  /* dark text on gold fills that live in the light scope */
+  /* CTA + decorative gold stay BRIGHT on the light page (clean, never muddy) */
+  .theme-light .btn-primary,
+  .theme-light .compare-col-cap,
+  .theme-light .showcase-arrow,
+  .theme-light .showcase-dot.is-active,
+  .theme-light .eyebrow .bar,
+  .theme-light .diag-meta span::before{ background:#F2C744 }
+  .theme-light .compare-col-head.is-featured{ border-top-color:#F2C744 }
+  /* dark glyph/text on those gold fills */
   .theme-light .btn-primary,
   .theme-light .compare-col-cap,
   .theme-light .showcase-arrow{ color:#2A080E }
