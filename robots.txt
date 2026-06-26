@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://dakkirov.github.io/experimentation-lead/sitemap.xml
+Sitemap: https://arzumaniandavid.com/sitemap.xml
