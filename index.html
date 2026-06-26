@@ -687,6 +687,18 @@
   /* warmer, softer shadows on paper instead of harsh black */
   .theme-light .card:hover{ box-shadow:0 16px 40px rgba(74,16,25,.13) }
   .theme-light .compare{ box-shadow:0 14px 34px rgba(74,16,25,.10) }
+
+  /* FAQ */
+  .faq{margin-top:42px;border-top:1px solid var(--cream-faint)}
+  .faq-item{border-bottom:1px solid var(--cream-faint)}
+  .faq-item summary{list-style:none;cursor:pointer;padding:22px 46px 22px 0;position:relative;font-family:var(--serif);font-weight:500;font-size:clamp(18px,2.3vw,22px);line-height:1.32;color:var(--cream);transition:color .2s}
+  .faq-item summary:hover{color:var(--gold)}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"+";position:absolute;right:4px;top:18px;font-family:var(--serif);font-weight:500;font-size:30px;line-height:1;color:var(--gold)}
+  .faq-item[open] summary::after{content:"\2013"}
+  .faq-a{padding:0 46px 26px 0;font-size:16px;line-height:1.72;color:var(--cream-dim);max-width:72ch}
+  .faq-a b{color:var(--cream);font-weight:600}
+  .faq-a em{color:var(--gold);font-style:italic;font-weight:500}
 </style>
 </head>
 <body class="theme-light">
@@ -1311,10 +1323,53 @@
       <div class="eyebrow rv"><span class="bar"></span>Who you'd be working with</div>
       <p class="rv">I'm David Arzumanian. Eight years making numbers tell the truth in product analytics.</p>
       <div class="body rv">
-        I've spent my career on the unglamorous half of experimentation: the part where a "win" turns out to be a logging bug, a proxy metric quietly disagrees with revenue, and someone has to say "we can't ship on this yet." Most recently I built the experimentation rigor at a subscription e-commerce company at scale. I work these traps out loud on <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>, where every role and how I think is public. Verify all of it before we talk.
+        I've spent my career on the unglamorous half of experimentation: the part where a "win" turns out to be a logging bug, a proxy metric quietly disagrees with revenue, and someone has to say "we can't ship on this yet." Most recently I built the experimentation rigor at a subscription e-commerce company at scale. I work these traps out loud on <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a> and in long-form on the <a href="/writing/">writing</a> page. Every role and how I think is public — verify all of it before we talk.
       </div>
     </div>
   </section>
+
+  <section style="border-top:1px solid var(--cream-faint)">
+    <div class="wrap">
+      <div class="eyebrow rv"><span class="bar"></span>Common questions</div>
+      <h2 class="sec-head rv">Questions I get from <em>product teams</em></h2>
+      <div class="faq rv">
+        <details class="faq-item">
+          <summary>Why did my A/B test "winner" stop working after we shipped it?</summary>
+          <div class="faq-a">Usually one of three things: you <b>stopped the test early</b> the moment it looked significant (peeking inflates false positives two to five times), the lift was <b>regression to the mean</b>, or it was a <b>novelty effect</b> that faded. The number was real on screen and noise in reality. A pre-set run length and a sequential boundary tell the difference <em>before</em> you ship.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is it bad to stop a test early when it hits significance?</summary>
+          <div class="faq-a">Yes, if you stop the instant a fixed-horizon p-value crosses 0.05. Checking repeatedly and stopping on the first "win" is <b>peeking</b>, and it can turn a 5% false-positive rate into 20 to 30%. The fix is not "never look" — it is <em>sequential testing</em>, which lets you stop early safely with boundaries calibrated for continuous monitoring.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to correct for multiple comparisons?</summary>
+          <div class="faq-a">If you read several metrics, segments, or variants off one test and celebrate whichever crosses the line, then yes. Every extra comparison is another lottery ticket for a false positive. Without correction a meaningful share of your "wins" are noise; with it, you ship on signal.</div>
+        </details>
+        <details class="faq-item">
+          <summary>When should I hire a full-time experimentation lead vs. a fractional one?</summary>
+          <div class="faq-a">Below roughly <b>8 to 10 tests a month</b>, a full-time hire is hard to justify and the real problem is usually underpowered tests, not headcount. A <b>fractional lead</b> installs the rigor, owns the review, and levels up your team two to three days a week. When test volume and stakes outgrow that, you hire in-house and I hand it off.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What does the $4,000 audit actually include?</summary>
+          <div class="faq-a">Two weeks, fixed fee. I review your statistical rigor, metric design, and tooling, then hand you a <b>trustworthiness scorecard</b>, a <b>prioritized roadmap</b>, and a <b>team walkthrough</b>. The guarantee: at least one finding that changes a shipping decision, or you don't pay. The fee credits toward your first month if we continue.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Which A/B testing tools do you work with?</summary>
+          <div class="faq-a">The methodology is <b>tool-agnostic</b> — I audit whatever you run. In practice I am deepest in Statsig, Eppo, GrowthBook, and Amplitude. The point is not the tool; it is whether you are using its stats engine in a way you can actually trust.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Why did my A/B test winner stop working after we shipped it?","acceptedAnswer":{"@type":"Answer","text":"Usually peeking (stopping early the moment it looked significant, which inflates false positives), regression to the mean, or a novelty effect that faded. The lift was real on screen and noise in reality. A pre-set run length and a sequential boundary tell the difference before you ship."}},
+    {"@type":"Question","name":"Is it bad to stop a test early when it hits significance?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you stop the instant a fixed-horizon p-value crosses 0.05. Checking repeatedly and stopping on the first win is peeking, and it can turn a 5 percent false-positive rate into 20 to 30 percent. The fix is sequential testing, which lets you stop early safely with boundaries calibrated for continuous monitoring."}},
+    {"@type":"Question","name":"Do I need to correct for multiple comparisons?","acceptedAnswer":{"@type":"Answer","text":"If you read several metrics, segments, or variants off one test and celebrate whichever crosses the line, yes. Every extra comparison is another chance at a false positive. Without correction a meaningful share of your wins are noise."}},
+    {"@type":"Question","name":"When should I hire a full-time experimentation lead vs a fractional one?","acceptedAnswer":{"@type":"Answer","text":"Below roughly 8 to 10 tests a month a full-time hire is hard to justify and the real problem is usually underpowered tests. A fractional lead installs the rigor and owns the review two to three days a week; when volume and stakes outgrow that, you hire in-house."}},
+    {"@type":"Question","name":"What does the 4000 dollar audit include?","acceptedAnswer":{"@type":"Answer","text":"Two weeks, fixed fee. A review of statistical rigor, metric design, and tooling, delivered as a trustworthiness scorecard, a prioritized roadmap, and a team walkthrough. Guarantee: at least one finding that changes a shipping decision or you don't pay, and the fee credits toward your first month if you continue."}},
+    {"@type":"Question","name":"Which A/B testing tools do you work with?","acceptedAnswer":{"@type":"Answer","text":"The methodology is tool-agnostic and I audit whatever you run; deepest in Statsig, Eppo, GrowthBook, and Amplitude. The point is whether you are using the stats engine in a way you can trust."}}
+  ]}
+  </script>
 
   <section class="final" id="book">
     <div class="wrap">
@@ -1328,6 +1383,7 @@
   <div class="wrap">
     <div class="mark"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg><span>David&nbsp;Arzumanian<span style="color:var(--gold)">.</span></span></div>
     <div class="links">
+      <a href="/writing/">Writing</a>
       <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
       <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">Book a call</a>
     </div>

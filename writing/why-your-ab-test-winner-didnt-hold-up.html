@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why your A/B test winner didn't hold up | David Arzumanian</title>
+<meta name="description" content="You shipped a winning variant and the lift vanished. The four reasons A/B test winners fade — peeking, regression to the mean, novelty effects, multiple comparisons — and how to stop it.">
+<link rel="canonical" href="https://arzumaniandavid.com/writing/why-your-ab-test-winner-didnt-hold-up.html">
+<meta name="author" content="David Arzumanian">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="David Arzumanian">
+<meta property="og:url" content="https://arzumaniandavid.com/writing/why-your-ab-test-winner-didnt-hold-up.html">
+<meta property="og:title" content="Why your A/B test winner didn't hold up">
+<meta property="og:description" content="The four reasons A/B test winners fade after launch, and how to stop shipping on noise.">
+<meta property="og:image" content="https://arzumaniandavid.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why your A/B test winner didn't hold up">
+<meta name="twitter:description" content="The four reasons A/B test winners fade after launch, and how to stop shipping on noise.">
+<meta name="twitter:image" content="https://arzumaniandavid.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why your A/B test winner didn't hold up","description":"The four reasons A/B test winners fade after launch — peeking, regression to the mean, novelty effects, multiple comparisons — and how to stop it.","author":{"@type":"Person","name":"David Arzumanian","url":"https://arzumaniandavid.com/"},"publisher":{"@type":"Person","name":"David Arzumanian"},"datePublished":"2026-06-26","mainEntityOfPage":"https://arzumaniandavid.com/writing/why-your-ab-test-winner-didnt-hold-up.html","url":"https://arzumaniandavid.com/writing/why-your-ab-test-winner-didnt-hold-up.html","image":"https://arzumaniandavid.com/og-image.png"}
+</script>
+<style>
+  :root{
+    --burgundy:#4A1019; --paper:#FAF4E8; --panel:#FFFFFF;
+    --ink:#3A0C13; --ink-dim:rgba(58,12,19,.82); --ink-meta:rgba(58,12,19,.55);
+    --line:rgba(58,12,19,.13); --accent:#7C1A27; --gold:#F2C744;
+    --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(124,26,39,.28)}
+  a:hover{border-color:var(--accent)}
+  /* header */
+  header{position:sticky;top:0;z-index:30;background:var(--burgundy);border-bottom:1px solid rgba(242,232,213,.14)}
+  .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+  .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;color:#F2E8D5}
+  .mark a{color:#F2E8D5;border:0}
+  .cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--burgundy);background:var(--gold);padding:9px 18px;border-radius:999px;border:0;transition:transform .2s ease, box-shadow .2s ease}
+  .cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(242,199,68,.32)}
+  /* article */
+  .article{max-width:720px;margin:0 auto;padding:64px 32px 40px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  .article h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5.4vw,52px);line-height:1.08;letter-spacing:-.015em;margin:18px 0 16px;color:var(--ink)}
+  .meta{font-size:13.5px;color:var(--ink-meta);font-weight:500;letter-spacing:.02em;display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:8px}
+  .meta .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-meta)}
+  .body{font-size:18px;line-height:1.78;color:var(--ink-dim)}
+  .body p{margin:22px 0}
+  .body h2{font-family:var(--serif);font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.2;letter-spacing:-.01em;color:var(--ink);margin:44px 0 6px}
+  .body strong{color:var(--ink);font-weight:600}
+  .body em{color:var(--accent);font-style:italic}
+  .body ul{margin:18px 0;padding-left:0;list-style:none}
+  .body li{position:relative;padding:8px 0 8px 28px}
+  .body li::before{content:"";position:absolute;left:0;top:17px;width:9px;height:9px;border:1.5px solid var(--accent);border-radius:50%}
+  .body blockquote{margin:28px 0;padding:6px 0 6px 24px;border-left:3px solid var(--gold);font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.5;color:var(--ink)}
+  .lede{font-family:var(--serif);font-size:clamp(20px,2.6vw,23px);line-height:1.5;color:var(--ink);font-weight:400;margin:26px 0 8px}
+  /* end CTA */
+  .cta-box{margin:52px 0 8px;background:var(--burgundy);border-radius:16px;padding:36px 34px;color:#F2E8D5;box-shadow:0 16px 40px rgba(74,16,25,.16)}
+  .cta-box h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.2;color:#F2E8D5;margin-bottom:8px}
+  .cta-box h3 em{font-style:italic;color:var(--gold)}
+  .cta-box p{font-size:15px;color:rgba(242,232,213,.8);margin:0 0 22px;line-height:1.6}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-weight:600;font-size:14.5px;text-decoration:none;padding:13px 24px;border-radius:999px;border:0;transition:transform .2s ease, box-shadow .2s ease}
+  .btn-primary{background:var(--gold);color:var(--burgundy)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(242,199,68,.32)}
+  .btn-ghost{border:1.5px solid rgba(242,232,213,.22);color:#F2E8D5}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .backlink{display:inline-block;margin:36px 0 0;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:var(--ink-meta);border:0}
+  .backlink:hover{color:var(--accent)}
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:38px 0;text-align:center;margin-top:48px}
+  footer .mark{justify-content:center;color:var(--ink);margin-bottom:14px}
+  footer .mark a{color:var(--ink)}
+  footer .links{font-size:14px;color:var(--ink-meta)}
+  footer .links a{color:var(--ink);margin:0 12px;border-bottom:1px solid var(--line)}
+  footer .links a:hover{color:var(--accent);border-color:var(--accent)}
+  @media(max-width:760px){.nav{padding:16px 22px}.article{padding:44px 22px 32px}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="mark"><a href="/"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg></a><span><a href="/">David&nbsp;Arzumanian<span style="color:#F2C744">.</span></a></span></div>
+    <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <article class="article">
+    <div class="eyebrow">Experimentation</div>
+    <h1>Why your A/B test winner didn't hold up</h1>
+    <div class="meta"><span>5 min read</span><span class="dot"></span><span>By David Arzumanian</span></div>
+
+    <div class="body">
+      <p class="lede">You ran the test. The variant won. You shipped it. A month later the metric is flat, or worse, and nobody can explain where the lift went. This is one of the most common and most expensive failures in product experimentation, and it almost always comes down to four culprits.</p>
+
+      <p>Here is how to tell which one bit you, and how to stop it happening again.</p>
+
+      <h2>1. You stopped too early (peeking)</h2>
+      <p>The most common cause is <strong>peeking</strong>: watching the test daily and stopping the moment the p-value dips below 0.05. It feels responsible. It is statistically disastrous.</p>
+      <p>A fixed-horizon test is only valid if you decide the sample size up front and look once, at the end. Every interim look you act on is another roll of the dice, and stopping on the first significant result can inflate your false-positive rate from the nominal 5% to <strong>20 to 30%</strong>. The "winner" you shipped was often just a lucky high point in the noise, and it regressed the moment more data arrived. In this case the extra data was production traffic.</p>
+
+      <h2>2. Regression to the mean</h2>
+      <p>Closely related: extreme early results pull back toward the truth as the sample grows. If you greenlight on a small sample showing a huge lift, the most likely next thing that happens is the lift shrinks. The bigger the early effect is relative to your typical effects, the <em>more</em> suspicious you should be, not less.</p>
+
+      <h2>3. Novelty and primacy effects</h2>
+      <p>Some real lifts are real but temporary. A new banner gets clicks because it is new; returning users poke at the change and the metric spikes for a week, then reverts once the novelty wears off. If your test ran for a few days but your users have a weekly or monthly cycle, you measured the novelty, not the steady state.</p>
+
+      <h2>4. Multiple comparisons</h2>
+      <p>Finally, if you declared victory on whichever of ten metrics or five segments crossed the line, you did not run one test, you ran ten. With no correction, the chance that at least one shows a false "win" is far higher than 5%. The lift you shipped on was simply the metric that got lucky.</p>
+
+      <h2>How to tell which one it was</h2>
+      <p>Quick triage:</p>
+      <ul>
+        <li>Did you stop early or look repeatedly? Suspect <strong>peeking</strong>.</li>
+        <li>Was the early sample small and the effect huge? <strong>Regression to the mean</strong>.</li>
+        <li>Did the effect decay across the test window? <strong>Novelty</strong>.</li>
+        <li>Did you pick the best of many metrics or segments? <strong>Multiple comparisons</strong>.</li>
+      </ul>
+      <p>Often it is more than one at once.</p>
+
+      <h2>The fix: decide the rules before you start</h2>
+      <p>None of this means slow down. It means set the rules before the test runs, not after you see the result:</p>
+      <ul>
+        <li><strong>Pre-register</strong> the primary metric, the minimum effect worth shipping, and the sample size. One primary metric, chosen up front.</li>
+        <li><strong>Use sequential testing if you want to stop early.</strong> Proper sequential boundaries (for example O'Brien-Fleming, calibrated with Monte Carlo on your real metric distributions) let you monitor continuously and stop as soon as the evidence is genuinely there, without inflating false positives. This is the honest version of "stop early."</li>
+        <li><strong>Correct for multiple comparisons</strong> whenever you read more than one metric or segment.</li>
+        <li><strong>Add guardrail metrics and a holdback</strong> so you can confirm the lift persists in production.</li>
+      </ul>
+      <blockquote>That is the whole difference between optimizing toward signal and optimizing toward noise.</blockquote>
+
+      <p>The uncomfortable part: if your pipeline has any of these gaps, you have almost certainly shipped at least one "win" that did nothing, and killed at least one change that would have worked. The good news is that it is fixable, and fast.</p>
+
+      <div class="cta-box">
+        <h3>Want to know which of your wins are <em>real?</em></h3>
+        <p>Take the free 90-second pipeline diagnostic, or book a call and we will look at a recent test together.</p>
+        <div class="cta-row">
+          <a href="/#diagnostic" class="btn btn-primary">Take the 90-second diagnostic</a>
+          <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-ghost">Book a 20-min call</a>
+        </div>
+      </div>
+
+      <a href="/writing/" class="backlink">← All writing</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mark"><a href="/"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" style="display:block"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#7C1A27" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#7C1A27">D</text></svg></a><span>David&nbsp;Arzumanian<span style="color:#7C1A27">.</span></span></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/writing/">Writing</a>
+      <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
+      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

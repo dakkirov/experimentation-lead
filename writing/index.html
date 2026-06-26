@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — notes on trustworthy experimentation | David Arzumanian</title>
+<meta name="description" content="Essays on making A/B testing trustworthy: peeking, sequential testing, multiple comparisons, causal inference, and when to trust an experiment result.">
+<link rel="canonical" href="https://arzumaniandavid.com/writing/">
+<meta name="author" content="David Arzumanian">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="David Arzumanian">
+<meta property="og:url" content="https://arzumaniandavid.com/writing/">
+<meta property="og:title" content="Writing — notes on trustworthy experimentation">
+<meta property="og:description" content="Essays on making A/B testing trustworthy, from a fractional experimentation lead.">
+<meta property="og:image" content="https://arzumaniandavid.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://arzumaniandavid.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#4A1019; --paper:#FAF4E8; --panel:#FFFFFF;
+    --ink:#3A0C13; --ink-dim:rgba(58,12,19,.82); --ink-meta:rgba(58,12,19,.55);
+    --line:rgba(58,12,19,.13); --accent:#7C1A27; --gold:#F2C744;
+    --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.65}
+  a{color:var(--accent);text-decoration:none}
+  header{position:sticky;top:0;z-index:30;background:var(--burgundy);border-bottom:1px solid rgba(242,232,213,.14)}
+  .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+  .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;color:#F2E8D5}
+  .mark a{color:#F2E8D5}
+  .cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--burgundy);background:var(--gold);padding:9px 18px;border-radius:999px;transition:transform .2s ease, box-shadow .2s ease}
+  .cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(242,199,68,.32)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 32px}
+  .head{padding:72px 0 16px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  .head h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,60px);line-height:1.05;letter-spacing:-.02em;margin:16px 0 14px;color:var(--ink)}
+  .head h1 em{font-style:italic;color:var(--accent)}
+  .head p{font-size:18px;color:var(--ink-dim);max-width:58ch;line-height:1.65}
+  .list{padding:40px 0 8px;border-top:1px solid var(--line);margin-top:36px}
+  .post{display:block;padding:30px 0;border-bottom:1px solid var(--line);transition:padding-left .25s ease}
+  .post:hover{padding-left:8px}
+  .post .cat{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .post h2{font-family:var(--serif);font-weight:500;font-size:clamp(23px,3.2vw,30px);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:8px 0 8px}
+  .post p{font-size:16px;color:var(--ink-dim);max-width:64ch;line-height:1.6}
+  .post .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--accent)}
+  .soon{padding:34px 0 0;font-size:15px;color:var(--ink-meta);font-style:italic;font-family:var(--serif)}
+  footer{border-top:1px solid var(--line);padding:38px 0;text-align:center;margin-top:48px}
+  footer .mark{justify-content:center;color:var(--ink);margin-bottom:14px}
+  footer .mark a{color:var(--ink)}
+  footer .links{font-size:14px;color:var(--ink-meta)}
+  footer .links a{color:var(--ink);margin:0 12px;border-bottom:1px solid var(--line)}
+  footer .links a:hover{color:var(--accent);border-color:var(--accent)}
+  @media(max-width:760px){.nav{padding:16px 22px}.head{padding:48px 0 8px}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="mark"><a href="/"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg></a><span><a href="/">David&nbsp;Arzumanian<span style="color:#F2C744">.</span></a></span></div>
+    <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Writing</div>
+      <h1>Notes on making experiments <em>trustworthy</em></h1>
+      <p>Field notes from the unglamorous half of experimentation: where wins turn out to be noise, metrics quietly disagree, and rigor is the difference between shipping on signal and shipping on luck.</p>
+    </div>
+
+    <div class="list">
+      <a class="post" href="/writing/why-your-ab-test-winner-didnt-hold-up.html">
+        <div class="cat">Experimentation</div>
+        <h2>Why your A/B test winner didn't hold up</h2>
+        <p>You shipped a winning variant and the lift vanished. The four reasons winners fade after launch — peeking, regression to the mean, novelty effects, and multiple comparisons — and how to stop shipping on noise.</p>
+        <span class="more">Read the essay →</span>
+      </a>
+
+      <p class="soon">More essays coming. The next ones cover sequential testing, guardrail metrics, and measuring launches you can't A/B test.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mark"><a href="/"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" style="display:block"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#7C1A27" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#7C1A27">D</text></svg></a><span>David&nbsp;Arzumanian<span style="color:#7C1A27">.</span></span></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
+      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
