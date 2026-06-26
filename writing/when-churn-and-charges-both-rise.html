@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When churn and charges both rise in the same A/B test | David Arzumanian</title>
+<meta name="description" content="A retention feature lifted engagement +3.4%, p<0.001 — and lifted unsubscribes and charges at the same time. Why polarization hides in the net, and the action-vs-outcome diagnostic that catches it.">
+<link rel="canonical" href="https://arzumaniandavid.com/writing/when-churn-and-charges-both-rise.html">
+<meta name="author" content="David Arzumanian">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="David Arzumanian">
+<meta property="og:url" content="https://arzumaniandavid.com/writing/when-churn-and-charges-both-rise.html">
+<meta property="og:title" content="When churn and charges both rise in the same A/B test">
+<meta property="og:description" content="Polarization is invisible in the net. The action-vs-outcome diagnostic that stops you shipping a 'winner' that splits your users.">
+<meta property="og:image" content="https://arzumaniandavid.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://arzumaniandavid.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"When churn and charges both rise in the same A/B test","description":"A retention feature lifted an action metric and both ends of the funnel at once. The action-vs-outcome diagnostic that catches polarization before you ship a false winner.","author":{"@type":"Person","name":"David Arzumanian","url":"https://arzumaniandavid.com/"},"publisher":{"@type":"Person","name":"David Arzumanian"},"datePublished":"2026-06-26","mainEntityOfPage":"https://arzumaniandavid.com/writing/when-churn-and-charges-both-rise.html","url":"https://arzumaniandavid.com/writing/when-churn-and-charges-both-rise.html","image":"https://arzumaniandavid.com/og-image.png"}
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="mark"><a href="/"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg></a><span><a href="/">David&nbsp;Arzumanian<span style="color:#F2C744">.</span></a></span></div>
+    <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <article class="article">
+    <div class="eyebrow">Experimentation</div>
+    <h1>When churn and charges both rise in the same A/B test</h1>
+    <div class="meta"><span>4 min read</span><span class="dot"></span><span>By David Arzumanian</span></div>
+
+    <div class="body">
+      <p class="lede">Most A/B test reads stop at "did the metric move." That's where the interesting question usually starts.</p>
+
+      <p>A recent example. A retention feature lifted a proxy metric, engagement with a queue action, +3.4%, p&lt;0.001. The kind of result that gets a Slack celebration.</p>
+      <p>Then we looked one layer down. The same variant lifted unsubscribes by about 2% (significant) and nudged charges up by about 1% (not significant). Both ends of the funnel got fatter at once.</p>
+
+      <h2>Action vs. outcome</h2>
+      <p>This is the diagnostic I now run before approving any "winner": <strong>does the proxy metric measure an action, or an outcome?</strong></p>
+      <p>Actions are things users <em>do</em>: click, add, engage. Outcomes are things the business <em>gets</em>: charges, retention, gross profit. When a feature lifts an action metric, it has activated previously-passive users. That's it. It hasn't told you what they do next.</p>
+      <p>Activated users go somewhere. Some convert. Some churn. If your population sits on both sides of a fence, poking them harder pushes some over each side. The action moves cleanly. The outcomes split. That's polarization, and it is invisible if you only read the net.</p>
+
+      <h2>Three rules I now write into every test doc before launch</h2>
+      <ol>
+        <li><strong>Name the action metric and the outcome metric separately.</strong> If your primary KPI is an action, you don't have a primary KPI, you have a leading indicator. Pick the downstream economic metric and power the test for it, even if it takes longer.</li>
+        <li><strong>Read both tails of the funnel.</strong> Polarization (churn up and charge up) is invisible if you only look at the net. Decompose by user state going in, passive skippers, active subscribers, payment-failed, and check whether the lift on one segment is paid for by losses on another.</li>
+        <li><strong>Treat "engagement up, economics flat" as a failure mode, not a partial win.</strong> If gross profit per visitor didn't move, the mechanic didn't earn its place. The concept may have legs, but the implementation owes you a second iteration, not a ship decision.</li>
+      </ol>
+
+      <p>The expensive mistake isn't shipping a bad test. It's shipping a test where the action moved, calling it a win, and finding the polarization in a quarterly retention review three months later.</p>
+      <blockquote>Action metrics tell you the feature is alive. Outcome metrics tell you whether it's earning.</blockquote>
+
+      <div class="cta-box">
+        <h3>Does your metric tree separate <em>actions</em> from <em>outcomes?</em></h3>
+        <p>Take the free 90-second diagnostic, or book a call and I'll give your metric tree a second pair of eyes before launch.</p>
+        <div class="cta-row">
+          <a href="/#diagnostic" class="btn btn-primary">Take the 90-second diagnostic</a>
+          <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-ghost">Book a 20-min call</a>
+        </div>
+      </div>
+
+      <a href="/writing/" class="backlink">← All writing</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mark"><a href="/"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" style="display:block"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#7C1A27" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#7C1A27">D</text></svg></a><span>David&nbsp;Arzumanian<span style="color:#7C1A27">.</span></span></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/writing/">Writing</a>
+      <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
+      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your A/B test revenue metric was inflating 59x. The bug was one line. | David Arzumanian</title>
+<meta name="description" content="Every variant showed one purchaser and zero revenue, except one cell. The culprit was a single ifNull in the revenue CTE. How a silent zero-override biases one variant and survives every aggregate sanity check.">
+<link rel="canonical" href="https://arzumaniandavid.com/writing/revenue-metric-inflating-59x.html">
+<meta name="author" content="David Arzumanian">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="David Arzumanian">
+<meta property="og:url" content="https://arzumaniandavid.com/writing/revenue-metric-inflating-59x.html">
+<meta property="og:title" content="Your A/B test revenue metric was inflating 59x. The bug was one line.">
+<meta property="og:description" content="How a single ifNull silently biased one variant of a revenue experiment, and the two habits that catch it before the readout.">
+<meta property="og:image" content="https://arzumaniandavid.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://arzumaniandavid.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Your A/B test revenue metric was inflating 59x. The bug was one line.","description":"How a single ifNull in a revenue CTE silently biased one variant of an A/B test, survived every aggregate sanity check, and the two habits that catch this class of bug before the readout.","author":{"@type":"Person","name":"David Arzumanian","url":"https://arzumaniandavid.com/"},"publisher":{"@type":"Person","name":"David Arzumanian"},"datePublished":"2026-06-26","mainEntityOfPage":"https://arzumaniandavid.com/writing/revenue-metric-inflating-59x.html","url":"https://arzumaniandavid.com/writing/revenue-metric-inflating-59x.html","image":"https://arzumaniandavid.com/og-image.png"}
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="mark"><a href="/"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg></a><span><a href="/">David&nbsp;Arzumanian<span style="color:#F2C744">.</span></a></span></div>
+    <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <article class="article">
+    <div class="eyebrow">Experimentation</div>
+    <h1>Your A/B test revenue metric was inflating 59x. The bug was one line.</h1>
+    <div class="meta"><span>4 min read</span><span class="dot"></span><span>By David Arzumanian</span></div>
+
+    <div class="body">
+      <p class="lede">A teammate's revenue A/B test showed a strange result: every variant, every day, exactly one purchaser with $0 revenue. Except one cell, control on day two, with 65 purchasers and roughly $9K. Everything else: one and zero.</p>
+
+      <p>The instinct is to blame the join. It's almost never the join.</p>
+
+      <h2>What ifNull actually does</h2>
+      <p>The bug was one line in the revenue CTE:</p>
+      <pre><code>ifNull(rp.recur_total, O.amount) AS net_sales</code></pre>
+      <p>The intent was reasonable: if a recurring payment row exists for this order, use its total; otherwise fall back to the order amount. The problem is what <code>ifNull</code> actually does. It only falls back when the first argument is NULL. Zero is not NULL. So any order with a recurring-payment record whose total had been zeroed out, by a refund, a cancellation, a partial reversal, silently overwrote a real <code>O.amount</code> with <code>0</code>.</p>
+      <p>Those orders passed every upstream filter (<code>status = 'completed'</code>, <code>amount &gt; 0</code>, not a refund), joined to the experiment user, and landed in the purchase CTE with a real ID and <code>total_net_sales = 0</code>. Counted as a purchaser. Contributed nothing to revenue.</p>
+
+      <h2>Now flip it</h2>
+      <p>If a few recurring rows had inflated totals, a stacked subscription, a currency mix-up, the SUM carries the experiment. A single order silently overwritten to 59 times its real value looks exactly like a real lift. Same query, same variance, same z-score, opposite conclusion. You'd ship it.</p>
+      <p>That's the pattern with revenue metrics: the dangerous bugs don't break the query, they bias one variant. They pass every sanity check that looks at aggregates. They only show up when you stare at the per-user distribution.</p>
+
+      <h2>Two habits that catch this before the readout</h2>
+      <ol>
+        <li>For any revenue metric, plot the <strong>per-user distribution per variant</strong> before computing the test statistic. The zero-inflated mass, the tail, and the count of suspiciously round values tell you more than the mean ever will.</li>
+        <li>Treat every <code>COALESCE</code> / <code>ifNull</code> / <code>NULLIF</code> in a revenue pipeline as a place a silent override can happen. Write the fallback against the <em>actual</em> failure mode, <code>ifNull(NULLIF(rp.recur_total, 0), O.amount)</code>, not the one you imagined.</li>
+      </ol>
+
+      <p>If you run revenue experiments and have never audited the numerator end to end, start with the test you're most confident in. That's usually where the most expensive surprise is hiding.</p>
+
+      <div class="cta-box">
+        <h3>Has your revenue numerator <em>ever</em> been audited end to end?</h3>
+        <p>The free 90-second diagnostic flags where your pipeline is most likely lying. Or book a call and we'll look at one real test together.</p>
+        <div class="cta-row">
+          <a href="/#diagnostic" class="btn btn-primary">Take the 90-second diagnostic</a>
+          <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-ghost">Book a 20-min call</a>
+        </div>
+      </div>
+
+      <a href="/writing/" class="backlink">← All writing</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mark"><a href="/"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" style="display:block"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#7C1A27" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#7C1A27">D</text></svg></a><span>David&nbsp;Arzumanian<span style="color:#7C1A27">.</span></span></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/writing/">Writing</a>
+      <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
+      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

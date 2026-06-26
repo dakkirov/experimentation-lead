@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When your sequential test says "keep running" at Z = 3.997 | David Arzumanian</title>
+<meta name="description" content="A +36% lift and a 3.997 Z-score, and your sequential boundary still says keep running. Why that's the O'Brien-Fleming design working as paid for, not the framework being timid.">
+<link rel="canonical" href="https://arzumaniandavid.com/writing/when-sequential-testing-says-keep-running.html">
+<meta name="author" content="David Arzumanian">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="David Arzumanian">
+<meta property="og:url" content="https://arzumaniandavid.com/writing/when-sequential-testing-says-keep-running.html">
+<meta property="og:title" content="When your sequential test says &quot;keep running&quot; at Z = 3.997">
+<meta property="og:description" content="Why a 3.997 Z-score and a +36% lift can still mean keep running — O'Brien-Fleming boundaries, explained.">
+<meta property="og:image" content="https://arzumaniandavid.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://arzumaniandavid.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"When your sequential test says keep running at Z = 3.997","description":"Why a 3.997 Z-score and a +36% lift can still mean keep running. O'Brien-Fleming sequential boundaries explained, and the discipline of not flinching at an interim peek.","author":{"@type":"Person","name":"David Arzumanian","url":"https://arzumaniandavid.com/"},"publisher":{"@type":"Person","name":"David Arzumanian"},"datePublished":"2026-06-26","mainEntityOfPage":"https://arzumaniandavid.com/writing/when-sequential-testing-says-keep-running.html","url":"https://arzumaniandavid.com/writing/when-sequential-testing-says-keep-running.html","image":"https://arzumaniandavid.com/og-image.png"}
+</script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="mark"><a href="/"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg></a><span><a href="/">David&nbsp;Arzumanian<span style="color:#F2C744">.</span></a></span></div>
+    <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+  </nav>
+</header>
+
+<main>
+  <article class="article">
+    <div class="eyebrow">Experimentation</div>
+    <h1>When your sequential test says "keep running" at Z = 3.997</h1>
+    <div class="meta"><span>4 min read</span><span class="dot"></span><span>By David Arzumanian</span></div>
+
+    <div class="body">
+      <p class="lede">You ran a test. Z-score is 3.997. The lift is +36%. The fixed-sample p-value would have you popping champagne. Your sequential boundary says: keep running.</p>
+
+      <p>This is not the framework being cautious. It is doing exactly what you paid it to do.</p>
+
+      <h2>The mental model</h2>
+      <p>When you set up a sequential test with O'Brien-Fleming boundaries, you are not running "a test with peeks." You are committing to spend your false-positive budget across the entire planned duration. Early on, the boundary is deliberately brutal, with Z thresholds north of 4, because every peek is a chance to fool yourself. The budget gets cheaper to spend as you accumulate information. By the planned end, the boundary relaxes to something close to the familiar 1.96.</p>
+      <p>So Z = 3.997 at 30% of your target sample is telling you something precise: this result, this early, is not strong enough to rule out a lucky peek. A +36% lift sounds enormous. Early-stage variance is enormous too. The smaller the sample, the easier it is for a real-but-small effect, or pure noise, to throw a giant relative number.</p>
+
+      <h2>Three things that trip people up</h2>
+      <ol>
+        <li><strong>A fixed-sample p-value at an interim peek is not a valid stopping rule.</strong> Stop the moment p &lt; 0.05 on any peek and your real false-positive rate is closer to 20 to 30%, not 5%.</li>
+        <li><strong>"Almost crossed" is not "crossed."</strong> Z = 3.997 against a boundary of 4.10 is a miss. The point of pre-committed boundaries is that you do not get to relitigate them when you do not like the answer.</li>
+        <li><strong>The boundary changing over time is a feature.</strong> It encodes that early evidence is cheaper than late evidence. Treating it as a static threshold misses the entire design.</li>
+      </ol>
+
+      <h2>The right call at 3.997</h2>
+      <p>Keep running. Trust the design you committed to before you saw any data. If the effect is real, cumulative Z will keep rising and you will cross cleanly. If it was early-sample noise dressed as a win, it will regress, and you will be glad you did not ship it.</p>
+      <blockquote>The discipline is not in the math. It is in not flinching when a 3.997 stares back at you.</blockquote>
+      <p>This is also the gap most teams do not know they have. Optimizely, Statsig, Eppo, and GrowthBook will send a significance alert the moment a fixed-sample threshold trips. Very few give you a real spending function, futility bounds, and an honest ETA-to-decision. The "stop early, safely" capability is exactly the layer the default tool leaves out, and it is usually where a third to forty percent of a test's runtime is hiding.</p>
+
+      <div class="cta-box">
+        <h3>Are your tests being stopped at the <em>right</em> moment?</h3>
+        <p>Take the free 90-second pipeline diagnostic, or book a call and we will pressure-test how your team decides to stop.</p>
+        <div class="cta-row">
+          <a href="/#diagnostic" class="btn btn-primary">Take the 90-second diagnostic</a>
+          <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-ghost">Book a 20-min call</a>
+        </div>
+      </div>
+
+      <a href="/writing/" class="backlink">← All writing</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mark"><a href="/"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" style="display:block"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#7C1A27" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#7C1A27">D</text></svg></a><span>David&nbsp;Arzumanian<span style="color:#7C1A27">.</span></span></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/writing/">Writing</a>
+      <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
+      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
