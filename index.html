@@ -4,71 +4,518 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Experimentation & Causal Inference Lead — David Arzumanian</title>
-<meta name="description" content="Fractional experimentation lead. I make A/B testing trustworthy for Seed–Series B product teams: pipeline rigor and causal inference for the launches you can't A/B test.">
+<meta name="description" content="Fractional experimentation lead. I make A/B testing trustworthy for Seed–Series B product teams. Free 90-second pipeline diagnostic, $4k fixed-fee audit.">
+<link rel="canonical" href="https://dakkirov.github.io/experimentation-lead/">
+<meta name="author" content="David Arzumanian">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="keywords" content="fractional experimentation lead, A/B testing consultant, experimentation audit, causal inference, statistical rigor, peeking, sequential testing, Seed Series B">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="David Arzumanian">
+<meta property="og:url" content="https://dakkirov.github.io/experimentation-lead/">
+<meta property="og:title" content="I make A/B testing trustworthy">
+<meta property="og:description" content="Fractional experimentation and causal-inference lead for Seed–Series B teams. Free 90-second pipeline trustworthiness diagnostic, then a $4k fixed-fee audit.">
+<meta property="og:image" content="https://dakkirov.github.io/experimentation-lead/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="I make A/B testing trustworthy — David Arzumanian, fractional experimentation lead">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="I make A/B testing trustworthy">
+<meta name="twitter:description" content="Fractional experimentation lead for Seed–Series B teams. Free 90-second diagnostic, $4k fixed-fee audit.">
+<meta name="twitter:image" content="https://dakkirov.github.io/experimentation-lead/og-image.png">
+<!-- Structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"David Arzumanian — Fractional Experimentation Lead","image":"https://dakkirov.github.io/experimentation-lead/og-image.png","url":"https://dakkirov.github.io/experimentation-lead/","description":"Fractional experimentation and causal-inference lead for Seed–Series B product teams. Makes A/B testing trustworthy: catches false wins, installs statistical rigor, speeds up decisions.","areaServed":"Remote, US time zones","founder":{"@type":"Person","name":"David Arzumanian","jobTitle":"Fractional Experimentation & Causal Inference Lead","url":"https://dakkirov.github.io/experimentation-lead/","sameAs":["https://www.linkedin.com/in/dkarzumanian"]},"makesOffer":[{"@type":"Offer","name":"Experimentation Pipeline Audit","priceCurrency":"USD","price":"4000"},{"@type":"Offer","name":"Fractional Experimentation Lead","priceCurrency":"USD","price":"8000"}]}
+</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --burgundy:#4A1019; --burgundy-2:#3A0C13; --cream:#F2E8D5; --gold:#F2C744;
-    --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6); --cream-faint:rgba(242,232,213,.14);
+    --burgundy:#4A1019; --burgundy-2:#3A0C13; --burgundy-3:#2A080E;
+    --cream:#F2E8D5; --gold:#F2C744;
+    --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6); --cream-faint:rgba(242,232,213,.14); --cream-soft:rgba(242,232,213,.20);
     --gold-dim:rgba(242,199,68,.16);
     --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+    --ease:cubic-bezier(.22,1,.36,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    background:var(--burgundy); color:var(--cream); font-family:var(--sans);
-    -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;
-  }
-  body::before{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-    background:radial-gradient(120% 80% at 50% -10%,var(--gold-dim),transparent 55%);
-  }
-  body::after{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.02;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
+  body{background:var(--burgundy); color:var(--cream); font-family:var(--sans); -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;}
+  body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; background:radial-gradient(120% 80% at 50% -10%,var(--gold-dim),transparent 55%);}
+  body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.02; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--cream-dim)}
   .eyebrow .bar{display:inline-block;width:28px;height:2px;background:var(--gold);vertical-align:middle;margin-right:14px;transform:translateY(-2px)}
   .gold{color:var(--gold)}
   .serif{font-family:var(--serif)}
 
-  /* top bar */
-  header{position:sticky;top:0;z-index:30;backdrop-filter:blur(8px);
-    background:linear-gradient(var(--burgundy),rgba(74,16,25,.78));
-    border-bottom:1px solid var(--cream-faint)}
+  header{position:sticky;top:0;z-index:30;backdrop-filter:blur(8px);background:linear-gradient(var(--burgundy),rgba(74,16,25,.78));border-bottom:1px solid var(--cream-faint)}
   .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;letter-spacing:.01em}
-  .mark .badge{width:30px;height:30px;border:1.5px solid var(--gold);border-radius:50%;
-    display:grid;place-items:center;font-weight:600;font-size:15px;color:var(--gold)}
-  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;
-    color:var(--burgundy);background:var(--gold);padding:9px 18px;border-radius:999px;text-decoration:none;
-    transition:transform .2s ease, box-shadow .2s ease}
+  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--burgundy);background:var(--gold);padding:9px 18px;border-radius:999px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
   .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(242,199,68,.28)}
 
-  /* hero */
   .hero{padding:120px 0 90px;position:relative}
-  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,8vw,86px);line-height:1.02;
-    letter-spacing:-.015em;margin:26px 0 28px;max-width:14ch}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,8vw,86px);line-height:1.02;letter-spacing:-.015em;margin:26px 0 28px;max-width:14ch}
   .hero h1 em{font-style:normal;color:var(--gold)}
   .hero .lead{font-size:clamp(17px,2.1vw,21px);max-width:60ch;color:var(--cream-dim);font-weight:400}
   .hero .lead b{color:var(--cream);font-weight:600}
   .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin:40px 0 22px}
-  .btn{font-weight:600;font-size:15px;letter-spacing:.01em;text-decoration:none;padding:15px 28px;border-radius:999px;
-    transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+  .btn{font-weight:600;font-size:15px;letter-spacing:.01em;text-decoration:none;padding:15px 28px;border-radius:999px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
   .btn-primary{background:var(--gold);color:var(--burgundy)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(242,199,68,.32)}
   .btn-ghost{border:1.5px solid var(--cream-faint);color:var(--cream)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
   .avail{font-size:13.5px;color:var(--cream-dim);letter-spacing:.02em}
-  .avail .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:9px;
-    box-shadow:0 0 0 0 rgba(242,199,68,.6);animation:pulse 2.6s infinite}
+  .avail .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:9px;box-shadow:0 0 0 0 rgba(242,199,68,.6);animation:pulse 2.6s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(242,199,68,.5)}70%{box-shadow:0 0 0 8px rgba(242,199,68,0)}100%{box-shadow:0 0 0 0 rgba(242,199,68,0)}}
 
-  /* proof strip */
+  /* DIAGNOSTIC */
+  .diagnostic{padding:88px 0 76px;border-top:1px solid var(--cream-faint);position:relative}
+  .diag-meta{margin-top:18px;display:inline-flex;align-items:center;gap:16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-meta);font-weight:600}
+  .diag-meta span{display:inline-flex;align-items:center;gap:8px}
+  .diag-meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .diag-meta strong{color:var(--gold);font-weight:700}
+  .diag-panel{margin-top:36px;background:var(--burgundy-2);border:1.5px solid var(--cream-soft);border-radius:18px;padding:32px 36px;box-shadow:0 18px 48px rgba(0,0,0,.30)}
+  .diag-q{
+    overflow:hidden; max-height:0; opacity:0; padding:0;
+    border-bottom:1px solid transparent;
+    transition: max-height .55s cubic-bezier(.22,1,.36,1),
+                opacity .4s ease .12s,
+                padding .55s cubic-bezier(.22,1,.36,1),
+                border-color .55s ease;
+  }
+  .diag-q.is-visible{
+    max-height:640px; opacity:1; padding:18px 0;
+    border-bottom-color:var(--cream-faint);
+  }
+  .diag-q.is-visible:first-child{padding-top:6px}
+  .diag-q.is-visible:last-of-type{border-bottom-color:transparent}
+
+  /* Collapsed state — after answer, question shrinks to compact 1-row summary */
+  .diag-q-collapsed{display:none}
+  .diag-q.is-answered .diag-q-label,
+  .diag-q.is-answered .diag-options,
+  .diag-q.is-answered .diag-slider-wrap{display:none}
+  .diag-q.is-answered .diag-q-collapsed{
+    display:flex; align-items:center; gap:14px;
+  }
+  .diag-q.is-visible.is-answered{
+    max-height:80px; padding:14px 0;
+    transition: max-height .55s cubic-bezier(.22,1,.36,1),
+                padding .55s cubic-bezier(.22,1,.36,1),
+                border-color .55s ease;
+  }
+  .diag-q-collapsed-num{
+    color:var(--gold); font-family:var(--serif); font-style:italic;
+    font-weight:500; font-size:17px; letter-spacing:-.01em;
+    flex-shrink:0;
+  }
+  .diag-q-collapsed-label{
+    color:var(--cream-dim); font-size:13.5px; font-weight:500;
+    flex-shrink:0;
+  }
+  .diag-q-collapsed-val{
+    margin-left:auto; color:var(--cream); font-weight:600; font-size:13px;
+    padding:5px 12px;
+    background:rgba(242,199,68,.10);
+    border:1px solid rgba(242,199,68,.22);
+    border-radius:999px;
+    line-height:1.4;
+  }
+  .diag-q-collapsed-change{
+    font-family:var(--sans); font-size:10px; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase;
+    background:transparent; border:0; padding:5px 0;
+    color:var(--cream-meta); cursor:pointer;
+    border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+    flex-shrink:0;
+  }
+  .diag-q-collapsed-change:hover{
+    color:var(--gold); border-bottom-color:var(--gold);
+  }
+  .diag-q-label{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--cream);margin-bottom:14px;line-height:1.4}
+  .diag-q-label .num{color:var(--gold);font-family:var(--serif);font-style:italic;font-weight:500;margin-right:8px}
+  .diag-options{display:flex;flex-wrap:wrap;gap:8px}
+  .diag-options-stacked{flex-direction:column;gap:8px}
+  .diag-opt{background:transparent;border:1.5px solid var(--cream-faint);color:var(--cream-dim);padding:10px 16px;border-radius:999px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;text-align:left;transition:all .2s ease}
+  .diag-options-stacked .diag-opt{border-radius:10px;padding:13px 18px;line-height:1.5}
+  .diag-opt strong{color:var(--cream);font-weight:600;margin-right:4px}
+  .diag-opt:hover{border-color:var(--gold);color:var(--cream)}
+  .diag-opt.is-selected{background:var(--gold);color:var(--burgundy);border-color:var(--gold);font-weight:600}
+  .diag-opt.is-selected strong{color:var(--burgundy)}
+  .diag-slider-wrap{display:flex;align-items:center;gap:20px;padding:6px 0}
+  .diag-slider{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:var(--cream-faint);border-radius:2px;outline:none;cursor:pointer}
+  .diag-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--burgundy-2);cursor:pointer}
+  .diag-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--burgundy-2);cursor:pointer}
+  .diag-slider-val{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--gold);font-weight:500;min-width:110px;letter-spacing:-.01em}
+  .diag-foot{margin-top:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .diag-submit{background:var(--gold);color:var(--burgundy);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:0;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .2s ease}
+  .diag-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 30px rgba(242,199,68,.32)}
+  .diag-submit:disabled{opacity:.30;cursor:not-allowed}
+  .diag-progress{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-meta);font-weight:600}
+  .diag-progress strong{color:var(--gold);font-weight:700}
+  .diag-result{margin-top:32px;background:var(--burgundy-3);border:1.5px solid rgba(242,199,68,.36);border-radius:14px;padding:30px 32px;box-shadow:0 22px 56px rgba(0,0,0,.40), 0 0 0 1px rgba(242,199,68,.22);display:none;animation:fadeUp .5s var(--ease) backwards}
+  .diag-result.is-shown{display:block}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .diag-result-head{text-align:center;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--cream-faint)}
+  .diag-result-eyebrow{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .diag-score-display{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--serif);font-style:italic;font-weight:500}
+  .diag-score-num{font-size:clamp(60px,9vw,88px);color:var(--gold);letter-spacing:-.04em;line-height:1}
+  .diag-score-out{font-size:26px;color:var(--cream-meta);font-style:italic}
+  .diag-verdict{margin-top:12px;font-family:var(--serif);font-size:17px;color:var(--cream);line-height:1.4}
+  .diag-verdict-tag{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:8px}
+  .diag-verdict-tag.solid{background:rgba(95,175,108,.18);color:#7CCF8C}
+  .diag-verdict-tag.good{background:rgba(242,199,68,.16);color:var(--gold)}
+  .diag-verdict-tag.warn{background:rgba(232,166,64,.18);color:#E8A640}
+  .diag-verdict-tag.critical{background:rgba(212,84,84,.22);color:#E59595}
+  .diag-risks-label{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .diag-risk{padding:16px 0 18px 36px;position:relative;border-bottom:1px solid var(--cream-faint)}
+  .diag-risk:last-child{border-bottom:0;padding-bottom:6px}
+  .diag-risk-num{position:absolute;left:0;top:14px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:24px;color:var(--gold);letter-spacing:-.02em;line-height:1}
+  .diag-risk-title{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--cream);margin-bottom:6px;line-height:1.3}
+  .diag-risk-desc{font-size:14px;line-height:1.65;color:var(--cream-dim)}
+  .diag-risk-desc em{color:var(--gold);font-style:italic}
+  .diag-risk-desc strong{color:var(--cream);font-weight:600}
+  .diag-cta{margin-top:28px;padding-top:24px;border-top:1px solid var(--cream-faint);text-align:center}
+  .diag-cta-headline{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--cream);margin-bottom:8px;letter-spacing:-.01em}
+  .diag-cta-headline em{font-style:italic;color:var(--gold)}
+  .diag-cta-sub{font-size:14px;color:var(--cream-dim);margin-bottom:20px}
+  .diag-cta-row{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .diag-cta-row .btn-primary,.diag-cta-row .btn-ghost{padding:13px 22px;font-size:13px}
+  .diag-email-wrap{margin-top:18px;display:none}
+  .diag-email-wrap.is-shown{display:block;animation:fadeUp .35s var(--ease) backwards}
+  .diag-email-form{display:inline-flex;gap:6px;align-items:center;background:var(--burgundy-2);border:1px solid var(--cream-faint);border-radius:999px;padding:4px 4px 4px 18px}
+  .diag-email-form input{background:transparent;border:0;outline:none;color:var(--cream);font-family:var(--sans);font-size:13.5px;min-width:240px;padding:8px 0}
+  .diag-email-form input::placeholder{color:var(--cream-meta)}
+  .diag-email-form button{background:var(--gold);color:var(--burgundy);border:0;border-radius:999px;padding:10px 18px;font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.04em;cursor:pointer}
+  .diag-email-success{margin-top:14px;color:var(--gold);font-size:14px;font-style:italic;display:none}
+  .diag-email-success.is-shown{display:block}
+
+  /* ════════════════ SHOWCASE — FLIP CARDS ════════════════ */
+  .showcase{padding:88px 0 64px;position:relative;border-top:1px solid var(--cream-faint);overflow:hidden}
+  .showcase-head{margin-bottom:8px}
+  .showcase-sub{color:var(--cream-dim);max-width:62ch;font-size:16.5px;margin-top:8px}
+  .showcase-sub b{color:var(--cream);font-weight:600}
+  .showcase-hint{margin-top:18px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-meta);display:inline-flex;align-items:center;gap:14px;font-weight:600}
+  .showcase-hint::before{content:"";display:inline-block;width:22px;height:1px;background:var(--cream-meta)}
+  .showcase-hint b{color:var(--gold);font-weight:700}
+
+  .showcase-track-wrap{position:relative;margin-top:36px}
+  .showcase-track{
+    display:flex;gap:24px;
+    padding:60px calc(50% - 360px) 80px;
+    overflow-x:auto;overflow-y:hidden;
+    scrollbar-width:none;-ms-overflow-style:none;
+    cursor:grab;user-select:none;
+    perspective:2000px;  /* 3D space for flips */
+  }
+  .showcase-track::-webkit-scrollbar{display:none}
+  .showcase-track.is-dragging{cursor:grabbing}
+
+  .showcase-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:48px;height:48px;border-radius:50%;background:var(--gold);border:0;color:var(--burgundy);font-family:var(--serif);font-size:20px;font-weight:500;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.32);transition:transform .2s ease, opacity .25s ease, box-shadow .2s ease}
+  .showcase-arrow:hover:not(:disabled){transform:translateY(-50%) scale(1.08);box-shadow:0 12px 32px rgba(242,199,68,.42)}
+  .showcase-arrow:disabled{opacity:.18;cursor:not-allowed;pointer-events:none}
+  .showcase-arrow-prev{left:18px}
+  .showcase-arrow-next{right:18px}
+
+  /* The card is just an outer frame for layout/magnification */
+  .proj-card{
+    flex:0 0 720px; width:720px;
+    min-height:480px;
+    background:transparent; border:0; padding:0;
+    transform-origin:center;
+    will-change:transform, opacity;
+    position:relative;
+    perspective:2000px;
+  }
+
+  /* The inner element is what flips */
+  .proj-card-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    min-height:480px;
+    display:grid;                 /* stack both faces in one cell → card grows to fit the taller face */
+    transform-style:preserve-3d;
+    transition:transform .85s cubic-bezier(.22,1,.36,1);
+  }
+  .proj-card.is-flipped .proj-card-inner{
+    transform:rotateY(180deg);
+  }
+
+  /* Both faces share base styling — grid-stacked (not absolute) so content can never overflow the border */
+  .proj-card-front, .proj-card-back{
+    grid-area:1 / 1;
+    position:relative;
+    width:100%; min-height:480px;
+    background:var(--burgundy-2);
+    border:1.5px solid var(--cream-soft);
+    border-radius:18px;
+    box-shadow:0 14px 36px rgba(0,0,0,.30);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+    transition:border-color .35s ease, box-shadow .35s ease;
+  }
+  .proj-card.is-active .proj-card-front,
+  .proj-card.is-active .proj-card-back{
+    border-color:rgba(242,199,68,.42);
+    box-shadow:0 22px 56px rgba(0,0,0,.40), 0 0 0 1px rgba(242,199,68,.22);
+  }
+  .proj-card-back{transform:rotateY(180deg)}
+
+  /* folio in corner — appears on both faces */
+  .proj-card-front::after,
+  .proj-card-back::after{
+    content:attr(data-roman);
+    position:absolute; top:18px; right:24px;
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:26px; color:var(--gold); opacity:.32;
+    letter-spacing:-.02em; transition:opacity .35s ease;
+    pointer-events:none;
+  }
+  .proj-card.is-active .proj-card-front::after,
+  .proj-card.is-active .proj-card-back::after{opacity:.6}
+
+  /* ─── FRONT (simplified) ─── */
+  .proj-card-front{
+    padding:36px 36px 30px;
+    display:flex; flex-direction:column; gap:18px;
+    cursor:pointer;
+  }
+  .proj-front-tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--gold);
+    display:inline-flex; align-items:center; gap:12px; line-height:1.4;
+  }
+  .proj-front-tag::before{content:"";display:inline-block;width:22px;height:2px;background:var(--gold);flex-shrink:0}
+  .proj-front-title{
+    font-family:var(--serif); font-weight:500;
+    font-size:32px; line-height:1.1; letter-spacing:-.015em;
+    color:var(--cream); margin-top:4px;
+    max-width:18ch;
+  }
+  .proj-front-title em{font-style:italic; color:var(--gold); font-weight:500}
+
+  .proj-front-bignum{
+    margin:auto 0;
+    padding:26px 24px;
+    background:rgba(242,199,68,.08);
+    border:1px solid rgba(242,199,68,.22);
+    border-radius:12px;
+    text-align:center;
+  }
+  .proj-front-bignum-v{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:38px; color:var(--gold);
+    line-height:1.1; letter-spacing:-.025em;
+    max-width:18ch; margin:0 auto;
+  }
+  .proj-front-bignum-k{
+    margin-top:8px;
+    font-family:var(--sans); font-size:10.5px; font-weight:600;
+    letter-spacing:.22em; text-transform:uppercase;
+    color:var(--cream-meta);
+  }
+  .proj-front-bignum-sub{
+    margin-top:16px; padding-top:14px;
+    border-top:1px solid rgba(242,199,68,.22);
+    font-family:var(--sans); font-size:12.5px; font-weight:500;
+    color:var(--cream-dim); line-height:1.45;
+    letter-spacing:.02em;
+  }
+  .proj-front-bignum-sub b{color:var(--gold); font-weight:700}
+
+  .proj-front-oneliner{
+    font-family:var(--serif); font-size:17px; line-height:1.45;
+    color:var(--cream-dim); font-style:italic;
+    max-width:46ch;
+  }
+  .proj-front-oneliner b{color:var(--cream); font-weight:500; font-style:normal}
+
+  .proj-flip-hint{
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid var(--cream-faint);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .proj-flip-hint-text{
+    font-family:var(--sans); font-size:11px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase;
+    color:var(--gold);
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .proj-flip-hint-text .flip-icon{
+    display:inline-grid; place-items:center;
+    width:24px; height:24px; border-radius:50%;
+    border:1.5px solid var(--gold);
+    font-size:13px;
+  }
+  .proj-flip-hint-roman{
+    font-family:var(--serif); font-style:italic;
+    font-size:13px; color:var(--cream-meta);
+    letter-spacing:-.01em;
+  }
+
+  /* ─── BACK (details + interactive) ─── */
+  .proj-card-back{
+    padding:28px;
+    display:grid; grid-template-columns:320px 1fr; gap:24px;
+  }
+  .proj-card-back-arrow{
+    position:absolute; top:18px; left:22px;
+    background:transparent; border:0; padding:6px 10px 6px 6px;
+    color:var(--gold); font-family:var(--sans);
+    font-size:11px; font-weight:700;
+    letter-spacing:.16em; text-transform:uppercase;
+    cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    border-radius:999px;
+    transition:color .2s, background .2s;
+    z-index:3;
+  }
+  .proj-card-back-arrow:hover{color:var(--cream); background:rgba(242,232,213,.05)}
+  .proj-card-back-arrow .arrow{font-size:14px}
+
+  /* hint at bottom of back face — teaches "second click flips back" */
+  .proj-card-back-hint{
+    position:absolute; bottom:14px; right:28px;
+    font-family:var(--sans); font-size:9.5px; font-weight:600;
+    letter-spacing:.18em; text-transform:uppercase;
+    color:var(--cream-meta);
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .4s ease;
+    z-index:2;
+  }
+  .proj-card.is-flipped .proj-card-back-hint{
+    opacity:.7;
+    transition-delay:.5s;
+  }
+
+  /* teaching flip animation — slightly faster transition for the demo */
+  .proj-card.is-teaching .proj-card-inner{
+    transition:transform .65s cubic-bezier(.22,1,.36,1);
+  }
+
+  .proj-content{display:flex; flex-direction:column; gap:14px; padding:24px 0 0 6px}
+  .proj-tag{font-size:11px; font-weight:700; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); display:inline-flex; align-items:center; gap:12px; line-height:1.4}
+  .proj-tag::before{content:""; display:inline-block; width:22px; height:2px; background:var(--gold); flex-shrink:0}
+  .proj-title{font-family:var(--serif); font-weight:500; font-size:24px; line-height:1.12; letter-spacing:-.015em; color:var(--cream); margin-top:2px}
+  .proj-title em{font-style:italic; color:var(--gold); font-weight:500}
+  .proj-desc{font-size:13.5px; line-height:1.6; color:var(--cream-dim); margin-top:4px}
+  .proj-desc em{color:var(--gold); font-style:italic; font-weight:500}
+  .proj-metrics{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:auto; padding-top:14px; border-top:1px solid var(--cream-faint)}
+  .proj-metric{background:rgba(242,232,213,.04); border-left:2px solid var(--gold); padding:8px 11px}
+  .proj-metric .v{font-family:var(--serif); font-weight:500; font-size:18px; color:var(--gold); line-height:1; letter-spacing:-.02em}
+  .proj-metric .k{font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta); margin-top:4px; font-weight:600}
+  .proj-foot{padding-top:14px}
+  .proj-cta{display:inline-flex; align-items:center; gap:10px; font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--burgundy); text-decoration:none; padding:10px 18px; background:var(--gold); border-radius:999px; transition:transform .2s ease, gap .2s ease, box-shadow .2s ease}
+  .proj-cta:hover{transform:translateY(-1px); gap:14px; box-shadow:0 8px 22px rgba(242,199,68,.32)}
+  .proj-cta.muted{background:transparent; color:var(--gold); border:1.5px solid var(--gold); padding:8.5px 16.5px}
+  .proj-cta.muted:hover{background:var(--gold); color:var(--burgundy)}
+
+  .proj-visual{background:var(--burgundy-3); border:1px solid var(--cream-faint); border-radius:10px; padding:14px 14px 12px; display:flex; flex-direction:column; gap:10px; min-height:340px; margin-top:24px}
+  .proj-visual-head{font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--cream-meta); display:flex; justify-content:space-between; align-items:center; padding-bottom:8px; border-bottom:1px solid var(--cream-faint); gap:8px}
+  .proj-visual-head .live{color:var(--gold); display:inline-flex; align-items:center; gap:6px}
+  .proj-visual-head .live::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 2.6s infinite}
+  .proj-visual-head .badge-mini{background:rgba(242,199,68,.14); color:var(--gold); padding:3px 8px; border-radius:999px; letter-spacing:.16em; font-size:9px}
+
+  /* CALIPER */
+  .hc-input-wrap{display:flex; flex-direction:column; gap:4px; margin-bottom:4px}
+  .hc-input-label{font-size:9.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta); display:flex; justify-content:space-between}
+  .hc-input-label .try{color:var(--gold); animation:blink 2s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  .hc-textarea{width:100%; background:rgba(242,232,213,.04); border:1px solid var(--cream-faint); border-radius:6px; padding:8px 10px; font-family:var(--serif); font-style:italic; font-size:12.5px; color:var(--cream); line-height:1.4; resize:none; min-height:54px; transition:border-color .2s}
+  .hc-textarea:focus{outline:none; border-color:var(--gold)}
+  .hc-row{display:grid; grid-template-columns:60px 1fr; gap:10px; align-items:center}
+  .hc-donut-wrap{position:relative; width:60px; height:60px; flex-shrink:0}
+  .hc-donut-wrap svg{width:100%; height:100%}
+  .hc-donut-center{position:absolute; inset:0; display:grid; place-items:center; font-family:var(--serif); font-weight:500; font-size:12px; color:var(--gold)}
+  .hc-legend{display:flex; flex-direction:column; gap:3px; font-size:10.5px; color:var(--cream-dim)}
+  .hc-legend-item{display:flex; justify-content:space-between; gap:6px}
+  .hc-legend-item .left{display:flex; align-items:center; gap:5px}
+  .hc-legend-item .dot{width:6px; height:6px; border-radius:50%; flex-shrink:0}
+  .hc-legend-item .pct{font-family:var(--sans); font-size:9.5px; color:var(--cream-meta)}
+  .hc-legend-item.is-dominant{color:var(--gold); font-weight:500}
+  .hc-legend-item.is-dominant .pct{color:var(--gold)}
+  .hc-index{margin-top:auto; padding:9px 11px; background:rgba(242,199,68,.08); border:1px solid rgba(242,199,68,.22); border-radius:6px; display:flex; justify-content:space-between; align-items:center}
+  .hc-index-label{font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--cream-meta); font-weight:600}
+  .hc-index-formula{font-size:9px; color:var(--cream-meta); margin-top:2px}
+  .hc-index-val{font-family:var(--serif); font-style:italic; font-weight:500; font-size:26px; color:var(--gold); letter-spacing:-.025em; line-height:1}
+  .hc-index-val.is-zero{color:var(--cream-meta); font-size:18px}
+  .hc-index-out{font-family:var(--sans); font-size:12px; font-style:normal; color:var(--cream-meta); margin-left:2px; letter-spacing:0}
+
+  /* SEQUENTIAL */
+  .seq-row{display:grid; grid-template-columns:74px 1fr 48px; gap:8px; align-items:center}
+  .seq-label{font-size:9.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta)}
+  .seq-slider{-webkit-appearance:none; appearance:none; height:4px; background:var(--cream-faint); border-radius:2px; outline:none; cursor:pointer}
+  .seq-slider::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:13px; height:13px; border-radius:50%; background:var(--gold); border:2px solid var(--burgundy-3); cursor:pointer}
+  .seq-slider::-moz-range-thumb{width:13px; height:13px; border-radius:50%; background:var(--gold); border:2px solid var(--burgundy-3); cursor:pointer}
+  .seq-val{font-family:var(--serif); font-style:italic; font-size:13px; color:var(--gold); text-align:right; letter-spacing:-.01em}
+  .seq-results{display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; padding-top:8px; border-top:1px solid var(--cream-faint)}
+  .seq-result-k{font-size:8.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta)}
+  .seq-result-v{font-family:var(--serif); font-weight:500; font-size:14px; color:var(--cream); margin-top:2px; letter-spacing:-.01em}
+  .seq-result-v.accent{color:var(--gold); font-style:italic}
+  .seq-chart{padding-top:8px; border-top:1px solid var(--cream-faint); margin-top:auto}
+  .seq-chart-label{font-size:8.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta); margin-bottom:6px; display:flex; justify-content:space-between}
+  .seq-chart-label .accent{color:var(--gold); letter-spacing:.04em; font-family:var(--serif); font-style:italic; font-weight:500; font-size:11px; text-transform:none}
+  .seq-chart svg{width:100%; height:48px; display:block}
+  .seq-chart .boundary{fill:none; stroke:var(--cream-faint); stroke-width:1; stroke-dasharray:3 3; opacity:.7}
+  .seq-chart .z-line{fill:none; stroke:var(--gold); stroke-width:1.6}
+  .seq-chart .z-dot{fill:var(--gold)}
+  .seq-chart .axis{stroke:var(--cream-faint); stroke-width:.5; opacity:.5}
+
+  /* SLACK */
+  .mock-slack{display:flex; flex-direction:column; gap:8px; font-size:11px; flex:1}
+  .mock-slack-channel{font-family:var(--sans); font-size:9.5px; letter-spacing:.08em; color:var(--cream-meta)}
+  .mock-slack-cmd{padding:6px 9px; background:rgba(242,232,213,.05); border:1px solid var(--cream-faint); border-radius:4px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:10px; color:var(--cream-dim)}
+  .mock-slack-cmd::before{content:"/"; color:var(--gold); font-weight:600}
+  .mock-slack-bot{display:flex; gap:8px; margin-top:4px}
+  .mock-slack-bot .avatar{width:22px; height:22px; border-radius:4px; background:var(--gold); color:var(--burgundy); font-family:var(--serif); font-weight:600; font-size:11px; display:grid; place-items:center; flex-shrink:0}
+  .mock-slack-bot .name{font-weight:600; color:var(--cream); font-size:11px}
+  .mock-slack-bot .time{font-size:9px; color:var(--cream-meta); margin-left:5px; font-weight:400}
+  .mock-slack-bot .body{font-size:10.5px; color:var(--cream-dim); line-height:1.5; margin-top:4px}
+  .mock-slack-bot .body p{margin:0}
+  .mock-slack-bot .body .check{color:var(--gold); font-weight:600}
+  .mock-slack-bot .body .warn{color:#E8A640; font-weight:600}
+  .mock-slack-bot .body strong{color:var(--cream); font-weight:600}
+
+  /* ITS */
+  .mock-its{flex:1; display:flex; flex-direction:column}
+  .mock-its svg{width:100%; height:120px; display:block; margin-top:4px}
+  .mock-its .actual{fill:none; stroke:var(--gold); stroke-width:1.7}
+  .mock-its .counterfactual{fill:none; stroke:var(--cream-meta); stroke-width:1.3; stroke-dasharray:3 3}
+  .mock-its .effect-zone{fill:var(--gold); opacity:.10}
+  .mock-its .intervention{stroke:var(--gold); stroke-width:1; stroke-dasharray:2 2}
+  .mock-its .axis{stroke:var(--cream-faint); stroke-width:.5; opacity:.5}
+  .mock-its-legend{display:flex; gap:14px; margin-top:8px; font-size:9px; font-weight:600; letter-spacing:.12em; color:var(--cream-meta); text-transform:uppercase}
+  .mock-its-legend .item{display:flex; align-items:center; gap:6px}
+  .mock-its-legend .line{width:14px; height:2px; background:var(--gold)}
+  .mock-its-legend .line.dashed{background:linear-gradient(to right,var(--cream-meta) 50%,transparent 50%); background-size:4px 2px}
+  .mock-its-result{margin-top:auto; padding:8px 10px; background:rgba(242,199,68,.08); border-radius:6px; font-size:9.5px; letter-spacing:.1em; color:var(--cream-dim); display:flex; justify-content:space-between; text-transform:uppercase}
+  .mock-its-result strong{color:var(--gold); font-family:var(--serif); font-style:italic; font-weight:500; font-size:13px; text-transform:none; letter-spacing:-.01em}
+
+  /* SHAP */
+  .mock-shap{display:flex; flex-direction:column; gap:5px; margin-top:4px; flex:1}
+  .mock-shap-row{display:grid; grid-template-columns:108px 1fr 32px; gap:6px; align-items:center}
+  .mock-shap-name{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:9.5px; color:var(--cream-dim)}
+  .mock-shap-bar{height:6px; background:var(--cream-faint); border-radius:2px; overflow:hidden}
+  .mock-shap-bar-fill{height:100%; background:var(--gold); border-radius:2px}
+  .mock-shap-val{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:9.5px; color:var(--gold); text-align:right; font-weight:500}
+  .mock-shap-footer{margin-top:auto; padding-top:8px; border-top:1px solid var(--cream-faint); display:flex; justify-content:space-between; font-size:9px; font-weight:600; letter-spacing:.14em; color:var(--cream-meta); text-transform:uppercase}
+  .mock-shap-footer strong{color:var(--gold); font-family:var(--serif); font-weight:500; font-size:12px; letter-spacing:-.01em; text-transform:none}
+
+  .showcase-pagination{display:flex; justify-content:center; gap:10px; margin-top:8px}
+  .showcase-dot{width:8px; height:8px; border-radius:50%; background:var(--cream-faint); border:0; padding:0; cursor:pointer; transition:all .25s}
+  .showcase-dot:hover{background:var(--cream-dim)}
+  .showcase-dot.is-active{width:28px; border-radius:4px; background:var(--gold)}
+
+  /* original sections */
   .proof{border-top:1px solid var(--cream-faint);border-bottom:1px solid var(--cream-faint);padding:64px 0}
   .proof .eyebrow{margin-bottom:38px}
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
@@ -77,16 +524,12 @@
   .stat .num{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,60px);line-height:1;color:var(--gold);letter-spacing:-.02em}
   .stat .cap{margin-top:14px;font-size:15px;color:var(--cream-dim);max-width:30ch}
   .stat .cap b{color:var(--cream);font-weight:600}
-
-  /* section heading */
   section{padding:92px 0}
   .sec-head{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,46px);line-height:1.08;letter-spacing:-.015em;margin:18px 0 10px;max-width:18ch}
+  .sec-head em{font-style:normal;color:var(--gold)}
   .sec-sub{color:var(--cream-dim);max-width:56ch;font-size:17px}
-
-  /* services */
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
-  .card{background:var(--burgundy-2);border:1px solid var(--cream-faint);border-radius:18px;padding:40px 36px;position:relative;overflow:hidden;
-    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease}
+  .card{background:var(--burgundy-2);border:1px solid var(--cream-faint);border-radius:18px;padding:40px 36px;position:relative;overflow:hidden;transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease}
   .card:hover{transform:translateY(-4px);border-color:rgba(242,199,68,.4);box-shadow:0 18px 50px rgba(0,0,0,.28)}
   .card .tag{font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
   .card h3{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.1;margin:16px 0 6px}
@@ -99,8 +542,6 @@
   .card li b{font-weight:600}
   .card .note{margin-top:24px;font-size:14px;color:var(--cream-dim);font-family:var(--serif)}
   .card .note .gold{font-style:normal;font-weight:600}
-
-  /* who */
   .who-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:start;margin-top:40px}
   .fit{list-style:none}
   .fit li{font-size:16.5px;padding:14px 0 14px 34px;position:relative;border-bottom:1px solid var(--cream-faint)}
@@ -108,14 +549,10 @@
   .notfit{background:rgba(242,232,213,.04);border:1px solid var(--cream-faint);border-radius:14px;padding:28px 30px}
   .notfit .eyebrow{margin-bottom:16px}
   .notfit p{font-size:15px;color:var(--cream-dim);line-height:1.7}
-
-  /* about */
   .about p{font-size:clamp(18px,2.3vw,24px);font-family:var(--serif);font-weight:400;line-height:1.5;max-width:30ch}
   .about .body{font-family:var(--sans);font-size:16.5px;color:var(--cream-dim);max-width:62ch;margin-top:26px;line-height:1.75}
   .about .body a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim)}
   .about .body a:hover{border-color:var(--gold)}
-
-  /* final cta */
   .final{text-align:center;padding:110px 0 90px}
   .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5.5vw,60px);line-height:1.05;letter-spacing:-.015em;margin-bottom:30px;max-width:20ch;margin-left:auto;margin-right:auto}
   .final h2 em{font-style:normal;color:var(--gold)}
@@ -124,11 +561,36 @@
   footer .links{font-size:14px;color:var(--cream-dim)}
   footer .links a{color:var(--cream);text-decoration:none;margin:0 12px;border-bottom:1px solid var(--cream-faint)}
   footer .links a:hover{color:var(--gold);border-color:var(--gold)}
-
-  /* reveal */
   .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
   .rv.in{opacity:1;transform:none}
   .hero .rv{transition-delay:calc(var(--i,0)*.09s)}
+
+  /* GUARANTEE + COMPARISON */
+  .card-guarantee{margin-top:22px;padding:15px 17px;background:rgba(242,199,68,.08);border:1px solid rgba(242,199,68,.30);border-radius:11px;display:flex;gap:13px;align-items:flex-start}
+  .card-guarantee .ico{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:1px;font-family:var(--sans)}
+  .card-guarantee .txt{font-size:13.5px;color:var(--cream);line-height:1.5}
+  .card-guarantee .lbl{display:block;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+  .card-guarantee .txt b{color:var(--gold);font-weight:700}
+
+  .compare{margin-top:48px;border:1px solid var(--cream-faint);border-radius:16px;overflow:hidden;background:var(--burgundy-2);box-shadow:0 14px 36px rgba(0,0,0,.22)}
+  .compare-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr}
+  .compare-corner,.compare-col-head{border-top:2px solid transparent;border-bottom:1px solid var(--cream-faint)}
+  .compare-corner{background:transparent}
+  .compare-col-head{padding:22px 20px 20px;display:flex;flex-direction:column;gap:4px}
+  .compare-col-head.is-featured{background:rgba(242,199,68,.07);border-top:2px solid var(--gold)}
+  .compare-col-cap{font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);background:var(--gold);align-self:flex-start;padding:3px 10px;border-radius:999px;margin-bottom:7px}
+  .compare-col-title{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:-.01em;color:var(--cream);line-height:1.1}
+  .compare-col-head.is-featured .compare-col-title{color:var(--gold)}
+  .compare-col-sub{font-size:12px;color:var(--cream-meta);line-height:1.45;margin-top:2px}
+  .compare-cell{padding:15px 20px;border-bottom:1px solid var(--cream-faint);font-size:13.5px;line-height:1.45;color:var(--cream);display:flex;align-items:center}
+  .compare-cell.is-featured{background:rgba(242,199,68,.07)}
+  .compare-cell.bad{color:#E59595}
+  .compare-cell .good{color:var(--gold);font-weight:600}
+  .compare-cell b{color:var(--cream);font-weight:600}
+  .compare-rowlabel{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-meta)}
+  .compare-grid > div:nth-last-child(-n+4){border-bottom:0}
+  .compare-foot{margin-top:18px;font-size:13.5px;color:var(--cream-dim);font-family:var(--serif);font-style:italic}
+  .compare-foot b{color:var(--gold);font-weight:600;font-style:normal}
 
   @media(max-width:760px){
     .wrap,.nav{padding-left:22px;padding-right:22px}
@@ -139,7 +601,35 @@
     .who-grid{grid-template-columns:1fr;gap:30px}
     .hero{padding:80px 0 64px}
     section{padding:64px 0}
+    .diagnostic{padding:56px 0 40px}
+    .diag-panel{padding:24px 22px}
+    .diag-q{padding:14px 0}
+    .diag-q-label{font-size:13px}
+    .diag-opt{padding:8px 13px; font-size:12px}
+    .diag-options-stacked .diag-opt{padding:11px 14px}
+    .diag-result{padding:24px 22px}
+    .diag-cta-row{flex-direction:column}
+    .diag-email-form input{min-width:180px}
+    .showcase{padding:56px 0 48px}
+    .showcase-track{padding:24px 7vw 40px; gap:16px}
+    .proj-card{flex-basis:84vw; width:84vw; min-height:auto}
+    .proj-card-inner{min-height:auto}
+    .proj-card-front,.proj-card-back{min-height:auto; position:relative}
+    .proj-card-back{grid-template-columns:1fr; gap:18px; padding:22px 20px}
+    .proj-card-front{padding:24px 22px}
+    .proj-front-title{font-size:24px}
+    .proj-front-bignum-v{font-size:48px}
+    .proj-card-front::after,.proj-card-back::after{font-size:22px; top:14px; right:18px}
+    .showcase-arrow{display:none}
+    .proj-visual{min-height:auto}
+    .compare{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .compare-grid{min-width:660px}
+    .compare-col-head{padding:18px 15px 16px}
+    .compare-col-title{font-size:17px}
+    .compare-cell{padding:13px 15px;font-size:12.5px}
   }
+
+  @media(prefers-reduced-motion:reduce){.avail .dot, .proj-visual-head .live::before{animation:none}.proj-card-inner{transition:none}}
 </style>
 </head>
 <body>
@@ -151,21 +641,454 @@
 </header>
 
 <main>
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow rv" style="--i:0"><span class="bar"></span>Experimentation · Causal Inference</div>
       <h1 class="rv" style="--i:1">I make A/B testing <em>trustworthy.</em></h1>
       <p class="lead rv" style="--i:2">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious — and tells you which numbers are safe to ship on.</p>
       <div class="cta-row rv" style="--i:3">
-        <a href="#book" class="btn btn-primary">Book a 20-min call</a>
-        <a href="#services" class="btn btn-ghost">Start with an audit ↓</a>
+        <a href="#diagnostic" class="btn btn-primary">Take the 90-second diagnostic ↓</a>
+        <a href="#book" class="btn btn-ghost">Book a 20-min call</a>
       </div>
       <div class="avail rv" style="--i:4"><span class="dot"></span>Fractional · 2–3 days/week · remote, full US-timezone overlap</div>
     </div>
   </section>
 
-  <!-- WHAT I SELL (fast scan) -->
+  <!-- DIAGNOSTIC -->
+  <section class="diagnostic" id="diagnostic">
+    <div class="wrap">
+      <div class="eyebrow rv"><span class="bar"></span>Free diagnostic · no email required</div>
+      <h2 class="sec-head rv">Are your tests <em>lying to you?</em></h2>
+      <p class="sec-sub rv">Five questions. I'll score your pipeline's trustworthiness out of 100, surface the top 3 risks specific to your setup, and tell you exactly which of your "wins" are most likely noise.</p>
+      <div class="diag-meta rv">
+        <span><strong>5</strong>&nbsp;questions</span>
+        <span><strong>~90</strong>&nbsp;seconds</span>
+        <span><strong>0</strong>&nbsp;sign-up</span>
+      </div>
+      <div class="diag-panel rv">
+        <form id="diag-form" novalidate>
+          <div class="diag-q" data-q-id="tool" data-short-label="Tool">
+            <div class="diag-q-label"><span class="num">01</span>Which A/B testing tool do you use?</div>
+            <div class="diag-options">
+              <button type="button" class="diag-opt" data-q="tool" data-v="growthbook">GrowthBook</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="mixpanel">Mixpanel Experiments</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="statsig">Statsig</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="optimizely">Optimizely</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="eppo">Eppo</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="amplitude">Amplitude Experiment</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="inhouse">Built in-house</button>
+              <button type="button" class="diag-opt" data-q="tool" data-v="none">Not running tests yet</button>
+            </div>
+            <div class="diag-q-collapsed">
+              <span class="diag-q-collapsed-num">01</span>
+              <span class="diag-q-collapsed-label">Tool</span>
+              <span class="diag-q-collapsed-val">—</span>
+              <button type="button" class="diag-q-collapsed-change">Change</button>
+            </div>
+          </div>
+          <div class="diag-q" data-q-id="volume" data-short-label="Tests per month">
+            <div class="diag-q-label"><span class="num">02</span>How many A/B tests do you ship per month?</div>
+            <div class="diag-slider-wrap">
+              <input type="range" id="diag-volume" min="0" max="30" value="5" class="diag-slider">
+              <div class="diag-slider-val"><span id="diag-volume-val">5</span> per month</div>
+            </div>
+            <div class="diag-q-collapsed">
+              <span class="diag-q-collapsed-num">02</span>
+              <span class="diag-q-collapsed-label">Tests / month</span>
+              <span class="diag-q-collapsed-val">—</span>
+              <button type="button" class="diag-q-collapsed-change">Change</button>
+            </div>
+          </div>
+          <div class="diag-q" data-q-id="peek" data-short-label="Early stopping">
+            <div class="diag-q-label"><span class="num">03</span>Do you stop tests early when results look "significant"?</div>
+            <div class="diag-options diag-options-stacked">
+              <button type="button" class="diag-opt" data-q="peek" data-v="always"><strong>Always</strong> — we look for the moment of significance and ship</button>
+              <button type="button" class="diag-opt" data-q="peek" data-v="sometimes"><strong>Sometimes</strong> — depends on the test, the team's confidence, urgency</button>
+              <button type="button" class="diag-opt" data-q="peek" data-v="never"><strong>Never</strong> — we always wait for the planned sample size</button>
+            </div>
+            <div class="diag-q-collapsed">
+              <span class="diag-q-collapsed-num">03</span>
+              <span class="diag-q-collapsed-label">Peeking</span>
+              <span class="diag-q-collapsed-val">—</span>
+              <button type="button" class="diag-q-collapsed-change">Change</button>
+            </div>
+          </div>
+          <div class="diag-q" data-q-id="mcc" data-short-label="Multiple-comparison correction">
+            <div class="diag-q-label"><span class="num">04</span>Do you correct for multiple comparisons (multiple metrics, segments, variants)?</div>
+            <div class="diag-options diag-options-stacked">
+              <button type="button" class="diag-opt" data-q="mcc" data-v="yes"><strong>Yes</strong> — FDR / Bonferroni / similar, applied consistently</button>
+              <button type="button" class="diag-opt" data-q="mcc" data-v="no"><strong>No</strong> — we read each metric independently at α=0.05</button>
+              <button type="button" class="diag-opt" data-q="mcc" data-v="unknown"><strong>I'm not sure</strong> what this means</button>
+            </div>
+            <div class="diag-q-collapsed">
+              <span class="diag-q-collapsed-num">04</span>
+              <span class="diag-q-collapsed-label">Multiple-comparison correction</span>
+              <span class="diag-q-collapsed-val">—</span>
+              <button type="button" class="diag-q-collapsed-change">Change</button>
+            </div>
+          </div>
+          <div class="diag-q" data-q-id="review" data-short-label="Review">
+            <div class="diag-q-label"><span class="num">05</span>Who reviews experiment results before they ship?</div>
+            <div class="diag-options">
+              <button type="button" class="diag-opt" data-q="review" data-v="analyst">Dedicated analyst</button>
+              <button type="button" class="diag-opt" data-q="review" data-v="pm">PM who ran the test</button>
+              <button type="button" class="diag-opt" data-q="review" data-v="both">Both</button>
+              <button type="button" class="diag-opt" data-q="review" data-v="none">No formal review</button>
+            </div>
+            <div class="diag-q-collapsed">
+              <span class="diag-q-collapsed-num">05</span>
+              <span class="diag-q-collapsed-label">Review</span>
+              <span class="diag-q-collapsed-val">—</span>
+              <button type="button" class="diag-q-collapsed-change">Change</button>
+            </div>
+          </div>
+          <div class="diag-foot">
+            <button type="submit" class="diag-submit" id="diag-submit" disabled>Score my pipeline <span>→</span></button>
+            <span class="diag-progress" id="diag-progress">Question <strong>1</strong> of 5</span>
+          </div>
+        </form>
+        <div class="diag-result" id="diag-result">
+          <div class="diag-result-head">
+            <div class="diag-result-eyebrow">Your trustworthiness score</div>
+            <div class="diag-score-display"><span class="diag-score-num" id="diag-score-num">0</span><span class="diag-score-out">/ 100</span></div>
+            <div style="margin-top:14px"><span class="diag-verdict-tag" id="diag-verdict-tag"></span></div>
+            <div class="diag-verdict" id="diag-verdict">—</div>
+          </div>
+          <div class="diag-risks">
+            <div class="diag-risks-label">Top 3 risks for your setup</div>
+            <div id="diag-risks-list"></div>
+          </div>
+          <div class="diag-cta">
+            <div class="diag-cta-headline">Want me to find and fix these in your <em>actual data?</em></div>
+            <div class="diag-cta-sub">The Audit is $4,000, 14 days, fixed fee. At least one finding that changes a shipping decision, or you don't pay.</div>
+            <div class="diag-cta-row">
+              <a href="#book" class="btn btn-primary">Book a 20-min call <span>→</span></a>
+              <button type="button" class="btn btn-ghost" id="diag-email-btn">↓ Email me the full PDF report</button>
+            </div>
+            <div class="diag-email-wrap" id="diag-email-wrap">
+              <form class="diag-email-form" id="diag-email-form" novalidate>
+                <input type="email" placeholder="your@email.com" id="diag-email-input" required>
+                <button type="submit">Send <span>→</span></button>
+              </form>
+              <div class="diag-email-success" id="diag-email-success">✓ On its way. Check your inbox in the next 2 minutes.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE — flip cards -->
+  <section class="showcase" id="work">
+    <div class="wrap">
+      <div class="eyebrow rv showcase-head"><span class="bar"></span>Selected work · five systems in production</div>
+      <h2 class="sec-head rv">The fix isn't a smarter analyst — it's <em>the layer above the default tool.</em></h2>
+      <p class="sec-sub rv">Each card has two sides. <b>Front:</b> the one-line idea. <b>Click to flip:</b> full case, interactive demos, real metrics.</p>
+      <div class="showcase-hint rv">Scroll on cards · <b>hover to flip</b></div>
+    </div>
+
+    <div class="showcase-track-wrap rv">
+      <button class="showcase-arrow showcase-arrow-prev" id="show-prev" aria-label="Previous">←</button>
+      <button class="showcase-arrow showcase-arrow-next" id="show-next" aria-label="Next">→</button>
+
+      <div class="showcase-track" id="showcase-track">
+
+        <!-- ─── CARD 01 SEQUENTIAL ─── -->
+        <article class="proj-card" data-i="0">
+          <div class="proj-card-inner">
+            <!-- FRONT -->
+            <div class="proj-card-front" data-roman="i">
+              <div class="proj-front-tag">Case 01 · Experimentation</div>
+              <div class="proj-front-title">Sequential testing — answers <em>faster.</em></div>
+              <div class="proj-front-bignum">
+                <div class="proj-front-bignum-v">30–40% faster reads</div>
+                <div class="proj-front-bignum-sub"><b>Same confidence, not less.</b> Calibrated on real metric distributions · more on clear winners</div>
+              </div>
+              <div class="proj-front-oneliner">
+                Default tools stop tests at the <b>wrong moment.</b> A sequential layer above them stops at the right one.
+              </div>
+              <div class="proj-flip-hint">
+                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details + live demo</span>
+                <span class="proj-flip-hint-roman">i / v</span>
+              </div>
+            </div>
+            <!-- BACK -->
+            <div class="proj-card-back" data-roman="i"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
+              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
+              <div class="proj-content">
+                <div class="proj-tag">Case 01 · Experimentation</div>
+                <h3 class="proj-title">Sequential testing</h3>
+                <p class="proj-desc">Default A/B tooling stops at the wrong moment. The fix is a <em>sequential layer above the default</em>: OBF boundaries calibrated through Monte Carlo on real metric distributions.</p>
+                <div class="proj-metrics">
+                  <div class="proj-metric"><div class="v">30–40%</div><div class="k">Faster decisions</div></div>
+                  <div class="proj-metric"><div class="v">47→72%</div><div class="k">Realised power</div></div>
+                  <div class="proj-metric"><div class="v">26→14d</div><div class="k">Avg duration</div></div>
+                  <div class="proj-metric"><div class="v">+42%</div><div class="k">Tests / year</div></div>
+                </div>
+                <div class="proj-foot"><a class="proj-cta" href="mailto:dkarzumanian@gmail.com?subject=Sequential testing case study">Case study on request <span>→</span></a></div>
+              </div>
+              <div class="proj-visual">
+                <div class="proj-visual-head"><span>Sequential planner</span><span class="live">Live</span></div>
+                <div class="seq-row"><span class="seq-label">Daily traffic</span><input type="range" class="seq-slider" id="seq-traffic" min="1000" max="50000" value="12000" step="500"><span class="seq-val" id="seq-traffic-val">12k</span></div>
+                <div class="seq-row"><span class="seq-label">Baseline CR</span><input type="range" class="seq-slider" id="seq-cr" min="5" max="150" value="38" step="1"><span class="seq-val" id="seq-cr-val">3.8%</span></div>
+                <div class="seq-row"><span class="seq-label">MDE (rel)</span><input type="range" class="seq-slider" id="seq-mde" min="5" max="100" value="20" step="1"><span class="seq-val" id="seq-mde-val">2.0%</span></div>
+                <div class="seq-results">
+                  <div><div class="seq-result-k">Sample / arm</div><div class="seq-result-v" id="seq-N">—</div></div>
+                  <div><div class="seq-result-k">Fixed</div><div class="seq-result-v" id="seq-days-fixed">—</div></div>
+                  <div><div class="seq-result-k">Sequential</div><div class="seq-result-v accent" id="seq-days-seq">—</div></div>
+                </div>
+                <div class="seq-chart">
+                  <div class="seq-chart-label"><span>Z-path · OBF boundary</span><span class="accent" id="seq-savings">—</span></div>
+                  <svg viewBox="0 0 240 48" preserveAspectRatio="none">
+                    <line class="axis" x1="0" y1="24" x2="240" y2="24"/>
+                    <path class="boundary" id="seq-boundary-top" d=""/>
+                    <path class="boundary" id="seq-boundary-bot" d=""/>
+                    <path class="z-line" id="seq-zline" d=""/>
+                    <circle class="z-dot" id="seq-zdot" cx="240" cy="10" r="2.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CARD 02 CALIPER ─── -->
+        <article class="proj-card" data-i="1">
+          <div class="proj-card-inner">
+            <div class="proj-card-front" data-roman="ii">
+              <div class="proj-front-tag">Case 02 · Prioritisation</div>
+              <div class="proj-front-title">Caliper — which test do we run <em>next?</em></div>
+              <div class="proj-front-bignum">
+                <div class="proj-front-bignum-v">Stop arguing. Start ranking.</div>
+                <div class="proj-front-bignum-sub">Engineering routed to <b>highest-ROI</b> tests · Calibrated on <b>121</b> past experiments</div>
+              </div>
+              <div class="proj-front-oneliner">
+                Backlogs decided by the <b>loudest voice</b> in the room. This one's decided by 121 past experiments and one comparable Index.
+              </div>
+              <div class="proj-flip-hint">
+                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details + live demo</span>
+                <span class="proj-flip-hint-roman">ii / v</span>
+              </div>
+            </div>
+            <div class="proj-card-back" data-roman="ii"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
+              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
+              <div class="proj-content">
+                <div class="proj-tag">Case 02 · Prioritisation</div>
+                <h3 class="proj-title">Caliper</h3>
+                <p class="proj-desc">Classifies hypotheses by feature type, calibrates per-category coefficients with Bayesian shrinkage on 121 past experiments, and collapses uplift × dev cost × historical performance into <em>one comparable Index</em>.</p>
+                <div class="proj-metrics">
+                  <div class="proj-metric"><div class="v">121</div><div class="k">Experiments calibrated</div></div>
+                  <div class="proj-metric"><div class="v">60+</div><div class="k">Mixpanel configs</div></div>
+                  <div class="proj-metric"><div class="v">4 types</div><div class="k">Feature classifier</div></div>
+                  <div class="proj-metric"><div class="v">1</div><div class="k">Number to argue about</div></div>
+                </div>
+                <div class="proj-foot"><a class="proj-cta" href="mailto:dkarzumanian@gmail.com?subject=Caliper prioritisation case study">Case study on request <span>→</span></a></div>
+              </div>
+              <div class="proj-visual">
+                <div class="proj-visual-head"><span>🧪 Type your hypothesis</span><span class="live">Live</span></div>
+                <div class="hc-input-wrap">
+                  <div class="hc-input-label"><span>Hypothesis</span><span class="try" id="hc-try-hint">Try editing ↓</span></div>
+                  <textarea class="hc-textarea" id="hc-text" rows="2">Add social proof badges with review count and "X people subscribed this week" to the subscription payment page.</textarea>
+                </div>
+                <div class="hc-row">
+                  <div class="hc-donut-wrap">
+                    <svg viewBox="0 0 60 60">
+                      <circle cx="30" cy="30" r="22" fill="none" stroke="rgba(242,232,213,.14)" stroke-width="8"/>
+                      <circle cx="30" cy="30" r="22" fill="none" stroke="#F2C744" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-messaging"/>
+                      <circle cx="30" cy="30" r="22" fill="none" stroke="#E0A540" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-visual"/>
+                      <circle cx="30" cy="30" r="22" fill="none" stroke="#C18840" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-flow"/>
+                      <circle cx="30" cy="30" r="22" fill="none" stroke="#A36E40" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-personalization"/>
+                    </svg>
+                    <div class="hc-donut-center" id="hc-donut-pct">—</div>
+                  </div>
+                  <div class="hc-legend" id="hc-legend">
+                    <div class="hc-legend-item" data-cat="messaging"><div class="left"><span class="dot" style="background:#F2C744"></span>Messaging</div><span class="pct">—</span></div>
+                    <div class="hc-legend-item" data-cat="visual"><div class="left"><span class="dot" style="background:#E0A540"></span>Visual UI</div><span class="pct">—</span></div>
+                    <div class="hc-legend-item" data-cat="flow"><div class="left"><span class="dot" style="background:#C18840"></span>Flow</div><span class="pct">—</span></div>
+                    <div class="hc-legend-item" data-cat="personalization"><div class="left"><span class="dot" style="background:#A36E40"></span>Personalisation</div><span class="pct">—</span></div>
+                  </div>
+                </div>
+                <div class="hc-index" id="hc-index-box">
+                  <div><div class="hc-index-label">Prioritisation Index</div><div class="hc-index-formula">feature weight × classification confidence</div></div>
+                  <div class="hc-index-val" id="hc-index-val">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CARD 03 SMART ANALYTICS ─── -->
+        <article class="proj-card" data-i="2">
+          <div class="proj-card-inner">
+            <div class="proj-card-front" data-roman="iii">
+              <div class="proj-front-tag">Case 03 · Multi-agent AI</div>
+              <div class="proj-front-title">Smart Analytics — agents for the <em>grunt work.</em></div>
+              <div class="proj-front-bignum">
+                <div class="proj-front-bignum-v">Scale without hiring</div>
+                <div class="proj-front-bignum-sub"><b>~10h/wk</b> per analyst back to real analysis · 3 CrewAI crews · Slack-native</div>
+              </div>
+              <div class="proj-front-oneliner">
+                Half the analyst's week is <b>intake docs and summaries.</b> Three AI crews now handle it. Slack-native, in production.
+              </div>
+              <div class="proj-flip-hint">
+                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details</span>
+                <span class="proj-flip-hint-roman">iii / v</span>
+              </div>
+            </div>
+            <div class="proj-card-back" data-roman="iii"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
+              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
+              <div class="proj-content">
+                <div class="proj-tag">Case 03 · Multi-agent AI</div>
+                <h3 class="proj-title">Smart Analytics</h3>
+                <p class="proj-desc">CrewAI system with three crews — post-analysis summary, hypothesis generation, experiment planning. <em>AI removes the grunt work, not the judgement.</em></p>
+                <div class="proj-metrics">
+                  <div class="proj-metric"><div class="v">3 crews</div><div class="k">Summary · hypothesis · planner</div></div>
+                  <div class="proj-metric"><div class="v">CrewAI</div><div class="k">Multi-agent framework</div></div>
+                  <div class="proj-metric"><div class="v">Slack</div><div class="k">Native interface</div></div>
+                  <div class="proj-metric"><div class="v">~10h/wk</div><div class="k">Analyst time recovered</div></div>
+                </div>
+                <div class="proj-foot"><a class="proj-cta muted" href="mailto:dkarzumanian@gmail.com?subject=Smart Analytics draft">Draft on request <span>→</span></a></div>
+              </div>
+              <div class="proj-visual">
+                <div class="proj-visual-head"><span># abtest-results</span><span class="badge-mini">CrewAI · Slack</span></div>
+                <div class="mock-slack">
+                  <div class="mock-slack-channel">user · 2:14 PM</div>
+                  <div class="mock-slack-cmd">summarize EXP-2024-148</div>
+                  <div class="mock-slack-bot">
+                    <div class="avatar">A</div>
+                    <div>
+                      <div class="name">Analyst Bot <span class="time">2:14 PM</span></div>
+                      <div class="body">
+                        <p><strong>checkout-cta-color</strong> · 16 days</p>
+                        <p style="margin-top:4px"><span class="check">✓</span> Test wins +2.1% (95% CI: 0.8–3.4%)</p>
+                        <p><span class="check">✓</span> No interaction with traffic source</p>
+                        <p><span class="warn">⚠</span> Mobile only — desktop variant flat</p>
+                        <p style="margin-top:4px;color:var(--gold)"><strong>Recommend:</strong> ship to mobile; rerun desktop Q3.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CARD 04 CAUSAL ─── -->
+        <article class="proj-card" data-i="3">
+          <div class="proj-card-inner">
+            <div class="proj-card-front" data-roman="iv">
+              <div class="proj-front-tag">Case 04 · Causal inference</div>
+              <div class="proj-front-title">When there's <em>no control group.</em></div>
+              <div class="proj-front-bignum">
+                <div class="proj-front-bignum-v">Know what your big launches did</div>
+                <div class="proj-front-bignum-sub">Defensible attribution where A/B is impossible · ITS · DiD · CITS</div>
+              </div>
+              <div class="proj-front-oneliner">
+                Some features <b>can't be A/B tested.</b> Interrupted time series and difference-in-differences measure them anyway.
+              </div>
+              <div class="proj-flip-hint">
+                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details</span>
+                <span class="proj-flip-hint-roman">iv / v</span>
+              </div>
+            </div>
+            <div class="proj-card-back" data-roman="iv"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
+              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
+              <div class="proj-content">
+                <div class="proj-tag">Case 04 · Causal inference</div>
+                <h3 class="proj-title">Causal inference</h3>
+                <p class="proj-desc">Quasi-experimental measurement framework. <em>Interrupted Time Series + Difference-in-Differences</em> applied to feature rollouts that never had an A/B — subscriber discount, wallet adoption.</p>
+                <div class="proj-metrics">
+                  <div class="proj-metric"><div class="v">ITS</div><div class="k">Interrupted time series</div></div>
+                  <div class="proj-metric"><div class="v">DiD</div><div class="k">Difference-in-differences</div></div>
+                  <div class="proj-metric"><div class="v">CITS</div><div class="k">Controlled ITS</div></div>
+                  <div class="proj-metric"><div class="v">2 rollouts</div><div class="k">Production case studies</div></div>
+                </div>
+                <div class="proj-foot"><a class="proj-cta muted" href="mailto:dkarzumanian@gmail.com?subject=Causal inference draft">Draft on request <span>→</span></a></div>
+              </div>
+              <div class="proj-visual">
+                <div class="proj-visual-head"><span>ITS · Subscriber discount</span><span class="badge-mini">PA-1095</span></div>
+                <div class="mock-its">
+                  <svg viewBox="0 0 320 120" preserveAspectRatio="none">
+                    <line class="axis" x1="20" y1="105" x2="320" y2="105"/>
+                    <line class="axis" x1="20" y1="10" x2="20" y2="105"/>
+                    <path class="effect-zone" d="M 175,38 L 320,28 L 320,72 L 175,68 Z"/>
+                    <line class="intervention" x1="175" y1="10" x2="175" y2="105"/>
+                    <path class="counterfactual" d="M 175,68 Q 220,66 260,64 T 320,62"/>
+                    <path class="actual" d="M 20,82 Q 60,78 100,74 T 175,68 Q 220,50 260,38 T 320,28"/>
+                    <text x="180" y="22" font-family="'Inter',sans-serif" font-size="8" fill="#F2C744" letter-spacing="1" font-weight="600">INTERVENTION</text>
+                  </svg>
+                  <div class="mock-its-legend">
+                    <div class="item"><span class="line"></span>Actual</div>
+                    <div class="item"><span class="line dashed"></span>Counterfactual</div>
+                  </div>
+                  <div class="mock-its-result"><span>Treatment effect</span><strong>+8.4%</strong><span>95% CI [5.2, 11.6]</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CARD 05 CHURN ─── -->
+        <article class="proj-card" data-i="4">
+          <div class="proj-card-inner">
+            <div class="proj-card-front" data-roman="v">
+              <div class="proj-front-tag">Case 05 · Predictive systems</div>
+              <div class="proj-front-title">Churn — predictive systems <em>in production.</em></div>
+              <div class="proj-front-bignum">
+                <div class="proj-front-bignum-v">Save churners before they leave</div>
+                <div class="proj-front-bignum-sub">Right intervention to right cohort · <b>0.81</b> top-decile precision · 4-segment routing</div>
+              </div>
+              <div class="proj-front-oneliner">
+                Survival curves are <b>pretty.</b> Predictive routing of cohorts to interventions is what actually saves customers.
+              </div>
+              <div class="proj-flip-hint">
+                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details</span>
+                <span class="proj-flip-hint-roman">v / v</span>
+              </div>
+            </div>
+            <div class="proj-card-back" data-roman="v"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
+              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
+              <div class="proj-content">
+                <div class="proj-tag">Case 05 · Predictive systems</div>
+                <h3 class="proj-title">Churn — predictive routing</h3>
+                <p class="proj-desc">XGBoost + SHAP-driven feature framing. <em>The predictive layer routes cohorts to interventions</em> — and the causal-inference rigour validates whether they actually worked.</p>
+                <div class="proj-metrics">
+                  <div class="proj-metric"><div class="v">XGBoost</div><div class="k">Model</div></div>
+                  <div class="proj-metric"><div class="v">SHAP</div><div class="k">Feature framing</div></div>
+                  <div class="proj-metric"><div class="v">4 segments</div><div class="k">Routed to treatments</div></div>
+                  <div class="proj-metric"><div class="v">DiD</div><div class="k">Post-treatment attribution</div></div>
+                </div>
+                <div class="proj-foot"><a class="proj-cta muted" href="mailto:dkarzumanian@gmail.com?subject=Churn draft">Draft on request <span>→</span></a></div>
+              </div>
+              <div class="proj-visual">
+                <div class="proj-visual-head"><span>Churn model · SHAP</span><span class="badge-mini">XGBoost</span></div>
+                <div class="mock-shap">
+                  <div class="mock-shap-row"><span class="mock-shap-name">recency_days</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:88%"></div></div><span class="mock-shap-val">.42</span></div>
+                  <div class="mock-shap-row"><span class="mock-shap-name">avg_orders_mo</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:70%"></div></div><span class="mock-shap-val">.33</span></div>
+                  <div class="mock-shap-row"><span class="mock-shap-name">first_promo_used</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:54%"></div></div><span class="mock-shap-val">.26</span></div>
+                  <div class="mock-shap-row"><span class="mock-shap-name">subscription_tier</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:42%"></div></div><span class="mock-shap-val">.20</span></div>
+                  <div class="mock-shap-row"><span class="mock-shap-name">avg_returns_yr</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:34%"></div></div><span class="mock-shap-val">.16</span></div>
+                  <div class="mock-shap-footer"><span>Top-decile precision · <strong>0.81</strong></span><span>ROC AUC · <strong>0.84</strong></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="showcase-pagination" id="showcase-pagination">
+        <button class="showcase-dot is-active" data-i="0"></button>
+        <button class="showcase-dot" data-i="1"></button>
+        <button class="showcase-dot" data-i="2"></button>
+        <button class="showcase-dot" data-i="3"></button>
+        <button class="showcase-dot" data-i="4"></button>
+      </div>
+    </div>
+  </section>
+
   <section style="padding:58px 0;border-top:1px solid var(--cream-faint)">
     <div class="wrap">
       <div class="eyebrow rv" style="margin-bottom:30px"><span class="bar"></span>Two ways to work together</div>
@@ -182,7 +1105,6 @@
     </div>
   </section>
 
-  <!-- PROOF -->
   <section class="proof">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>Receipts, not adjectives</div>
@@ -194,7 +1116,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>How we work together</div>
@@ -212,6 +1133,10 @@
             <li><b>Tooling</b> — Amplitude / Statsig / GrowthBook / Eppo, configured for honest reads</li>
             <li><b>Deliverables</b> — a trustworthiness scorecard + a prioritized test roadmap + a team walkthrough</li>
           </ul>
+          <div class="card-guarantee">
+            <span class="ico">✓</span>
+            <span class="txt"><span class="lbl">The guarantee</span>At least one finding that <b>changes a shipping decision</b>, or you don't pay. Not a count of nitpicks. One call you'd otherwise have gotten wrong.</span>
+          </div>
           <div class="note">The fee <span class="gold">credits toward your first month</span> if we continue.</div>
         </div>
         <div class="card rv">
@@ -225,13 +1150,80 @@
             <li><b>Causal measurement</b> for launches you can't A/B test — interrupted time series, diff-in-diff</li>
             <li><b>Level up the team</b> so the practice outlasts me</li>
           </ul>
+          <div class="card-guarantee">
+            <span class="ico">↻</span>
+            <span class="txt"><span class="lbl">No lock-in</span>3-month start, then <b>month-to-month.</b> You own every playbook and dashboard I build — leave the day the practice runs without me.</span>
+          </div>
           <div class="note">You get the senior operator directly — <span class="gold">not an agency junior.</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MID CTA -->
+  <section id="compare" style="border-top:1px solid var(--cream-faint)">
+    <div class="wrap">
+      <div class="eyebrow rv"><span class="bar"></span>The honest comparison</div>
+      <h2 class="sec-head rv">The real question isn't my fee. It's <em>what the alternative costs you.</em></h2>
+      <p class="sec-sub rv">Three ways to fix an experimentation pipeline you can't trust — in time, in cash, and in bad ships.</p>
+      <div class="compare rv">
+        <div class="compare-grid">
+          <!-- header -->
+          <div class="compare-corner"></div>
+          <div class="compare-col-head is-featured">
+            <span class="compare-col-cap">Recommended</span>
+            <span class="compare-col-title">Audit → Fractional</span>
+            <span class="compare-col-sub">Start at $4k. Scale only if it works.</span>
+          </div>
+          <div class="compare-col-head">
+            <span class="compare-col-title">Hire it in-house</span>
+            <span class="compare-col-sub">A senior experimentation lead, full-time.</span>
+          </div>
+          <div class="compare-col-head">
+            <span class="compare-col-title">Do nothing</span>
+            <span class="compare-col-sub">Keep shipping on the current pipeline.</span>
+          </div>
+
+          <!-- row 1 -->
+          <div class="compare-cell compare-rowlabel">Time to first insight</div>
+          <div class="compare-cell is-featured"><span class="good">2 weeks</span></div>
+          <div class="compare-cell">3–5 months to hire + ramp</div>
+          <div class="compare-cell bad">Never</div>
+
+          <!-- row 2 -->
+          <div class="compare-cell compare-rowlabel">Year-1 cash cost</div>
+          <div class="compare-cell is-featured">$4k audit, then from $8k/mo <b>only if you continue</b></div>
+          <div class="compare-cell">$180k–$240k fully loaded</div>
+          <div class="compare-cell">$0 up front</div>
+
+          <!-- row 3 -->
+          <div class="compare-cell compare-rowlabel">Who owns the rigor</div>
+          <div class="compare-cell is-featured"><span class="good">A senior operator, week one</span></div>
+          <div class="compare-cell">Whoever you can hire and retain</div>
+          <div class="compare-cell bad">No one</div>
+
+          <!-- row 4 -->
+          <div class="compare-cell compare-rowlabel">Time to productive</div>
+          <div class="compare-cell is-featured"><span class="good">Immediately</span></div>
+          <div class="compare-cell">3–6 months to full speed</div>
+          <div class="compare-cell">—</div>
+
+          <!-- row 5 -->
+          <div class="compare-cell compare-rowlabel">What you commit to</div>
+          <div class="compare-cell is-featured">Cancel after the audit</div>
+          <div class="compare-cell">Salary, equity, severance</div>
+          <div class="compare-cell">—</div>
+
+          <!-- row 6 -->
+          <div class="compare-cell compare-rowlabel">Your false "wins"</div>
+          <div class="compare-cell is-featured"><span class="good">Found &amp; quantified in 14 days</span></div>
+          <div class="compare-cell">Found once they ramp</div>
+          <div class="compare-cell bad">Keep shipping</div>
+        </div>
+      </div>
+      <p class="compare-foot rv">The audit costs less than <b>two weeks</b> of a senior hire's loaded salary — and tells you whether you even need one.</p>
+    </div>
+  </section>
+
   <section style="padding:74px 0;border-top:1px solid var(--cream-faint);text-align:center">
     <div class="wrap">
       <p class="rv" style="font-family:var(--serif);font-weight:500;font-size:clamp(22px,3.2vw,32px);line-height:1.15;letter-spacing:-.012em;margin:0 auto 26px;color:var(--cream);max-width:22ch">Not sure how much of your test data you can trust?</p>
@@ -239,7 +1231,6 @@
     </div>
   </section>
 
-  <!-- WHO -->
   <section style="border-top:1px solid var(--cream-faint)">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>Who this is for</div>
@@ -258,18 +1249,16 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="about" style="border-top:1px solid var(--cream-faint)">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>Who you'd be working with</div>
-      <p class="rv">Eight years making numbers tell the truth in product analytics.</p>
+      <p class="rv">I'm David Arzumanian. Eight years making numbers tell the truth in product analytics.</p>
       <div class="body rv">
-        I've spent my career on the unglamorous half of experimentation — the part where a "win" turns out to be a logging bug, a proxy metric quietly disagrees with revenue, and someone has to say "we can't ship on this yet." Most recently at subscription e-commerce scale. I write about it regularly on <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>, where I work out loud about the traps that make experiments lie.
+        I've spent my career on the unglamorous half of experimentation: the part where a "win" turns out to be a logging bug, a proxy metric quietly disagrees with revenue, and someone has to say "we can't ship on this yet." Most recently I built the experimentation rigor at a subscription e-commerce company at scale. I work these traps out loud on <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>, where every role and how I think is public. Verify all of it before we talk.
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
   <section class="final" id="book">
     <div class="wrap">
       <h2 class="rv">Which of your numbers are <em>safe to ship on?</em></h2>
@@ -291,6 +1280,509 @@
 <script>
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  /* DIAGNOSTIC — progressive reveal + collapse on answer */
+  (function(){
+    const form = document.getElementById('diag-form');
+    if (!form) return;
+    const state = { tool: null, volume: 5, peek: null, mcc: null, review: null };
+    const questions = Array.from(document.querySelectorAll('.diag-q'));
+    const diagPanel = document.querySelector('.diag-panel');
+    // Only auto-scroll the page when the visitor is actually looking at the
+    // diagnostic. If they've scrolled down to the work below, a fallback timer
+    // must never yank them back up here.
+    function diagInView(){
+      if (!diagPanel) return true;
+      const r = diagPanel.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      return visible > Math.min(200, r.height * 0.35);
+    }
+    // Q1 starts visible; the rest are hidden until earned
+    if (questions[0]) questions[0].classList.add('is-visible');
+
+    let q2Touched = false, q2AutoTimer = null;
+
+    // Human-readable answer labels for collapsed view
+    const ANSWER_LABELS = {
+      tool: { growthbook:'GrowthBook', mixpanel:'Mixpanel Experiments', statsig:'Statsig',
+              optimizely:'Optimizely', eppo:'Eppo', amplitude:'Amplitude Experiment',
+              inhouse:'Built in-house', none:'Not testing yet' },
+      peek: { always:'Always peek', sometimes:'Sometimes peek', never:'Never peek' },
+      mcc:  { yes:'Yes — corrected', no:'No correction', unknown:'Not sure' },
+      review: { analyst:'Analyst', pm:'PM only', both:'Analyst + PM', none:'No formal review' }
+    };
+
+    function getAnswerLabel(qId, val){
+      if (qId === 'volume') return (val >= 30 ? '30+' : val) + ' / month';
+      return (ANSWER_LABELS[qId] && ANSWER_LABELS[qId][val]) || val;
+    }
+
+    function collapseQ(q){
+      if (!q || q.classList.contains('is-answered')) return;
+      const qId = q.dataset.qId;
+      const val = state[qId];
+      if (val === null || val === undefined) return;
+      const valEl = q.querySelector('.diag-q-collapsed-val');
+      if (valEl) valEl.textContent = getAnswerLabel(qId, val);
+      q.classList.add('is-answered');
+    }
+
+    function expandQ(q){
+      if (!q) return;
+      q.classList.remove('is-answered');
+    }
+
+    function updateProgress(){
+      // "Question N of 5" — N = latest visible question index + 1
+      let latestVisible = 0;
+      questions.forEach((q, i) => { if (q.classList.contains('is-visible')) latestVisible = i + 1; });
+      // If all categorical questions answered, show ready state
+      const allCatAnswered = ['tool','peek','mcc','review'].every(k => state[k] !== null);
+      const progressEl = document.getElementById('diag-progress');
+      if (allCatAnswered) {
+        progressEl.innerHTML = `<strong style="color:var(--gold)">✓ Ready to score</strong>`;
+      } else {
+        progressEl.innerHTML = `Question <strong>${latestVisible}</strong> of 5`;
+      }
+      document.getElementById('diag-submit').disabled = !allCatAnswered;
+    }
+
+    function revealNext(currentQ, delay = 280){
+      const idx = questions.indexOf(currentQ);
+      if (idx < 0) return;
+
+      // ALWAYS collapse the current question and update progress —
+      // even if this is the last question or the next is already visible.
+      // This is what enables the submit button after Q5 answered.
+      collapseQ(currentQ);
+      updateProgress();
+
+      const isLast = idx >= questions.length - 1;
+      if (isLast) return;
+      const next = questions[idx + 1];
+      if (next.classList.contains('is-visible')) return;
+
+      setTimeout(() => {
+        next.classList.add('is-visible');
+        updateProgress();
+        setTimeout(() => {
+          const rect = next.getBoundingClientRect();
+          const inView = rect.top >= 80 && rect.bottom <= window.innerHeight - 40;
+          if (!inView && diagInView()) next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 220);
+        // If we just revealed Q2 (the slider), start the auto-progress fallback timer
+        if (idx + 1 === 1 && questions[1]) {
+          clearTimeout(q2AutoTimer);
+          q2AutoTimer = setTimeout(() => {
+            if (!q2Touched) revealNext(questions[1], 0);
+          }, 3200);
+        }
+      }, delay);
+    }
+
+    // Pill button answer (Q1, Q3, Q4, Q5)
+    document.querySelectorAll('.diag-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const q = btn.dataset.q, v = btn.dataset.v;
+        document.querySelectorAll(`.diag-opt[data-q="${q}"]`).forEach(b => b.classList.remove('is-selected'));
+        btn.classList.add('is-selected');
+        state[q] = v;
+        const currentQ = btn.closest('.diag-q');
+        revealNext(currentQ);
+      });
+    });
+
+    // Slider (Q2) — debounced so the user can actually find their value
+    const volumeSlider = document.getElementById('diag-volume');
+    let q2DebounceTimer = null;
+    const Q2_DEBOUNCE_MS = 900; // wait this long after the last slider move before locking the answer
+    volumeSlider.addEventListener('input', () => {
+      state.volume = parseInt(volumeSlider.value, 10);
+      document.getElementById('diag-volume-val').textContent = state.volume >= 30 ? '30+' : state.volume;
+      // Cancel the no-interaction auto-reveal — the user IS interacting
+      clearTimeout(q2AutoTimer);
+      // Debounce the lock-in: only collapse once the user has stopped moving
+      clearTimeout(q2DebounceTimer);
+      q2DebounceTimer = setTimeout(() => {
+        q2Touched = true;
+        const q2 = volumeSlider.closest('.diag-q');
+        // Keep the collapsed pill in sync with the final value
+        const valEl = q2.querySelector('.diag-q-collapsed-val');
+        if (valEl) valEl.textContent = getAnswerLabel('volume', state.volume);
+        revealNext(q2, 320);
+      }, Q2_DEBOUNCE_MS);
+    });
+
+    // Change button — re-expand a previously answered question
+    document.querySelectorAll('.diag-q-collapsed-change').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const q = btn.closest('.diag-q');
+        expandQ(q);
+        updateProgress();
+        // For Q2, mark as not-yet-touched so the user can re-adjust without auto-advancing
+        if (q.dataset.qId === 'volume') {
+          // Keep q2Touched true so we don't fire another auto-timer
+        }
+        setTimeout(() => {
+          const rect = q.getBoundingClientRect();
+          if ((rect.top < 80 || rect.bottom > window.innerHeight - 40) && diagInView()) {
+            q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 80);
+      });
+    });
+
+    // Initial progress
+    updateProgress();
+    function computeScore(){
+      let score = 100;
+      const tp = { growthbook:10, mixpanel:15, statsig:5, optimizely:10, eppo:3, amplitude:12, inhouse:20, none:0 };
+      score -= tp[state.tool] || 0;
+      if (state.volume >= 10) score -= 12; else if (state.volume >= 6) score -= 8; else if (state.volume >= 3) score -= 4;
+      if (state.peek === 'always') score -= 25; else if (state.peek === 'sometimes') score -= 14;
+      if (state.mcc === 'no') score -= 10; else if (state.mcc === 'unknown') score -= 14;
+      if (state.review === 'pm') score -= 10; else if (state.review === 'none') score -= 22; else if (state.review === 'both') score -= 3;
+      if (state.peek !== 'never' && state.mcc !== 'yes' && state.volume >= 6) score -= 8;
+      if (state.peek === 'always' && state.review === 'none') score -= 6;
+      return Math.max(5, Math.min(100, score));
+    }
+    function generateRisks(){
+      const r = [];
+      if (state.peek === 'always') r.push({p:100,t:'Peeking is inflating your win rate by an estimated 30–50%.',d:`You stop tests when they "look significant." Without sequential boundaries calibrated to your traffic, roughly <strong>1 in 3 of your shipped "wins" is noise</strong> that happened to cross 0.05. This is the single largest source of false positives, and it compounds with everything else.`});
+      else if (state.peek === 'sometimes') r.push({p:75,t:'Inconsistent stopping rules are biasing your results.',d:`Stopping "when it depends" means the bias is unpredictable. Some of your wins are real; some are early-stop artifacts. <em>Which is which?</em> Without sequential math you can't tell.`});
+      if (state.volume >= 6 && state.mcc !== 'yes') { const vol = state.volume >= 30 ? '30+' : state.volume; r.push({p:80,t:'You\'re running too many tests without alpha correction.',d:`${vol} tests per month × 3–5 metrics each = 18+ independent significance checks per month. At α=0.05, you expect <strong>~1 false positive per month from pure chance</strong> — before any other issues.`}); }
+      if (state.mcc === 'unknown') r.push({p:70,t:'Statistical methodology isn\'t being reviewed.',d:`"I'm not sure what this means" on multiple-comparison correction is the strongest signal that nobody on the team is currently auditing methodology.`});
+      if (state.tool === 'mixpanel') r.push({p:65,t:'Mixpanel\'s experiment module defaults are fragile.',d:`Mixpanel counts every conversion in the funnel as independent, which inflates significance. Without explicit triggering analysis and variance reduction, reads are systematically optimistic.`});
+      else if (state.tool === 'growthbook') r.push({p:60,t:'GrowthBook\'s default boundary isn\'t calibrated to your traffic.',d:`GrowthBook ships with a generic sequential setting not tuned to your metric distributions. Tests "stop properly" — but at thresholds that are wrong for your variance. Realised power lags the spec by <em>20–30%</em>.`});
+      else if (state.tool === 'inhouse') r.push({p:62,t:'In-house experimentation tools accumulate silent bugs.',d:`Without third-party methodology review, in-house systems drift: rounding bugs, exclusion-list errors, late-arriving event handling, timezone math. These compound over months.`});
+      else if (state.tool === 'amplitude') r.push({p:55,t:'Amplitude Experiment is opaque about its assumptions.',d:`Amplitude's significance calculations are a black box — you can't audit the exact procedure, the variance treatment, or the family-wise error correction.`});
+      else if (state.tool === 'optimizely') r.push({p:55,t:'Optimizely\'s defaults assume more traffic than you have.',d:`Optimizely's stats engine is designed for enterprise-scale traffic. At Seed–B volumes, the variance estimates are unreliable.`});
+      if (state.review === 'pm') r.push({p:65,t:'PMs alone aren\'t structured to catch methodology issues.',d:`PMs are incentivised to ship. The role isn't built to question the methodology that produced the result — that's an analyst's job.`});
+      else if (state.review === 'none') r.push({p:90,t:'No formal review = no quality floor.',d:`If nobody reviews experiment results before they ship, you don't have an experimentation pipeline — you have a metric dashboard with statistical tests bolted on.`});
+      if (state.tool === 'none') return [
+        {t:'You\'re shipping on intuition, not data.',d:`Without any A/B testing infrastructure, you have no way to separate "the feature worked" from "the market moved" from "we got lucky." <em>Starting is more important than which tool.</em>`},
+        {t:'The cost of the first wrong-direction ship is enormous.',d:`Pre-testing companies regularly ship redesigns or pricing changes that drop revenue 10–30% — and don't notice for weeks.`},
+        {t:'Your competitors who test will compound past you.',d:`Companies that test ship roughly 2× the validated improvements per year as companies that don't.`}
+      ];
+      r.sort((a,b) => b.p - a.p);
+      const top = r.slice(0, 3);
+      while (top.length < 3) top.push({t:'Methodology drift is the silent problem.',d:`Even when individual tests are clean, organisational drift is the long-term issue. The audit catches drift before it becomes load-bearing.`});
+      return top;
+    }
+    function getVerdict(s){
+      if (s >= 85) return { tag:'solid', label:'Solid', text:'Your pipeline is in good shape. There are still refinements available — but you\'re not actively shipping noise.' };
+      if (s >= 65) return { tag:'good', label:'Good with risks', text:'Foundation is decent but the specific risks below are worth addressing before they compound.' };
+      if (s >= 45) return { tag:'warn', label:'Concerning', text:'Multiple compounding issues. A meaningful portion of your "wins" are likely noise.' };
+      if (s >= 25) return { tag:'warn', label:'At significant risk', text:'Most of your shipped "wins" are likely noise. The roadmap that flows from them is built on bias.' };
+      return { tag:'critical', label:'Critical', text:'You\'re almost certainly shipping false positives at scale. This is the configuration the audit was built for.' };
+    }
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!state.tool || !state.peek || !state.mcc || !state.review) return;
+      const score = computeScore(), risks = generateRisks(), verdict = getVerdict(score);
+      const resultEl = document.getElementById('diag-result');
+      resultEl.classList.add('is-shown');
+      const tagEl = document.getElementById('diag-verdict-tag');
+      tagEl.textContent = verdict.label;
+      tagEl.className = 'diag-verdict-tag ' + verdict.tag;
+      document.getElementById('diag-verdict').textContent = verdict.text;
+      document.getElementById('diag-risks-list').innerHTML = risks.map((r,i) => `<div class="diag-risk"><span class="diag-risk-num">${i+1}</span><div class="diag-risk-title">${r.t}</div><div class="diag-risk-desc">${r.d}</div></div>`).join('');
+      const scoreEl = document.getElementById('diag-score-num');
+      const startT = performance.now(), dur = 1200;
+      function tick(t){
+        const p = Math.min(1, (t - startT) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        scoreEl.textContent = Math.round(score * eased);
+        if (p < 1) requestAnimationFrame(tick);
+        else scoreEl.textContent = score;
+      }
+      requestAnimationFrame(tick);
+      setTimeout(() => { if (diagInView()) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120);
+    });
+    document.getElementById('diag-email-btn').addEventListener('click', () => {
+      document.getElementById('diag-email-wrap').classList.add('is-shown');
+      document.getElementById('diag-email-btn').style.display = 'none';
+      setTimeout(() => document.getElementById('diag-email-input').focus(), 100);
+    });
+    document.getElementById('diag-email-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = document.getElementById('diag-email-input').value.trim();
+      if (!v || !v.includes('@') || !v.includes('.')) { document.getElementById('diag-email-input').style.borderBottom = '1px solid #E8A640'; return; }
+      document.getElementById('diag-email-form').style.display = 'none';
+      document.getElementById('diag-email-success').classList.add('is-shown');
+    });
+  })();
+
+  /* SHOWCASE — magnification + wheel-on-track-only + click-to-flip */
+  (function(){
+    const track = document.getElementById('showcase-track');
+    if (!track) return;
+    const cards = Array.from(track.querySelectorAll('.proj-card'));
+    const dots = Array.from(document.querySelectorAll('.showcase-dot'));
+    const prevBtn = document.getElementById('show-prev');
+    const nextBtn = document.getElementById('show-next');
+    const isMobile = () => window.matchMedia('(max-width:760px)').matches;
+
+    function updateMagnification(){
+      if (isMobile()) {
+        cards.forEach(c => { c.style.transform = ''; c.style.opacity = ''; c.style.zIndex = ''; c.classList.remove('is-active'); });
+        return 0;
+      }
+      const trackRect = track.getBoundingClientRect();
+      const center = trackRect.left + trackRect.width/2;
+      let nearestIdx = 0, nearestDist = Infinity;
+      cards.forEach((c, i) => {
+        const cr = c.getBoundingClientRect();
+        const cc = cr.left + cr.width/2;
+        const dist = Math.abs(cc - center);
+        const cardW = c.offsetWidth;
+        if (dist < nearestDist) { nearestDist = dist; nearestIdx = i; }
+        const proximity = Math.max(0, 1 - dist / (cardW * 1.7));
+        const eased = Math.pow(proximity, 1.35);
+        const scale = 0.55 + eased * 0.51;
+        const opacity = 0.28 + eased * 0.72;
+        c.style.transform = `scale(${scale.toFixed(3)})`;
+        c.style.opacity = opacity.toFixed(3);
+        c.style.zIndex = String(Math.round(20 - dist / cardW * 4));
+      });
+      cards.forEach((c, i) => c.classList.toggle('is-active', i === nearestIdx));
+      return nearestIdx;
+    }
+    function updateChrome(n){
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === n));
+      if (prevBtn) prevBtn.disabled = n === 0;
+      if (nextBtn) nextBtn.disabled = n === cards.length - 1;
+    }
+    function scrollToIndex(i, behavior = 'smooth'){
+      i = Math.max(0, Math.min(cards.length - 1, i));
+      const card = cards[i];
+      const trackRect = track.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const offset = (cardRect.left + cardRect.width/2) - (trackRect.left + trackRect.width/2);
+      track.scrollBy({ left: offset, behavior });
+    }
+    let raf = null;
+    track.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { const n = updateMagnification(); updateChrome(n); raf = null; });
+    }, { passive: true });
+
+    /* WHEEL listener attached to the TRACK only (not the whole section).
+       So wheel events only get intercepted when the cursor is over the cards themselves;
+       hovering over the headline / sub / hint above the track lets the page scroll normally. */
+    track.addEventListener('wheel', (e) => {
+      if (isMobile()) return;
+      if (e.target.closest('input[type="range"], textarea, select')) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const atStart = track.scrollLeft <= 1 && e.deltaY < 0;
+      const atEnd   = track.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+      if (atStart || atEnd) return;  /* edge release */
+      e.preventDefault();
+      track.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+    prevBtn && prevBtn.addEventListener('click', () => scrollToIndex(updateMagnification() - 1));
+    nextBtn && nextBtn.addEventListener('click', () => scrollToIndex(updateMagnification() + 1));
+    dots.forEach(d => d.addEventListener('click', () => scrollToIndex(parseInt(d.dataset.i, 10))));
+
+    /* CLICK-TO-FLIP — front flips to back; back face flips back from anywhere. */
+    cards.forEach((card, idx) => {
+      const front = card.querySelector('.proj-card-front');
+      const back = card.querySelector('.proj-card-back');
+      if (front) {
+        front.addEventListener('click', (e) => {
+          if (e.target.closest('a, button')) return;
+          if (!card.classList.contains('is-active')) {
+            scrollToIndex(idx);
+            return;
+          }
+          card.classList.add('is-flipped');
+        });
+      }
+      if (back) {
+        back.addEventListener('click', (e) => {
+          // Don't flip when clicking interactive controls (sliders, textarea, links)
+          if (e.target.closest('input, textarea, select, a')) return;
+          if (!card.classList.contains('is-flipped')) return;
+          card.classList.remove('is-flipped');
+        });
+      }
+    });
+
+    /* TEACHING FLIP — first time the section enters the viewport, briefly
+       flip the active card to teach the visitor that cards are interactive. */
+    let teachDone = false;
+    const teachObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting || teachDone) return;
+        teachDone = true;
+        teachObs.disconnect();
+        if (isMobile()) return;
+        setTimeout(() => {
+          const active = cards.find(c => c.classList.contains('is-active'));
+          if (!active) return;
+          active.classList.add('is-teaching', 'is-flipped');
+          setTimeout(() => {
+            active.classList.remove('is-flipped');
+            setTimeout(() => active.classList.remove('is-teaching'), 800);
+          }, 1100);
+        }, 650);
+      });
+    }, { threshold: 0.45 });
+    const showcaseSection = document.getElementById('work');
+    if (showcaseSection) teachObs.observe(showcaseSection);
+
+    /* DRAG-to-scroll on mouse (only on the front, not the back's interactive bits) */
+    let isDown = false, startX = 0, startScroll = 0;
+    track.addEventListener('mousedown', (e) => {
+      if (e.target.closest('input, textarea, button, a, .proj-card-back')) return;
+      isDown = true; startX = e.pageX; startScroll = track.scrollLeft;
+      track.classList.add('is-dragging');
+    });
+    window.addEventListener('mousemove', (e) => { if (!isDown) return; track.scrollLeft = startScroll - (e.pageX - startX); });
+    window.addEventListener('mouseup', () => { if (!isDown) return; isDown = false; track.classList.remove('is-dragging'); });
+
+    track.tabIndex = 0;
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); scrollToIndex(updateMagnification() + 1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollToIndex(updateMagnification() - 1); }
+      if (e.key === 'Escape') {
+        const active = cards.find(c => c.classList.contains('is-flipped'));
+        if (active) active.classList.remove('is-flipped');
+      }
+    });
+
+    let snapTimer = null;
+    track.addEventListener('scroll', () => {
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(() => { scrollToIndex(updateMagnification()); }, 200);
+    }, { passive: true });
+
+    window.addEventListener('resize', () => { requestAnimationFrame(() => { updateChrome(updateMagnification()); }); });
+
+    requestAnimationFrame(() => {
+      scrollToIndex(0, 'auto');
+      setTimeout(() => { updateChrome(updateMagnification()); }, 80);
+    });
+  })();
+
+  /* CALIPER */
+  (function(){
+    // Stems, not exact words: matched with a leading word-boundary and an OPEN end,
+    // so "recommend" catches recommends/recommendation(s), "personal" catches
+    // personalize/personalization/personalised, "badge" catches badges, etc.
+    const K = {
+      messaging:['badge','social proof','review','testimonial','copy','headline','message','value prop','persuasion','fomo','trust','guarantee','urgency','scarcity','subscrib','discount','free','limited','exclusive','risk'],
+      visual:['button','color','colour','design','layout','contrast','hero','image','hierarchy','whitespace','font','ui','visual','icon','animation','size','bold','placement','shape','photo','illustration'],
+      flow:['step','checkout','sign-up','signup','form','navigation','journey','flow','multi-step','one-page','one page','friction','simplif','reduce','remove','consolidat','merge','split','progress','wizard'],
+      personalization:['segment','personal','recommend','dynamic','behavior','behaviour','history','prediction','intent','individual','targeted','cohort','lookalike','returning','first-time']
+    };
+    // Calibrated per-category priority weight (illustrative) — drives the 0–100 score.
+    const PRIORITY = { messaging:94, visual:70, flow:58, personalization:46 };
+    const ta = document.getElementById('hc-text');
+    if (!ta) return;
+    function classify(text){
+      const lower = ' ' + text.toLowerCase() + ' ';
+      const counts = { messaging:0, visual:0, flow:0, personalization:0 };
+      for (const [cat, words] of Object.entries(K)) {
+        words.forEach(w => {
+          const stem = w.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const m = lower.match(new RegExp('\\b' + stem, 'g'));   // leading boundary, open end → matches inflections
+          if (m) counts[cat] += m.length;
+        });
+      }
+      const total = Object.values(counts).reduce((a,b)=>a+b, 0);
+      return { counts, total };
+    }
+    function render(){
+      const { counts, total } = classify(ta.value);
+      const center = document.getElementById('hc-donut-pct');
+      const indexVal = document.getElementById('hc-index-val');
+      const items = document.querySelectorAll('.hc-legend-item');
+      if (total === 0) {
+        ['hc-seg-messaging','hc-seg-visual','hc-seg-flow','hc-seg-personalization'].forEach(id => document.getElementById(id).setAttribute('stroke-dasharray', '0 138'));
+        center.textContent = '—'; indexVal.textContent = '—'; indexVal.classList.add('is-zero');
+        items.forEach(li => { li.classList.remove('is-dominant'); li.querySelector('.pct').textContent = '—'; });
+        return;
+      }
+      const pcts = {};
+      let dom = null, max = 0;
+      for (const cat of Object.keys(counts)) { pcts[cat] = (counts[cat] / total) * 100; if (counts[cat] > max) { max = counts[cat]; dom = cat; } }
+      const c = 2 * Math.PI * 22;
+      let offset = 0;
+      ['messaging','visual','flow','personalization'].forEach(cat => {
+        const len = (pcts[cat] / 100) * c;
+        const seg = document.getElementById('hc-seg-' + cat);
+        seg.setAttribute('stroke-dasharray', `${len.toFixed(2)} ${c}`);
+        seg.setAttribute('stroke-dashoffset', `${-offset}`);
+        offset += len;
+      });
+      center.textContent = Math.round(pcts[dom]) + '%';
+      const conf = pcts[dom] / 100;   // how clearly one category dominates (0–1)
+      const score = Math.max(1, Math.min(100, Math.round(PRIORITY[dom] * (0.7 + 0.3 * conf))));
+      indexVal.innerHTML = score + '<span class="hc-index-out">/100</span>';
+      indexVal.classList.remove('is-zero');
+      items.forEach(li => { const cat = li.dataset.cat; li.classList.toggle('is-dominant', cat === dom); li.querySelector('.pct').textContent = Math.round(pcts[cat]) + '%'; });
+    }
+    ta.addEventListener('input', () => { render(); const hint = document.getElementById('hc-try-hint'); if (hint) hint.style.display = 'none'; });
+    render();
+  })();
+
+  /* SEQUENTIAL */
+  (function(){
+    const traffic = document.getElementById('seq-traffic');
+    const cr = document.getElementById('seq-cr');
+    const mde = document.getElementById('seq-mde');
+    if (!traffic) return;
+    function render(){
+      const t = parseInt(traffic.value, 10);
+      const p = parseInt(cr.value, 10) / 1000;
+      const m = parseInt(mde.value, 10) / 1000;
+      document.getElementById('seq-traffic-val').textContent = t >= 1000 ? (t/1000).toFixed(1).replace(/\.0$/,'') + 'k' : t;
+      document.getElementById('seq-cr-val').textContent = (p * 100).toFixed(1) + '%';
+      document.getElementById('seq-mde-val').textContent = (m * 100).toFixed(1) + '%';
+      const za = 1.96, zb = 0.84;
+      const d = p * m;
+      const N = Math.ceil(Math.pow(za + zb, 2) * 2 * p * (1 - p) / Math.pow(d, 2));
+      const daysFixed = Math.ceil((N * 2) / t);
+      const daysSeq = Math.max(2, Math.ceil(daysFixed * 0.55));
+      const savings = Math.round((1 - daysSeq / daysFixed) * 100);
+      document.getElementById('seq-N').textContent = N >= 1000 ? (N/1000).toFixed(1).replace(/\.0$/,'') + 'k' : N;
+      document.getElementById('seq-days-fixed').textContent = daysFixed + 'd';
+      document.getElementById('seq-days-seq').textContent = daysSeq + 'd';
+      document.getElementById('seq-savings').textContent = '↓ ' + savings + '% faster';
+      const w = 240, midY = 24;
+      function obf(tFrac){ return 2.797 / Math.sqrt(Math.max(tFrac, 0.05)); }
+      const top = [], bot = [];
+      for (let i = 0; i <= 30; i++) {
+        const tt = i / 30;
+        const x = (tt * w).toFixed(1);
+        const z = Math.min(obf(tt), 6);
+        top.push(`${x},${(midY - z * 3.2).toFixed(1)}`);
+        bot.push(`${x},${(midY + z * 3.2).toFixed(1)}`);
+      }
+      document.getElementById('seq-boundary-top').setAttribute('d', 'M ' + top.join(' L '));
+      document.getElementById('seq-boundary-bot').setAttribute('d', 'M ' + bot.join(' L '));
+      const stopT = daysSeq / daysFixed;
+      const stopX = stopT * w;
+      const zPts = [];
+      const zScale = Math.min(8, 2.797 / Math.sqrt(stopT) + 0.3);
+      for (let i = 0; i <= 30; i++) {
+        const tt = i / 30;
+        if (tt > stopT + 0.04) break;
+        const x = (tt * w).toFixed(1);
+        const z = zScale * Math.sqrt(tt);
+        zPts.push(`${x},${(midY - z * 3.2).toFixed(1)}`);
+      }
+      document.getElementById('seq-zline').setAttribute('d', 'M ' + zPts.join(' L '));
+      document.getElementById('seq-zdot').setAttribute('cx', stopX.toFixed(1));
+      document.getElementById('seq-zdot').setAttribute('cy', (midY - zScale * Math.sqrt(stopT) * 3.2).toFixed(1));
+    }
+    [traffic, cr, mde].forEach(s => s.addEventListener('input', render));
+    render();
+  })();
 </script>
 </body>
 </html>
