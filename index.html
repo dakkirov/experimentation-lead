@@ -45,7 +45,7 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{background:var(--burgundy); color:var(--cream); font-family:var(--sans); -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;}
-  body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; background:radial-gradient(120% 80% at 50% -10%,var(--gold-dim),transparent 55%);}
+  body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; background:none;}
   body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.02; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--cream-dim)}
@@ -631,9 +631,48 @@
   }
 
   @media(prefers-reduced-motion:reduce){.avail .dot, .proj-visual-head .live::before{animation:none}.proj-card-inner{transition:none}}
+
+  /* ════════════════ LIGHT "DAY" THEME ════════════════
+     Editorial light theme for everything below the hero: burgundy ink on warm
+     paper, antique-gold accents. The header, hero, diagnostic tool panel, and
+     flip cards stay dark as deliberate anchors floating on the light page. */
+  .theme-light{
+    --burgundy:#FAF4E8; --burgundy-2:#FFFFFF; --burgundy-3:#F3EAD6;
+    --cream:#3A0C13;
+    --cream-dim:rgba(58,12,19,.80); --cream-meta:rgba(58,12,19,.56);
+    --cream-faint:rgba(58,12,19,.13); --cream-soft:rgba(58,12,19,.22);
+    --gold:#A8780F; --gold-dim:rgba(168,120,15,.18);
+  }
+  /* dark islands keep the original dark palette */
+  .theme-light header,
+  .theme-light .hero,
+  .theme-light .diag-panel,
+  .theme-light .proj-card{
+    --burgundy:#4A1019; --burgundy-2:#3A0C13; --burgundy-3:#2A080E;
+    --cream:#F2E8D5; --gold:#F2C744;
+    --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6);
+    --cream-faint:rgba(242,232,213,.14); --cream-soft:rgba(242,232,213,.20);
+    --gold-dim:rgba(242,199,68,.16);
+  }
+  /* hero keeps its dark canvas + gold wash now that the page body is light */
+  .theme-light .hero{ background:var(--burgundy); overflow:hidden }
+  .theme-light .hero::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -10%, var(--gold-dim), transparent 55%);
+  }
+  /* dark text on gold fills that live in the light scope */
+  .theme-light .btn-primary,
+  .theme-light .compare-col-cap,
+  .theme-light .showcase-arrow{ color:#2A080E }
+  /* fixes for elements with hardcoded dark-theme colors */
+  .theme-light .notfit{ background:rgba(74,16,25,.05) }
+  .theme-light .compare-cell.bad{ color:#B23A2E }
+  /* warmer, softer shadows on paper instead of harsh black */
+  .theme-light .card:hover{ box-shadow:0 16px 40px rgba(74,16,25,.13) }
+  .theme-light .compare{ box-shadow:0 14px 34px rgba(74,16,25,.10) }
 </style>
 </head>
-<body>
+<body class="theme-light">
 <header>
   <nav class="nav">
     <div class="mark"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="display:block;flex-shrink:0"><circle cx="16" cy="16" r="14.5" fill="none" stroke="#F2C744" stroke-width="1.5"/><text x="16.2" y="22" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-weight="500" font-size="18" fill="#F2C744">D</text></svg><span>David&nbsp;Arzumanian<span style="color:var(--gold)">.</span></span></div>
