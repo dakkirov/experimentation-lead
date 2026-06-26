@@ -667,6 +667,8 @@
     content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
     background:radial-gradient(120% 80% at 50% -10%, var(--gold-dim), transparent 55%);
   }
+  /* solid dark header — the old translucent gradient bled the light page through */
+  .theme-light header{ background:var(--burgundy); backdrop-filter:none }
   /* CTA + decorative gold stay BRIGHT on the light page (clean, never muddy) */
   .theme-light .btn-primary,
   .theme-light .compare-col-cap,
