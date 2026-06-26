@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://assets.calendly.com; frame-src https://calendly.com https://assets.calendly.com; connect-src 'self' https://calendly.com https://*.calendly.com; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Experimentation & Causal Inference Lead — David Arzumanian</title>
 <meta name="description" content="Fractional experimentation lead. I make A/B testing trustworthy for Seed–Series B product teams. Free 90-second pipeline diagnostic, $4k fixed-fee audit.">
 <link rel="canonical" href="https://arzumaniandavid.com/">
@@ -832,14 +834,7 @@
             <div class="diag-cta-sub">The Audit is $4,000, 14 days, fixed fee. At least one finding that changes a shipping decision, or you don't pay.</div>
             <div class="diag-cta-row">
               <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-primary">Book a 20-min call <span>→</span></a>
-              <button type="button" class="btn btn-ghost" id="diag-email-btn">↓ Email me the full PDF report</button>
-            </div>
-            <div class="diag-email-wrap" id="diag-email-wrap">
-              <form class="diag-email-form" id="diag-email-form" novalidate>
-                <input type="email" placeholder="your@email.com" id="diag-email-input" required>
-                <button type="submit">Send <span>→</span></button>
-              </form>
-              <div class="diag-email-success" id="diag-email-success">✓ On its way. Check your inbox in the next 2 minutes.</div>
+              <a href="mailto:dkarzumanian@gmail.com?subject=My pipeline diagnostic results" class="btn btn-ghost">Email me about my results</a>
             </div>
           </div>
         </div>
@@ -1613,18 +1608,7 @@
       requestAnimationFrame(tick);
       setTimeout(() => { if (diagInView()) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120);
     });
-    document.getElementById('diag-email-btn').addEventListener('click', () => {
-      document.getElementById('diag-email-wrap').classList.add('is-shown');
-      document.getElementById('diag-email-btn').style.display = 'none';
-      setTimeout(() => document.getElementById('diag-email-input').focus(), 100);
-    });
-    document.getElementById('diag-email-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const v = document.getElementById('diag-email-input').value.trim();
-      if (!v || !v.includes('@') || !v.includes('.')) { document.getElementById('diag-email-input').style.borderBottom = '1px solid #E8A640'; return; }
-      document.getElementById('diag-email-form').style.display = 'none';
-      document.getElementById('diag-email-success').classList.add('is-shown');
-    });
+    // (email-capture removed — it was a non-functional mock; the secondary CTA is now a real mailto link)
   })();
 
   /* SHOWCASE — magnification + wheel-on-track-only + click-to-flip */
