@@ -35,6 +35,7 @@
     --burgundy:#1E1B16; --paper:#E6DCC3; --panel:#EFE7D5;
     --ink:#1E1B16; --ink-dim:rgba(30,27,22,.82); --ink-meta:rgba(30,27,22,.55);
     --line:rgba(30,27,22,.2); --accent:#7A2A22; --gold:#7A2A22;
+    --cta:#2E9E5C; --cta-deep:#23814A; --cta-ink:#FFFFFF;
     --display:'Cyrillic Old','Ruslan Display','PT Serif',Georgia,serif;
     --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
@@ -49,8 +50,8 @@
   .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;color:var(--ink)}
   .mark a{color:var(--ink)}
-  .cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:0;transition:transform .2s ease, box-shadow .2s ease}
-  .cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(122,42,34,.32)}
+  .cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--cta-ink);background:var(--cta);padding:9px 18px;border-radius:999px;transition:transform .2s ease, box-shadow .2s ease}
+  .cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(46,158,92,.32)}
   .wrap{max-width:880px;margin:0 auto;padding:0 32px}
   .head{padding:72px 0 16px}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}

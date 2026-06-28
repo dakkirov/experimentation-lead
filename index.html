@@ -60,6 +60,8 @@
     --line:rgba(30,27,22,.2);
     --line-strong:rgba(30,27,22,.38);
     --oxblood-soft:rgba(122,42,34,.08);
+    /* conversion-CTA green (bright, matches the guarantee shield) — booking/audit buttons only */
+    --cta:#2E9E5C; --cta-deep:#23814A; --cta-ink:#FFFFFF; --cta-soft:rgba(46,158,92,.12);
 
     /* ── Legacy vars remapped onto natural-dye (Phase 4). Default context is LIGHT
          (parchment page, panel cards, oxblood accent); dark bands (.proof, footer)
@@ -84,6 +86,7 @@
   .eyebrow .bar{display:inline-block;width:28px;height:2px;background:var(--oxblood);vertical-align:middle;margin-right:14px;transform:translateY(-2px)}
   .gold{color:var(--gold)}
   .serif{font-family:var(--serif)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   /* pletenka divider: centered ornament between two hairlines (accent only) */
   .ornline{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 30px;color:var(--oxblood)}
   .ornline .l{height:1px;width:56px;background:var(--line-strong)}
@@ -104,15 +107,15 @@
   .nav-links{display:flex;align-items:center;gap:24px}
   .nav-links a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--iron);opacity:.82;text-decoration:none;transition:opacity .2s ease, color .2s ease}
   .nav-links a:hover{opacity:1;color:var(--oxblood)}
-  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:999px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
-  .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(122,42,34,.28)}
+  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--cta-ink);background:var(--cta);padding:9px 18px;border-radius:999px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
+  .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(46,158,92,.32)}
 
   /* hero — left-aligned copy + portrait at right (revision) */
   .hero{padding:52px 0 0;position:relative;z-index:1}
-  .hero-grid{display:grid;grid-template-columns:1.32fr .9fr;gap:40px;align-items:stretch;min-height:540px}
+  .hero-grid{display:grid;grid-template-columns:1.62fr .8fr;gap:34px;align-items:stretch;min-height:540px}
   .hero-copy{text-align:left;align-self:center;padding:6px 0 56px}
-  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.6vw,54px);line-height:1.0;letter-spacing:.01em;margin:10px 0 0;-webkit-text-stroke:.7px currentColor}
-  .hero h1 em{font-style:normal;color:var(--oxblood)}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6.2vw,70px);line-height:1.05;letter-spacing:-.015em;margin:10px 0 4px}
+  .hero h1 em{font-style:italic;color:var(--oxblood);display:block}
   .hero .lead{font-size:clamp(17px,1.6vw,19.5px);max-width:42ch;margin:20px 0 24px;color:var(--cream-dim);font-weight:400;line-height:1.55}
   .hero .lead b{color:var(--iron);font-weight:600}
   .hero .ornline{justify-content:flex-start;margin:0 0 24px}
@@ -129,11 +132,11 @@
   .hero-portrait picture{position:relative;z-index:1;display:block}
   .hero-portrait img{display:block;width:100%;max-width:380px;height:auto;filter:drop-shadow(0 24px 26px rgba(30,27,22,.22))}
   /* rounded buttons (revision: rounded reads friendlier than square) */
-  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:999px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
-  .btn-primary{background:var(--oxblood);color:var(--parchment)}
-  .btn-primary:hover{transform:translateY(-2px);background:#681F18;box-shadow:0 10px 28px rgba(122,42,34,.26)}
-  .btn-ghost{background:transparent;color:var(--oxblood)}
-  .btn-ghost:hover{background:var(--oxblood-soft)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--cta);border-radius:999px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+  .btn-primary{background:var(--cta);color:var(--cta-ink)}
+  .btn-primary:hover{transform:translateY(-2px);background:var(--cta-deep);box-shadow:0 10px 28px rgba(46,158,92,.32)}
+  .btn-ghost{background:transparent;color:var(--cta)}
+  .btn-ghost:hover{background:var(--cta-soft)}
   /* hero microcopy + risk-reversal guarantee badge */
   .micro{font-family:var(--sans);font-size:12.5px;letter-spacing:.02em;color:var(--iron);opacity:.66;margin-top:14px}
   .micro a{color:var(--oxblood);border-bottom:1px solid var(--oxblood-soft)}
@@ -166,102 +169,91 @@
   .diagnostic{padding:88px 0 76px;border-top:1px solid var(--cream-faint);position:relative}
   .diag-meta{margin-top:18px;display:inline-flex;align-items:center;gap:16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-meta);font-weight:600}
   .diag-meta span{display:inline-flex;align-items:center;gap:8px}
-  .diag-meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold)}
-  .diag-meta strong{color:var(--gold);font-weight:700}
-  .diag-panel{margin-top:36px;background:var(--burgundy-2);border:1.5px solid var(--cream-soft);border-radius:0;padding:32px 36px;box-shadow:0 18px 48px rgba(0,0,0,.30)}
-  .diag-q{
-    overflow:hidden; max-height:0; opacity:0; padding:0;
-    border-bottom:1px solid transparent;
-    transition: max-height .55s cubic-bezier(.22,1,.36,1),
-                opacity .4s ease .12s,
-                padding .55s cubic-bezier(.22,1,.36,1),
-                border-color .55s ease;
-  }
-  .diag-q.is-visible{
-    max-height:640px; opacity:1; padding:18px 0;
-    border-bottom-color:var(--cream-faint);
-  }
-  .diag-q.is-visible:first-child{padding-top:6px}
-  .diag-q.is-visible:last-of-type{border-bottom-color:transparent}
+  .diag-meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cta)}
+  .diag-meta strong{color:var(--cta-deep);font-weight:700}
+  /* de-chromed: no border, no shadow — the panel bg vs page bg carries the edge. Focused width, left-aligned under the heading. */
+  .diag-panel{margin-top:30px;max-width:720px;background:var(--burgundy-2);border:0;border-radius:0;padding:30px 34px 30px;box-shadow:none;scroll-margin-top:96px}
 
-  /* Collapsed state — after answer, question shrinks to compact 1-row summary */
-  .diag-q-collapsed{display:none}
-  .diag-q.is-answered .diag-q-label,
-  .diag-q.is-answered .diag-options,
-  .diag-q.is-answered .diag-slider-wrap{display:none}
-  .diag-q.is-answered .diag-q-collapsed{
-    display:flex; align-items:center; gap:14px;
-  }
-  .diag-q.is-visible.is-answered{
-    max-height:80px; padding:14px 0;
-    transition: max-height .55s cubic-bezier(.22,1,.36,1),
-                padding .55s cubic-bezier(.22,1,.36,1),
-                border-color .55s ease;
-  }
-  .diag-q-collapsed-num{
-    color:var(--gold); font-family:var(--serif); font-style:italic;
-    font-weight:500; font-size:17px; letter-spacing:-.01em;
-    flex-shrink:0;
-  }
-  .diag-q-collapsed-label{
-    color:var(--cream-dim); font-size:13.5px; font-weight:500;
-    flex-shrink:0;
-  }
-  .diag-q-collapsed-val{
-    margin-left:auto; color:var(--cream); font-weight:600; font-size:13px;
-    padding:5px 12px;
-    background:rgba(122,42,34,.10);
-    border:1px solid rgba(122,42,34,.22);
-    border-radius:0;
-    line-height:1.4;
-  }
-  .diag-q-collapsed-change{
-    font-family:var(--sans); font-size:10px; font-weight:600;
-    letter-spacing:.14em; text-transform:uppercase;
-    background:transparent; border:0; padding:5px 0;
-    color:var(--cream-meta); cursor:pointer;
-    border-bottom:1px solid transparent;
-    transition:color .2s, border-color .2s;
-    flex-shrink:0;
-  }
-  .diag-q-collapsed-change:hover{
-    color:var(--gold); border-bottom-color:var(--gold);
-  }
-  .diag-q-label{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--cream);margin-bottom:14px;line-height:1.4}
-  .diag-q-label .num{color:var(--gold);font-family:var(--serif);font-style:italic;font-weight:700;margin-right:8px}
-  .diag-options{display:flex;flex-wrap:wrap;gap:8px}
-  .diag-options-stacked{flex-direction:column;gap:8px}
-  .diag-opt{background:transparent;border:1.5px solid var(--cream-faint);color:var(--cream-dim);padding:10px 16px;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;text-align:left;transition:all .2s ease}
-  .diag-options-stacked .diag-opt{border-radius:8px;padding:13px 18px;line-height:1.5}
-  .diag-opt strong{color:var(--cream);font-weight:600;margin-right:4px}
-  .diag-opt:hover{border-color:var(--gold);color:var(--cream)}
-  .diag-opt.is-selected{background:var(--gold);color:var(--burgundy);border-color:var(--gold);font-weight:600}
-  .diag-opt.is-selected strong{color:var(--burgundy)}
-  .diag-slider-wrap{display:flex;align-items:center;gap:20px;padding:6px 0}
-  .diag-slider{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:var(--cream-faint);border-radius:0;outline:none;cursor:pointer}
-  .diag-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--burgundy-2);cursor:pointer}
-  .diag-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--burgundy-2);cursor:pointer}
-  .diag-slider-val{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--gold);font-weight:700;min-width:110px;letter-spacing:-.01em}
-  .diag-foot{margin-top:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .diag-submit{background:var(--gold);color:var(--burgundy);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:0;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .2s ease}
-  .diag-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 30px rgba(122,42,34,.32)}
-  .diag-submit:disabled{opacity:.30;cursor:not-allowed}
-  .diag-progress{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-meta);font-weight:600}
-  .diag-progress strong{color:var(--gold);font-weight:700}
-  .diag-result{margin-top:32px;background:var(--burgundy-3);border:1.5px solid rgba(122,42,34,.36);border-radius:0;padding:30px 32px;box-shadow:0 22px 56px rgba(0,0,0,.40), 0 0 0 1px rgba(122,42,34,.22);display:none;animation:fadeUp .5s var(--ease) backwards}
+  /* ── Step wizard: one question at a time. Steps are grid-stacked so the card is always
+       as tall as the tallest step (zero layout shift between steps). ── */
+  .diag-wiz-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}
+  .diag-dots{display:flex;align-items:center;gap:8px}
+  .diag-dot{width:9px;height:9px;border-radius:999px;background:transparent;border:1.5px solid var(--line-strong);transition:width .25s var(--ease),background .25s ease,border-color .25s ease}
+  .diag-dot.is-done{background:var(--iron);border-color:var(--iron)}
+  .diag-dot.is-current{width:26px;background:var(--iron);border-color:var(--iron)}
+  /* step badge: rounded capsule pill ("1 of 5") */
+  .diag-shield{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line-strong);border-radius:999px;padding:6px 16px;font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.03em;color:var(--iron)}
+  .diag-shield b{color:var(--iron);font-weight:700;margin-right:4px}
+
+  .diag-q-label{font-family:var(--sans);font-size:15.5px;font-weight:600;color:var(--cream);margin-bottom:18px;line-height:1.35}
+  .diag-q-label .num{color:var(--ochre);font-family:var(--serif);font-style:italic;font-weight:700;margin-right:10px;font-size:17px}
+
+  .diag-steps{display:grid}
+  .diag-wstep{grid-area:1 / 1;align-self:start;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s var(--ease)}
+  .diag-wstep.is-active{opacity:1;visibility:visible;pointer-events:auto}
+
+  /* one unified option family: rounded, white fill; selected = black */
+  .diag-options{display:flex;flex-wrap:wrap;gap:10px}
+  .diag-opt{background:#fff;border:1px solid var(--line-strong);color:var(--cream-dim);padding:13px 14px;border-radius:10px;font-family:var(--sans);font-size:13.5px;font-weight:500;cursor:pointer;text-align:center;transition:background .15s ease,color .15s ease,border-color .15s ease,box-shadow .15s ease}
+  .diag-opt:hover{border-color:var(--iron);color:var(--cream);box-shadow:0 2px 10px rgba(30,27,22,.08)}
+  .diag-opt.is-selected{background:var(--iron);color:#fff;border-color:var(--iron);font-weight:600}
+  .diag-opt:focus-visible{outline:2px solid var(--iron);outline-offset:2px}
+  /* Q1 tool: 4-col grid */
+  .diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  /* Q3/Q4/Q5: equal-width row of rounded chips */
+  .diag-seg{display:flex;flex-wrap:wrap;gap:10px}
+  .diag-seg .diag-opt{flex:1;min-width:0;white-space:nowrap}
+  .diag-help{font-family:var(--sans);font-size:12px;color:rgba(30,27,22,.66);line-height:1.45;margin-top:14px}
+  /* Q2 volume: big ochre readout + slim slider + steppers */
+  .diag-vol-val{font-family:var(--serif);font-style:italic;font-weight:700;color:var(--ochre);font-size:34px;letter-spacing:-.02em;line-height:1}
+  .diag-vol-val small{font-family:var(--sans);font-style:normal;font-size:13px;font-weight:500;color:var(--cream-meta);margin-left:8px;letter-spacing:0}
+  .diag-vol-row{display:flex;align-items:center;gap:14px;margin-top:18px}
+  .diag-step{width:44px;height:44px;flex:none;border:1px solid var(--line-strong);background:#fff;color:var(--cream);font-size:19px;line-height:1;cursor:pointer;display:grid;place-items:center;font-family:var(--sans);border-radius:9px;transition:border-color .15s ease,color .15s ease}
+  .diag-step:hover{border-color:var(--iron);color:var(--iron)}
+  .diag-step:focus-visible{outline:2px solid var(--iron);outline-offset:2px}
+  .diag-slider{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:var(--cream-faint);outline:none;cursor:pointer;border-radius:999px}
+  .diag-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--iron);border:3px solid var(--panel);cursor:pointer}
+  .diag-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--iron);border:3px solid var(--panel);cursor:pointer}
+  .diag-slider:focus-visible{outline:2px solid var(--iron);outline-offset:4px}
+  /* nav: back (left) + next/score (right). min-height keeps the row from jumping step to step. */
+  .diag-wiz-nav{display:flex;align-items:center;gap:14px;margin-top:28px;min-height:48px}
+  .diag-back{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--cream-meta);background:transparent;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:8px 4px}
+  .diag-back:hover{color:var(--iron)}
+  .diag-back[hidden]{display:none}
+  .diag-next,.diag-submit{margin-left:auto;background:var(--iron);color:#fff;font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 26px;border:0;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+  .diag-next:hover:not(:disabled),.diag-submit:hover:not(:disabled){transform:translateY(-1px);background:#000;box-shadow:0 10px 26px rgba(30,27,22,.28)}
+  .diag-next:disabled,.diag-submit:disabled{opacity:.3;cursor:not-allowed}
+  .diag-next[hidden],.diag-submit[hidden]{display:none}
+  /* answer recap shown after scoring */
+  .diag-recap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--sans);font-size:12.5px;color:var(--cream-dim);padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--cream-faint)}
+  .diag-recap[hidden]{display:none}
+  .diag-recap-text b{color:var(--cream);font-weight:600}
+  .diag-recap-edit{font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:0;border-bottom:1px solid var(--line-strong);color:var(--cream-meta);cursor:pointer;padding:2px 0;margin-left:auto}
+  .diag-recap-edit:hover{color:var(--iron);border-color:var(--iron)}
+  /* scored: collapse the wizard, reveal the result in the reserved space */
+  .diag-panel.is-scored .diag-wiz-top,
+  .diag-panel.is-scored .diag-steps,
+  .diag-panel.is-scored .diag-wiz-nav{display:none}
+  .diag-result{margin-top:0;background:none;border:0;border-radius:0;padding:0;box-shadow:none;display:none;animation:fadeUp .5s var(--ease) backwards}
   .diag-result.is-shown{display:block}
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .diag-result-head{text-align:center;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--cream-faint)}
-  .diag-result-eyebrow{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .diag-result-head{text-align:center;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--cream-faint)}
+  .diag-result-head:focus{outline:none}
+  .diag-result-eyebrow{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
   .diag-score-display{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--serif);font-style:italic;font-weight:700}
-  .diag-score-num{font-size:clamp(60px,9vw,88px);color:var(--gold);letter-spacing:-.04em;line-height:1}
-  .diag-score-out{font-size:26px;color:var(--cream-meta);font-style:italic}
-  .diag-verdict{margin-top:12px;font-family:var(--serif);font-size:17px;color:var(--cream);line-height:1.4}
-  .diag-verdict-tag{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:0;margin-bottom:8px}
-  .diag-verdict-tag.solid{background:rgba(95,175,108,.18);color:#36473A}
-  .diag-verdict-tag.good{background:rgba(122,42,34,.16);color:var(--gold)}
-  .diag-verdict-tag.warn{background:rgba(232,166,64,.18);color:#B5781C}
-  .diag-verdict-tag.critical{background:rgba(212,84,84,.22);color:#9B3B30}
+  .diag-score-num{font-size:clamp(56px,8vw,80px);color:var(--gold);letter-spacing:-.04em;line-height:1}
+  .diag-score-out{font-size:24px;color:var(--cream-meta);font-style:italic}
+  .diag-verdict{margin-top:12px;font-family:var(--serif);font-size:16.5px;color:var(--cream);line-height:1.45;max-width:54ch;margin-left:auto;margin-right:auto}
+  /* show-more toggle to unfold the detailed risks (keeps the default card compact) */
+  .diag-more-wrap{text-align:center}
+  .diag-more{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-dim);background:transparent;border:0;cursor:pointer;padding:8px 10px}
+  .diag-more:hover{color:var(--iron)}
+  .diag-more .chev{display:inline-block;transition:transform .25s var(--ease);font-size:13px}
+  .diag-more[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .diag-risks{margin-top:14px}
+  .diag-risks[hidden]{display:none}
+  /* verdict tag: rounded pill (shape only); colour + tint set per score band by JS to match the score number */
+  .diag-verdict-tag{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:999px;margin-bottom:8px}
   .diag-risks-label{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
   .diag-risk{padding:16px 0 18px 36px;position:relative;border-bottom:1px solid var(--cream-faint)}
   .diag-risk:last-child{border-bottom:0;padding-bottom:6px}
@@ -271,19 +263,10 @@
   .diag-risk-desc em{color:var(--gold);font-style:italic}
   .diag-risk-desc strong{color:var(--cream);font-weight:600}
   .diag-cta{margin-top:28px;padding-top:24px;border-top:1px solid var(--cream-faint);text-align:center}
-  .diag-cta-headline{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--cream);margin-bottom:8px;letter-spacing:-.01em}
+  .diag-cta-headline{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--cream);margin-bottom:16px;letter-spacing:-.01em}
   .diag-cta-headline em{font-style:italic;color:var(--gold)}
-  .diag-cta-sub{font-size:14px;color:var(--cream-dim);margin-bottom:20px}
   .diag-cta-row{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
   .diag-cta-row .btn-primary,.diag-cta-row .btn-ghost{padding:13px 22px;font-size:13px}
-  .diag-email-wrap{margin-top:18px;display:none}
-  .diag-email-wrap.is-shown{display:block;animation:fadeUp .35s var(--ease) backwards}
-  .diag-email-form{display:inline-flex;gap:6px;align-items:center;background:var(--burgundy-2);border:1px solid var(--cream-faint);border-radius:0;padding:4px 4px 4px 18px}
-  .diag-email-form input{background:transparent;border:0;outline:none;color:var(--cream);font-family:var(--sans);font-size:13.5px;min-width:240px;padding:8px 0}
-  .diag-email-form input::placeholder{color:var(--cream-meta)}
-  .diag-email-form button{background:var(--gold);color:var(--burgundy);border:0;border-radius:8px;padding:10px 18px;font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.04em;cursor:pointer}
-  .diag-email-success{margin-top:14px;color:var(--gold);font-size:14px;font-style:italic;display:none}
-  .diag-email-success.is-shown{display:block}
 
   /* ════════════════ SHOWCASE — FLIP CARDS ════════════════ */
   .showcase{padding:88px 0 64px;position:relative;border-top:1px solid var(--cream-faint);overflow:hidden}
@@ -689,7 +672,7 @@
     .hero-grid{grid-template-columns:1fr;gap:26px}
     .hero-portrait{max-width:260px;margin:0 auto}
     .hero-portrait img{max-width:240px}
-    .hero h1{font-size:clamp(30px,8.5vw,46px)}
+    .hero h1{font-size:clamp(33px,9vw,50px)}
     .card{padding:30px 24px}
     .card h3{font-size:25px}
     .proofstrip .p{font-size:12.5px}
@@ -701,14 +684,15 @@
     .hero{padding:80px 0 64px}
     section{padding:64px 0}
     .diagnostic{padding:56px 0 40px}
-    .diag-panel{padding:24px 22px}
-    .diag-q{padding:14px 0}
-    .diag-q-label{font-size:13px}
-    .diag-opt{padding:8px 13px; font-size:12px}
-    .diag-options-stacked .diag-opt{padding:11px 14px}
-    .diag-result{padding:24px 22px}
+    .diag-panel{padding:24px 20px;max-width:none}
+    .diag-q-label{font-size:14px}
+    .diag-grid{grid-template-columns:repeat(2,1fr)}
+    .diag-opt{font-size:13px}
+    /* chips shrink/wrap rather than forcing horizontal overflow */
+    .diag-seg .diag-opt{min-height:44px;min-width:0;white-space:normal;line-height:1.2}
+    .diag-result{padding:0}
     .diag-cta-row{flex-direction:column}
-    .diag-email-form input{min-width:180px}
+    .diag-sub-rest{display:none}   /* "Score my pipeline" -> "Score" so Back + submit fit one row */
     .showcase{padding:56px 0 48px}
     .showcase-track{padding:24px 7vw 40px; gap:16px}
     .proj-card{flex-basis:84vw; width:84vw; min-height:auto}
@@ -732,7 +716,6 @@
   @media(max-width:620px){
     .stickybar .msg span{display:none}
     .stickybar .acts a.ghost{display:none}
-    body{padding-bottom:62px}
     .proofstrip .wrap{flex-wrap:wrap;gap:10px 20px}
     .pl-logo{font-size:16px}
     .pl-label{width:100%;text-align:center;margin:0 0 2px}
@@ -772,6 +755,85 @@
   .faq-a{padding:0 46px 26px 0;font-size:16px;line-height:1.72;color:var(--cream-dim);max-width:72ch}
   .faq-a b{color:var(--cream);font-weight:600}
   .faq-a em{color:var(--gold);font-style:italic;font-weight:500}
+
+  /* ============ REWORKED SECTIONS (Audit / Trust / Pricing / FAQ / Close) ============ */
+  .sec-audit,.sec-trust,.sec-price,.sec-faq{border-top:1px solid var(--cream-faint)}
+  /* The Audit: one white block, internally divided */
+  .aud-deliver{display:grid;grid-template-columns:repeat(3,1fr);margin-top:46px;background:#fff;box-shadow:0 2px 12px rgba(30,27,22,.05)}
+  .aud-item{padding:30px 28px 32px;border-left:1px solid var(--cream-faint)}
+  .aud-item:first-child{border-left:0}
+  .aud-n{font-family:var(--serif);font-style:italic;font-weight:700;font-size:24px;color:var(--ochre);line-height:1}
+  .aud-t{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:-.01em;margin:14px 0 9px;line-height:1.2}
+  .aud-d{font-size:14px;line-height:1.6;color:var(--cream-dim)}
+  .aud-foot{margin-top:28px;font-size:14.5px;color:var(--cream-meta)}
+  .aud-foot a{color:var(--oxblood);font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold-dim)}
+  /* Why you can trust me */
+  .tr-catches{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:46px}
+  .tr-num{font-family:var(--serif);font-weight:700;font-size:clamp(34px,4vw,46px);color:var(--ochre);letter-spacing:-.02em;line-height:1}
+  .tr-txt{font-size:14.5px;line-height:1.55;color:var(--cream-dim);margin-top:14px;max-width:32ch}
+  .tr-txt b{color:var(--iron);font-weight:600}
+  .tr-worklabel{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-meta);margin:54px 0 14px;padding-top:30px;border-top:1px solid var(--cream-faint)}
+  .tr-work{display:flex;flex-direction:column;background:#fff;box-shadow:0 2px 12px rgba(30,27,22,.05)}
+  .tr-w{display:grid;grid-template-columns:210px 1fr auto;gap:20px;align-items:center;padding:18px 24px;border-bottom:1px solid var(--cream-faint)}
+  .tr-w:last-child{border-bottom:0}
+  .tr-wn{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tr-wo{font-size:14px;color:var(--cream-dim);line-height:1.5}
+  .tr-wm{font-family:var(--serif);font-style:italic;font-weight:700;font-size:14px;color:var(--ochre);white-space:nowrap;text-align:right}
+  /* Pricing */
+  .pr-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:46px}
+  .pr-card{background:#fff;padding:34px 32px 32px;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(30,27,22,.06)}
+  .pr-card.feat{box-shadow:0 0 0 2px var(--cta) inset,0 2px 12px rgba(30,27,22,.06)}
+  .pr-tag{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--cta);padding:4px 11px;margin-bottom:16px}
+  .pr-name{font-family:var(--serif);font-weight:700;font-size:26px;letter-spacing:-.01em}
+  .pr-price{font-family:var(--serif);font-weight:700;font-size:42px;color:var(--ochre);letter-spacing:-.02em;margin-top:8px;line-height:1}
+  .pr-price small{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--cream-meta);letter-spacing:0;margin-left:4px}
+  .pr-terms{font-size:14px;color:var(--cream-dim);margin-top:8px}
+  .pr-list{list-style:none;margin:22px 0 0;padding-top:20px;border-top:1px solid var(--cream-faint)}
+  .pr-list li{position:relative;padding:7px 0 7px 26px;font-size:14.5px;color:var(--iron)}
+  .pr-list li::before{content:"";position:absolute;left:0;top:13px;width:10px;height:10px;border:1.5px solid var(--cta);border-radius:50%}
+  .pr-guar{margin:22px 0;padding:14px 16px;background:rgba(46,158,92,.08);border:1px solid rgba(46,158,92,.28);border-left:3px solid var(--cta);font-size:13.5px;line-height:1.5;color:var(--iron)}
+  .pr-guar b{color:var(--cta-deep);font-weight:700}
+  .pr-card .btn{margin-top:auto;justify-content:center;width:100%}
+  /* FAQ (fq- prefix avoids the legacy .faq-* rules) */
+  .fq-list{margin-top:40px;display:flex;flex-direction:column;gap:10px}
+  .fq-list details{background:#fff;box-shadow:0 2px 10px rgba(30,27,22,.05)}
+  .fq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 24px;font-family:var(--serif);font-weight:700;font-size:18.5px;letter-spacing:-.01em}
+  .fq-list summary::-webkit-details-marker{display:none}
+  .fq-x{flex:none;font-family:var(--sans);font-weight:400;font-size:22px;color:var(--oxblood);transition:transform .2s}
+  .fq-list details[open] .fq-x{transform:rotate(45deg)}
+  .fq-a{padding:0 24px 22px;font-size:15px;line-height:1.65;color:var(--cream-dim);max-width:70ch}
+  .fq-a a{color:var(--oxblood);font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold-dim)}
+  /* Closing (dark) + footer continuation */
+  .closing{background:var(--iron);color:var(--parchment);text-align:center;padding:120px 0 56px;border-top:0;position:relative;z-index:1}
+  .closing .eyebrow{color:var(--ochre);justify-content:center}
+  .closing .eyebrow .bar{background:var(--ochre)}
+  .closing h2{font-family:var(--serif);font-weight:700;font-size:clamp(34px,5vw,58px);line-height:1.04;letter-spacing:-.015em;margin:20px auto 0;max-width:18ch;color:var(--parchment)}
+  .closing h2 em{font-style:italic;color:var(--ochre)}
+  .fin-stair{display:flex;justify-content:center;flex-wrap:wrap;margin:44px auto 8px;max-width:860px}
+  .fin-step{flex:1;min-width:210px;padding:6px 26px;text-align:left;border-left:1px solid rgba(230,220,195,.16)}
+  .fin-step:first-child{border-left:0}
+  .fin-v{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--ochre);letter-spacing:-.02em;line-height:1}
+  .fin-k{font-size:14px;color:rgba(230,220,195,.78);margin-top:10px;line-height:1.5}
+  .fin-k b{color:var(--parchment);font-weight:600}
+  .fin-cta{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:34px}
+  .fin-sec{color:var(--parchment);font-weight:600;font-size:14px;text-decoration:none;border-bottom:1px solid rgba(230,220,195,.3)}
+  .fin-avail{margin-top:22px;font-size:13.5px;color:rgba(230,220,195,.7)}
+  .fin-avail::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ochre);margin-right:9px;vertical-align:middle}
+  footer{background:var(--iron);border-top:1px solid rgba(230,220,195,.14);padding:34px 0 92px}
+  footer .mark{color:var(--parchment)}
+  footer .links a{color:var(--parchment);border-bottom:1px solid rgba(230,220,195,.22)}
+  footer .links a:hover{color:var(--ochre);border-color:var(--ochre)}
+  @media(max-width:760px){
+    .aud-deliver{grid-template-columns:1fr}
+    .aud-item{border-left:0;border-top:1px solid var(--cream-faint)}
+    .aud-item:first-child{border-top:0}
+    .tr-catches{grid-template-columns:1fr;gap:24px}
+    .tr-w{grid-template-columns:1fr;gap:4px}
+    .tr-wm{text-align:left}
+    .pr-grid{grid-template-columns:1fr}
+    .fin-step{border-left:0;border-top:1px solid rgba(230,220,195,.16);padding:18px 0}
+    .fin-step:first-child{border-top:0}
+  }
 </style>
 </head>
 <body>
@@ -796,7 +858,7 @@
       <div class="hero-copy">
         <div class="eyebrow rv" style="--i:0">Experimentation · Causal Inference</div>
         <h1 class="rv" style="--i:1">I make A/B testing <em>trustworthy</em></h1>
-        <p class="lead rv" style="--i:2">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious — and tells you which numbers are safe to ship on.</p>
+        <p class="lead rv" style="--i:2">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious, and tells you which numbers are safe to ship on.</p>
         <div class="cta-row rv" style="--i:4">
           <a href="#diagnostic" class="btn btn-primary">Take the 90-second diagnostic ↓</a>
         </div>
@@ -832,90 +894,77 @@
       <h2 class="sec-head rv">Are your tests <em>lying to you?</em></h2>
       <p class="sec-sub rv">Five questions. I'll score your pipeline's trustworthiness out of 100, surface the top 3 risks specific to your setup, and tell you exactly which of your "wins" are most likely noise.</p>
       <div class="diag-meta rv">
-        <span><strong>5</strong>&nbsp;questions</span>
         <span><strong>~90</strong>&nbsp;seconds</span>
-        <span><strong>0</strong>&nbsp;sign-up</span>
       </div>
       <div class="diag-panel rv">
+        <div class="diag-wiz-top">
+          <div class="diag-dots" aria-hidden="true">
+            <span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span>
+          </div>
+          <div class="diag-shield" role="status" aria-live="polite" aria-atomic="true">
+            <span class="diag-shield-txt"><span class="sr-only">Step </span><b id="diag-step-cur">1</b> of 5</span>
+          </div>
+        </div>
         <form id="diag-form" novalidate>
-          <div class="diag-q" data-q-id="tool" data-short-label="Tool">
-            <div class="diag-q-label"><span class="num">01</span>Which A/B testing tool do you use?</div>
-            <div class="diag-options">
-              <button type="button" class="diag-opt" data-q="tool" data-v="growthbook">GrowthBook</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="mixpanel">Mixpanel Experiments</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="statsig">Statsig</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="optimizely">Optimizely</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="eppo">Eppo</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="amplitude">Amplitude Experiment</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="inhouse">Built in-house</button>
-              <button type="button" class="diag-opt" data-q="tool" data-v="none">Not running tests yet</button>
+          <div class="diag-steps" id="diag-steps">
+            <div class="diag-wstep is-active" data-step="1" data-q-id="tool">
+              <div class="diag-q-label" id="diag-lbl-tool"><span class="num">01</span>Which A/B testing tool do you use?</div>
+              <div class="diag-options diag-grid" role="radiogroup" aria-labelledby="diag-lbl-tool">
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="growthbook">GrowthBook</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="mixpanel">Mixpanel</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="statsig">Statsig</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="optimizely">Optimizely</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="eppo">Eppo</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="amplitude">Amplitude</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="inhouse">Built in-house</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="tool" data-v="none">Not running yet</button>
+              </div>
             </div>
-            <div class="diag-q-collapsed">
-              <span class="diag-q-collapsed-num">01</span>
-              <span class="diag-q-collapsed-label">Tool</span>
-              <span class="diag-q-collapsed-val">—</span>
-              <button type="button" class="diag-q-collapsed-change">Change</button>
+            <div class="diag-wstep" data-step="2" data-q-id="volume">
+              <div class="diag-q-label" id="diag-lbl-volume"><span class="num">02</span>How many A/B tests do you ship per month?</div>
+              <div class="diag-vol-val"><span id="diag-volume-val">5</span><small>per month</small></div>
+              <div class="diag-vol-row">
+                <button type="button" class="diag-step" id="diag-vol-minus" aria-label="One fewer test per month">−</button>
+                <input type="range" id="diag-volume" min="0" max="30" value="5" step="1" class="diag-slider" aria-labelledby="diag-lbl-volume" aria-valuemin="0" aria-valuemax="30" aria-valuenow="5">
+                <button type="button" class="diag-step" id="diag-vol-plus" aria-label="One more test per month">+</button>
+              </div>
             </div>
-          </div>
-          <div class="diag-q" data-q-id="volume" data-short-label="Tests per month">
-            <div class="diag-q-label"><span class="num">02</span>How many A/B tests do you ship per month?</div>
-            <div class="diag-slider-wrap">
-              <input type="range" id="diag-volume" min="0" max="30" value="5" class="diag-slider">
-              <div class="diag-slider-val"><span id="diag-volume-val">5</span> per month</div>
+            <div class="diag-wstep" data-step="3" data-q-id="peek">
+              <div class="diag-q-label" id="diag-lbl-peek"><span class="num">03</span>Do you stop tests early when results look "significant"?</div>
+              <div class="diag-options diag-seg" role="radiogroup" aria-labelledby="diag-lbl-peek">
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="peek" data-v="always" aria-describedby="diag-help-peek">Always</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="peek" data-v="sometimes" aria-describedby="diag-help-peek">Sometimes</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="peek" data-v="never" aria-describedby="diag-help-peek">Never</button>
+              </div>
+              <div class="diag-help" id="diag-help-peek">Stopping the instant a test crosses 0.05, without a valid sequential rule (always-valid p-values, group-sequential, Bayesian), inflates false positives. If you stop early but use one of those, answer "Never".</div>
             </div>
-            <div class="diag-q-collapsed">
-              <span class="diag-q-collapsed-num">02</span>
-              <span class="diag-q-collapsed-label">Tests / month</span>
-              <span class="diag-q-collapsed-val">—</span>
-              <button type="button" class="diag-q-collapsed-change">Change</button>
+            <div class="diag-wstep" data-step="4" data-q-id="mcc">
+              <div class="diag-q-label" id="diag-lbl-mcc"><span class="num">04</span>Do you correct for multiple comparisons?</div>
+              <div class="diag-options diag-seg" role="radiogroup" aria-labelledby="diag-lbl-mcc">
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="mcc" data-v="yes" aria-describedby="diag-help-mcc">Yes</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="mcc" data-v="no" aria-describedby="diag-help-mcc">No</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="mcc" data-v="unknown" aria-describedby="diag-help-mcc">Not sure</button>
+              </div>
+              <div class="diag-help" id="diag-help-mcc">Correcting when you test many metrics, segments, or variants at once (FDR, Bonferroni). Pick "Not sure" if this is new.</div>
             </div>
-          </div>
-          <div class="diag-q" data-q-id="peek" data-short-label="Early stopping">
-            <div class="diag-q-label"><span class="num">03</span>Do you stop tests early when results look "significant"?</div>
-            <div class="diag-options diag-options-stacked">
-              <button type="button" class="diag-opt" data-q="peek" data-v="always"><strong>Always</strong> — we look for the moment of significance and ship</button>
-              <button type="button" class="diag-opt" data-q="peek" data-v="sometimes"><strong>Sometimes</strong> — depends on the test, the team's confidence, urgency</button>
-              <button type="button" class="diag-opt" data-q="peek" data-v="never"><strong>Never</strong> — we always wait for the planned sample size</button>
-            </div>
-            <div class="diag-q-collapsed">
-              <span class="diag-q-collapsed-num">03</span>
-              <span class="diag-q-collapsed-label">Peeking</span>
-              <span class="diag-q-collapsed-val">—</span>
-              <button type="button" class="diag-q-collapsed-change">Change</button>
-            </div>
-          </div>
-          <div class="diag-q" data-q-id="mcc" data-short-label="Multiple-comparison correction">
-            <div class="diag-q-label"><span class="num">04</span>Do you correct for multiple comparisons (multiple metrics, segments, variants)?</div>
-            <div class="diag-options diag-options-stacked">
-              <button type="button" class="diag-opt" data-q="mcc" data-v="yes"><strong>Yes</strong> — FDR / Bonferroni / similar, applied consistently</button>
-              <button type="button" class="diag-opt" data-q="mcc" data-v="no"><strong>No</strong> — we read each metric independently at α=0.05</button>
-              <button type="button" class="diag-opt" data-q="mcc" data-v="unknown"><strong>I'm not sure</strong> what this means</button>
-            </div>
-            <div class="diag-q-collapsed">
-              <span class="diag-q-collapsed-num">04</span>
-              <span class="diag-q-collapsed-label">Multiple-comparison correction</span>
-              <span class="diag-q-collapsed-val">—</span>
-              <button type="button" class="diag-q-collapsed-change">Change</button>
+            <div class="diag-wstep" data-step="5" data-q-id="review">
+              <div class="diag-q-label" id="diag-lbl-review"><span class="num">05</span>Who reviews experiment results before they ship?</div>
+              <div class="diag-options diag-seg" role="radiogroup" aria-labelledby="diag-lbl-review">
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="review" data-v="analyst">Analyst</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="review" data-v="pm">PM ran it</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="review" data-v="both">Both</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="review" data-v="none">No review</button>
+              </div>
             </div>
           </div>
-          <div class="diag-q" data-q-id="review" data-short-label="Review">
-            <div class="diag-q-label"><span class="num">05</span>Who reviews experiment results before they ship?</div>
-            <div class="diag-options">
-              <button type="button" class="diag-opt" data-q="review" data-v="analyst">Dedicated analyst</button>
-              <button type="button" class="diag-opt" data-q="review" data-v="pm">PM who ran the test</button>
-              <button type="button" class="diag-opt" data-q="review" data-v="both">Both</button>
-              <button type="button" class="diag-opt" data-q="review" data-v="none">No formal review</button>
-            </div>
-            <div class="diag-q-collapsed">
-              <span class="diag-q-collapsed-num">05</span>
-              <span class="diag-q-collapsed-label">Review</span>
-              <span class="diag-q-collapsed-val">—</span>
-              <button type="button" class="diag-q-collapsed-change">Change</button>
-            </div>
+          <div class="diag-wiz-nav">
+            <button type="button" class="diag-back" id="diag-back" hidden>← Back</button>
+            <button type="button" class="diag-next" id="diag-next" disabled>Next <span>→</span></button>
+            <button type="submit" class="diag-submit" id="diag-submit" hidden disabled>Score<span class="diag-sub-rest"> my pipeline</span> <span>→</span></button>
           </div>
-          <div class="diag-foot">
-            <button type="submit" class="diag-submit" id="diag-submit" disabled>Score my pipeline <span>→</span></button>
-            <span class="diag-progress" id="diag-progress">Question <strong>1</strong> of 5</span>
+          <div class="diag-recap" id="diag-recap" hidden>
+            <span class="diag-recap-text" id="diag-recap-text"></span>
+            <button type="button" class="diag-recap-edit" id="diag-recap-edit">Edit answers</button>
           </div>
         </form>
         <div class="diag-result" id="diag-result">
@@ -925,15 +974,17 @@
             <div style="margin-top:14px"><span class="diag-verdict-tag" id="diag-verdict-tag"></span></div>
             <div class="diag-verdict" id="diag-verdict">—</div>
           </div>
-          <div class="diag-risks">
+          <div class="diag-more-wrap">
+            <button type="button" class="diag-more" id="diag-more" aria-expanded="false" aria-controls="diag-risks"><span class="diag-more-txt">Show the 3 risks</span> <span class="chev" aria-hidden="true">▾</span></button>
+          </div>
+          <div class="diag-risks" id="diag-risks" hidden>
             <div class="diag-risks-label">Top 3 risks for your setup</div>
             <div id="diag-risks-list"></div>
           </div>
           <div class="diag-cta">
             <div class="diag-cta-headline">Want me to find and fix these in your <em>actual data?</em></div>
-            <div class="diag-cta-sub">The Audit is $4,000, 14 days, fixed fee. At least one finding that changes a shipping decision, or you don't pay.</div>
             <div class="diag-cta-row">
-              <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-primary">Book a 20-min call <span>→</span></a>
+              <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener" class="btn btn-primary">Book a 20-min call <span>→</span></a>
               <a href="mailto:dkarzumanian@gmail.com?subject=My pipeline diagnostic results" class="btn btn-ghost" id="diag-email-link">Email me my scorecard</a>
             </div>
           </div>
@@ -942,534 +993,106 @@
     </div>
   </section>
 
-  <!-- SHOWCASE — flip cards -->
-  <section class="showcase" id="work">
+  <!-- WHAT YOU PROVIDE -->
+  <section class="sec-audit" id="audit">
     <div class="wrap">
-      <div class="eyebrow rv showcase-head"><span class="bar"></span>Selected work · five systems in production</div>
-      <h2 class="sec-head rv">The fix isn't a smarter analyst — it's <em>the layer above the default tool.</em></h2>
-      <p class="sec-sub rv">Each card has two sides. <b>Front:</b> the one-line idea. <b>Click to flip:</b> full case, interactive demos, real metrics.</p>
-      <div class="showcase-hint rv">Scroll on cards · <b>tap a card to flip</b></div>
-    </div>
-
-    <div class="showcase-track-wrap rv">
-      <button class="showcase-arrow showcase-arrow-prev" id="show-prev" aria-label="Previous">←</button>
-      <button class="showcase-arrow showcase-arrow-next" id="show-next" aria-label="Next">→</button>
-
-      <div class="showcase-track" id="showcase-track">
-
-        <!-- ─── CARD 01 SEQUENTIAL ─── -->
-        <article class="proj-card" data-i="0">
-          <div class="proj-card-inner">
-            <!-- FRONT -->
-            <div class="proj-card-front" data-roman="i">
-              <div class="proj-front-tag">Case 01 · Experimentation</div>
-              <div class="proj-front-title">Sequential testing — answers <em>faster.</em></div>
-              <div class="proj-front-bignum">
-                <div class="proj-front-bignum-v">30–40% faster reads</div>
-                <div class="proj-front-bignum-sub"><b>Same confidence, not less.</b> Calibrated on real metric distributions · more on clear winners</div>
-              </div>
-              <div class="proj-front-oneliner">
-                Default tools stop tests at the <b>wrong moment.</b> A sequential layer above them stops at the right one.
-              </div>
-              <div class="proj-flip-hint">
-                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details + live demo</span>
-                <span class="proj-flip-hint-roman">i / v</span>
-              </div>
-            </div>
-            <!-- BACK -->
-            <div class="proj-card-back" data-roman="i"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
-              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
-              <div class="proj-content">
-                <div class="proj-tag">Case 01 · Experimentation</div>
-                <h3 class="proj-title">Sequential testing</h3>
-                <p class="proj-desc">Default A/B tooling stops at the wrong moment. The fix is a <em>sequential layer above the default</em>: OBF boundaries calibrated through Monte Carlo on real metric distributions.</p>
-                <div class="proj-metrics">
-                  <div class="proj-metric"><div class="v">30–40%</div><div class="k">Faster decisions</div></div>
-                  <div class="proj-metric"><div class="v">47→72%</div><div class="k">Realised power</div></div>
-                  <div class="proj-metric"><div class="v">26→14d</div><div class="k">Avg duration</div></div>
-                  <div class="proj-metric"><div class="v">+42%</div><div class="k">Tests / year</div></div>
-                </div>
-                <div class="proj-foot"><a class="proj-cta" href="mailto:dkarzumanian@gmail.com?subject=Sequential testing case study">Case study on request <span>→</span></a></div>
-              </div>
-              <div class="proj-visual">
-                <div class="proj-visual-head"><span>Sequential planner</span><span class="live">Live</span></div>
-                <div class="seq-row"><span class="seq-label">Daily traffic</span><input type="range" class="seq-slider" id="seq-traffic" min="1000" max="50000" value="12000" step="500"><span class="seq-val" id="seq-traffic-val">12k</span></div>
-                <div class="seq-row"><span class="seq-label">Baseline CR</span><input type="range" class="seq-slider" id="seq-cr" min="5" max="150" value="38" step="1"><span class="seq-val" id="seq-cr-val">3.8%</span></div>
-                <div class="seq-row"><span class="seq-label">MDE (rel)</span><input type="range" class="seq-slider" id="seq-mde" min="5" max="100" value="20" step="1"><span class="seq-val" id="seq-mde-val">2.0%</span></div>
-                <div class="seq-results">
-                  <div><div class="seq-result-k">Sample / arm</div><div class="seq-result-v" id="seq-N">—</div></div>
-                  <div><div class="seq-result-k">Fixed</div><div class="seq-result-v" id="seq-days-fixed">—</div></div>
-                  <div><div class="seq-result-k">Sequential</div><div class="seq-result-v accent" id="seq-days-seq">—</div></div>
-                </div>
-                <div class="seq-chart">
-                  <div class="seq-chart-label"><span>Z-path · OBF boundary</span><span class="accent" id="seq-savings">—</span></div>
-                  <svg viewBox="0 0 240 48" preserveAspectRatio="none">
-                    <line class="axis" x1="0" y1="24" x2="240" y2="24"/>
-                    <path class="boundary" id="seq-boundary-top" d=""/>
-                    <path class="boundary" id="seq-boundary-bot" d=""/>
-                    <path class="z-line" id="seq-zline" d=""/>
-                    <circle class="z-dot" id="seq-zdot" cx="240" cy="10" r="2.5"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ─── CARD 02 CALIPER ─── -->
-        <article class="proj-card" data-i="1">
-          <div class="proj-card-inner">
-            <div class="proj-card-front" data-roman="ii">
-              <div class="proj-front-tag">Case 02 · Prioritisation</div>
-              <div class="proj-front-title">Caliper — which test do we run <em>next?</em></div>
-              <div class="proj-front-bignum">
-                <div class="proj-front-bignum-v">Stop arguing. Start ranking.</div>
-                <div class="proj-front-bignum-sub">Engineering routed to <b>highest-ROI</b> tests · Calibrated on <b>121</b> past experiments</div>
-              </div>
-              <div class="proj-front-oneliner">
-                Backlogs decided by the <b>loudest voice</b> in the room. This one's decided by 121 past experiments and one comparable Index.
-              </div>
-              <div class="proj-flip-hint">
-                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details + live demo</span>
-                <span class="proj-flip-hint-roman">ii / v</span>
-              </div>
-            </div>
-            <div class="proj-card-back" data-roman="ii"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
-              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
-              <div class="proj-content">
-                <div class="proj-tag">Case 02 · Prioritisation</div>
-                <h3 class="proj-title">Caliper</h3>
-                <p class="proj-desc">Classifies hypotheses by feature type, calibrates per-category coefficients with Bayesian shrinkage on 121 past experiments, and collapses uplift × dev cost × historical performance into <em>one comparable Index</em>.</p>
-                <div class="proj-metrics">
-                  <div class="proj-metric"><div class="v">121</div><div class="k">Experiments calibrated</div></div>
-                  <div class="proj-metric"><div class="v">60+</div><div class="k">Mixpanel configs</div></div>
-                  <div class="proj-metric"><div class="v">4 types</div><div class="k">Feature classifier</div></div>
-                  <div class="proj-metric"><div class="v">1</div><div class="k">Number to argue about</div></div>
-                </div>
-                <div class="proj-foot"><a class="proj-cta" href="mailto:dkarzumanian@gmail.com?subject=Caliper prioritisation case study">Case study on request <span>→</span></a></div>
-              </div>
-              <div class="proj-visual">
-                <div class="proj-visual-head"><span>🧪 Type your hypothesis</span><span class="live">Live</span></div>
-                <div class="hc-input-wrap">
-                  <div class="hc-input-label"><span>Hypothesis</span><span class="try" id="hc-try-hint">Try editing ↓</span></div>
-                  <textarea class="hc-textarea" id="hc-text" rows="2">Add social proof badges with review count and "X people subscribed this week" to the subscription payment page.</textarea>
-                </div>
-                <div class="hc-row">
-                  <div class="hc-donut-wrap">
-                    <svg viewBox="0 0 60 60">
-                      <circle cx="30" cy="30" r="22" fill="none" stroke="rgba(30,27,22,.14)" stroke-width="8"/>
-                      <circle cx="30" cy="30" r="22" fill="none" stroke="#B5781C" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-messaging"/>
-                      <circle cx="30" cy="30" r="22" fill="none" stroke="#9A5A23" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-visual"/>
-                      <circle cx="30" cy="30" r="22" fill="none" stroke="#7A2A22" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-flow"/>
-                      <circle cx="30" cy="30" r="22" fill="none" stroke="#5E3220" stroke-width="8" stroke-dasharray="0 138" stroke-dashoffset="0" transform="rotate(-90 30 30)" id="hc-seg-personalization"/>
-                    </svg>
-                    <div class="hc-donut-center" id="hc-donut-pct">—</div>
-                  </div>
-                  <div class="hc-legend" id="hc-legend">
-                    <div class="hc-legend-item" data-cat="messaging"><div class="left"><span class="dot" style="background:#B5781C"></span>Messaging</div><span class="pct">—</span></div>
-                    <div class="hc-legend-item" data-cat="visual"><div class="left"><span class="dot" style="background:#9A5A23"></span>Visual UI</div><span class="pct">—</span></div>
-                    <div class="hc-legend-item" data-cat="flow"><div class="left"><span class="dot" style="background:#7A2A22"></span>Flow</div><span class="pct">—</span></div>
-                    <div class="hc-legend-item" data-cat="personalization"><div class="left"><span class="dot" style="background:#5E3220"></span>Personalisation</div><span class="pct">—</span></div>
-                  </div>
-                </div>
-                <div class="hc-index" id="hc-index-box">
-                  <div><div class="hc-index-label">Prioritisation Index</div><div class="hc-index-formula">feature weight × classification confidence</div></div>
-                  <div class="hc-index-val" id="hc-index-val">—</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ─── CARD 03 SMART ANALYTICS ─── -->
-        <article class="proj-card" data-i="2">
-          <div class="proj-card-inner">
-            <div class="proj-card-front" data-roman="iii">
-              <div class="proj-front-tag">Case 03 · Multi-agent AI</div>
-              <div class="proj-front-title">Smart Analytics — agents for the <em>grunt work.</em></div>
-              <div class="proj-front-bignum">
-                <div class="proj-front-bignum-v">Scale without hiring</div>
-                <div class="proj-front-bignum-sub"><b>~10h/wk</b> per analyst back to real analysis · 3 CrewAI crews · Slack-native</div>
-              </div>
-              <div class="proj-front-oneliner">
-                Half the analyst's week is <b>intake docs and summaries.</b> Three AI crews now handle it. Slack-native, in production.
-              </div>
-              <div class="proj-flip-hint">
-                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details</span>
-                <span class="proj-flip-hint-roman">iii / v</span>
-              </div>
-            </div>
-            <div class="proj-card-back" data-roman="iii"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
-              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
-              <div class="proj-content">
-                <div class="proj-tag">Case 03 · Multi-agent AI</div>
-                <h3 class="proj-title">Smart Analytics</h3>
-                <p class="proj-desc">CrewAI system with three crews — post-analysis summary, hypothesis generation, experiment planning. <em>AI removes the grunt work, not the judgement.</em></p>
-                <div class="proj-metrics">
-                  <div class="proj-metric"><div class="v">3 crews</div><div class="k">Summary · hypothesis · planner</div></div>
-                  <div class="proj-metric"><div class="v">CrewAI</div><div class="k">Multi-agent framework</div></div>
-                  <div class="proj-metric"><div class="v">Slack</div><div class="k">Native interface</div></div>
-                  <div class="proj-metric"><div class="v">~10h/wk</div><div class="k">Analyst time recovered</div></div>
-                </div>
-                <div class="proj-foot"><a class="proj-cta muted" href="mailto:dkarzumanian@gmail.com?subject=Smart Analytics draft">Draft on request <span>→</span></a></div>
-              </div>
-              <div class="proj-visual">
-                <div class="proj-visual-head"><span># abtest-results</span><span class="badge-mini">CrewAI · Slack</span></div>
-                <div class="mock-slack">
-                  <div class="mock-slack-channel">user · 2:14 PM</div>
-                  <div class="mock-slack-cmd">summarize EXP-2024-148</div>
-                  <div class="mock-slack-bot">
-                    <div class="avatar">A</div>
-                    <div>
-                      <div class="name">Analyst Bot <span class="time">2:14 PM</span></div>
-                      <div class="body">
-                        <p><strong>checkout-cta-color</strong> · 16 days</p>
-                        <p style="margin-top:4px"><span class="check">✓</span> Test wins +2.1% (95% CI: 0.8–3.4%)</p>
-                        <p><span class="check">✓</span> No interaction with traffic source</p>
-                        <p><span class="warn">⚠</span> Mobile only — desktop variant flat</p>
-                        <p style="margin-top:4px;color:var(--gold)"><strong>Recommend:</strong> ship to mobile; rerun desktop Q3.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ─── CARD 04 CAUSAL ─── -->
-        <article class="proj-card" data-i="3">
-          <div class="proj-card-inner">
-            <div class="proj-card-front" data-roman="iv">
-              <div class="proj-front-tag">Case 04 · Causal inference</div>
-              <div class="proj-front-title">When there's <em>no control group.</em></div>
-              <div class="proj-front-bignum">
-                <div class="proj-front-bignum-v">Know what your big launches did</div>
-                <div class="proj-front-bignum-sub">Defensible attribution where A/B is impossible · ITS · DiD · CITS</div>
-              </div>
-              <div class="proj-front-oneliner">
-                Some features <b>can't be A/B tested.</b> Interrupted time series and difference-in-differences measure them anyway.
-              </div>
-              <div class="proj-flip-hint">
-                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details</span>
-                <span class="proj-flip-hint-roman">iv / v</span>
-              </div>
-            </div>
-            <div class="proj-card-back" data-roman="iv"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
-              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
-              <div class="proj-content">
-                <div class="proj-tag">Case 04 · Causal inference</div>
-                <h3 class="proj-title">Causal inference</h3>
-                <p class="proj-desc">Quasi-experimental measurement framework. <em>Interrupted Time Series + Difference-in-Differences</em> applied to feature rollouts that never had an A/B — subscriber discount, wallet adoption.</p>
-                <div class="proj-metrics">
-                  <div class="proj-metric"><div class="v">ITS</div><div class="k">Interrupted time series</div></div>
-                  <div class="proj-metric"><div class="v">DiD</div><div class="k">Difference-in-differences</div></div>
-                  <div class="proj-metric"><div class="v">CITS</div><div class="k">Controlled ITS</div></div>
-                  <div class="proj-metric"><div class="v">2 rollouts</div><div class="k">Production case studies</div></div>
-                </div>
-                <div class="proj-foot"><a class="proj-cta muted" href="mailto:dkarzumanian@gmail.com?subject=Causal inference draft">Draft on request <span>→</span></a></div>
-              </div>
-              <div class="proj-visual">
-                <div class="proj-visual-head"><span>ITS · Subscriber discount</span><span class="badge-mini">PA-1095</span></div>
-                <div class="mock-its">
-                  <svg viewBox="0 0 320 120" preserveAspectRatio="none">
-                    <line class="axis" x1="20" y1="105" x2="320" y2="105"/>
-                    <line class="axis" x1="20" y1="10" x2="20" y2="105"/>
-                    <path class="effect-zone" d="M 175,38 L 320,28 L 320,72 L 175,68 Z"/>
-                    <line class="intervention" x1="175" y1="10" x2="175" y2="105"/>
-                    <path class="counterfactual" d="M 175,68 Q 220,66 260,64 T 320,62"/>
-                    <path class="actual" d="M 20,82 Q 60,78 100,74 T 175,68 Q 220,50 260,38 T 320,28"/>
-                    <text x="180" y="22" font-family="'Inter',sans-serif" font-size="8" fill="#B5781C" letter-spacing="1" font-weight="600">INTERVENTION</text>
-                  </svg>
-                  <div class="mock-its-legend">
-                    <div class="item"><span class="line"></span>Actual</div>
-                    <div class="item"><span class="line dashed"></span>Counterfactual</div>
-                  </div>
-                  <div class="mock-its-result"><span>Treatment effect</span><strong>+8.4%</strong><span>95% CI [5.2, 11.6]</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- ─── CARD 05 CHURN ─── -->
-        <article class="proj-card" data-i="4">
-          <div class="proj-card-inner">
-            <div class="proj-card-front" data-roman="v">
-              <div class="proj-front-tag">Case 05 · Predictive systems</div>
-              <div class="proj-front-title">Churn — predictive systems <em>in production.</em></div>
-              <div class="proj-front-bignum">
-                <div class="proj-front-bignum-v">Save churners before they leave</div>
-                <div class="proj-front-bignum-sub">Right intervention to right cohort · <b>0.81</b> top-decile precision · 4-segment routing</div>
-              </div>
-              <div class="proj-front-oneliner">
-                Survival curves are <b>pretty.</b> Predictive routing of cohorts to interventions is what actually saves customers.
-              </div>
-              <div class="proj-flip-hint">
-                <span class="proj-flip-hint-text"><span class="flip-icon">↻</span>Flip for details</span>
-                <span class="proj-flip-hint-roman">v / v</span>
-              </div>
-            </div>
-            <div class="proj-card-back" data-roman="v"><div class="proj-card-back-hint">↩ Click anywhere to return</div>
-              <button type="button" class="proj-card-back-arrow"><span class="arrow">←</span>Back</button>
-              <div class="proj-content">
-                <div class="proj-tag">Case 05 · Predictive systems</div>
-                <h3 class="proj-title">Churn — predictive routing</h3>
-                <p class="proj-desc">XGBoost + SHAP-driven feature framing. <em>The predictive layer routes cohorts to interventions</em> — and the causal-inference rigour validates whether they actually worked.</p>
-                <div class="proj-metrics">
-                  <div class="proj-metric"><div class="v">XGBoost</div><div class="k">Model</div></div>
-                  <div class="proj-metric"><div class="v">SHAP</div><div class="k">Feature framing</div></div>
-                  <div class="proj-metric"><div class="v">4 segments</div><div class="k">Routed to treatments</div></div>
-                  <div class="proj-metric"><div class="v">DiD</div><div class="k">Post-treatment attribution</div></div>
-                </div>
-                <div class="proj-foot"><a class="proj-cta muted" href="mailto:dkarzumanian@gmail.com?subject=Churn draft">Draft on request <span>→</span></a></div>
-              </div>
-              <div class="proj-visual">
-                <div class="proj-visual-head"><span>Churn model · SHAP</span><span class="badge-mini">XGBoost</span></div>
-                <div class="mock-shap">
-                  <div class="mock-shap-row"><span class="mock-shap-name">recency_days</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:88%"></div></div><span class="mock-shap-val">.42</span></div>
-                  <div class="mock-shap-row"><span class="mock-shap-name">avg_orders_mo</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:70%"></div></div><span class="mock-shap-val">.33</span></div>
-                  <div class="mock-shap-row"><span class="mock-shap-name">first_promo_used</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:54%"></div></div><span class="mock-shap-val">.26</span></div>
-                  <div class="mock-shap-row"><span class="mock-shap-name">subscription_tier</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:42%"></div></div><span class="mock-shap-val">.20</span></div>
-                  <div class="mock-shap-row"><span class="mock-shap-name">avg_returns_yr</span><div class="mock-shap-bar"><div class="mock-shap-bar-fill" style="width:34%"></div></div><span class="mock-shap-val">.16</span></div>
-                  <div class="mock-shap-footer"><span>Top-decile precision · <strong>0.81</strong></span><span>ROC AUC · <strong>0.84</strong></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
+      <div class="eyebrow rv"><span class="bar"></span>What you get</div>
+      <h2 class="sec-head rv">The <em>Experimentation Audit</em></h2>
+      <p class="sec-sub rv">A two-week, fixed-fee review of your A/B testing. I find the numbers you can't trust, show you which "wins" are noise, and hand you a clear way to fix it.</p>
+      <div class="aud-deliver rv">
+        <div class="aud-item"><div class="aud-n">01</div><div class="aud-t">A trustworthiness scorecard</div><div class="aud-d">Every recent test scored out of 100, with the false wins flagged and the statistical reason each one is shaky.</div></div>
+        <div class="aud-item"><div class="aud-n">02</div><div class="aud-t">A prioritized fix roadmap</div><div class="aud-d">The handful of changes that move your reads from hopeful to trustworthy, in the order they pay off.</div></div>
+        <div class="aud-item"><div class="aud-n">03</div><div class="aud-t">A team walkthrough</div><div class="aud-d">A working session so the fixes stick after I leave. Not a PDF nobody opens.</div></div>
       </div>
+      <p class="aud-foot rv">Fixed fee, two weeks, remote. <a href="#services">See the pricing &rarr;</a></p>
     </div>
+  </section>
 
+  <!-- WHY YOU CAN TRUST ME -->
+  <section class="sec-trust" id="work">
     <div class="wrap">
-      <div class="showcase-pagination" id="showcase-pagination">
-        <button class="showcase-dot is-active" data-i="0"></button>
-        <button class="showcase-dot" data-i="1"></button>
-        <button class="showcase-dot" data-i="2"></button>
-        <button class="showcase-dot" data-i="3"></button>
-        <button class="showcase-dot" data-i="4"></button>
+      <div class="eyebrow rv"><span class="bar"></span>Why you can trust me</div>
+      <h2 class="sec-head rv">Eight years making <em>numbers tell the truth.</em></h2>
+      <p class="sec-sub rv">Two kinds of proof: what I've caught, and what I've built.</p>
+      <div class="tr-catches rv">
+        <div class="tr-catch"><div class="tr-num">59&times;</div><div class="tr-txt">a revenue metric was inflating results. It looked <b>exactly like real signal.</b> Caught before the team shipped on it.</div></div>
+        <div class="tr-catch"><div class="tr-num">2 rates &uarr;</div><div class="tr-txt">churned <b>and</b> retained both rose in one test, a polarization artifact. I killed a "winner" that would have hurt.</div></div>
+        <div class="tr-catch"><div class="tr-num">30&ndash;40%</div><div class="tr-txt">earlier that experiments could have <b>stopped</b>, with sequential testing. Faster decisions, same confidence.</div></div>
+      </div>
+      <div class="tr-worklabel rv">Systems I've shipped in production</div>
+      <div class="tr-work rv">
+        <div class="tr-w"><span class="tr-wn">Sequential testing</span><span class="tr-wo">Valid early stopping, so tests answer in days instead of weeks.</span><span class="tr-wm">30&ndash;40% faster</span></div>
+        <div class="tr-w"><span class="tr-wn">Caliper</span><span class="tr-wo">Scores which test to run next by the learning it buys.</span><span class="tr-wm">prioritised backlog</span></div>
+        <div class="tr-w"><span class="tr-wn">Smart Analytics</span><span class="tr-wo">CrewAI agents that take the grunt work out of analysis.</span><span class="tr-wm">three crews</span></div>
+        <div class="tr-w"><span class="tr-wn">Causal measurement</span><span class="tr-wo">Interrupted time series and diff-in-diff for launches you can't A/B test.</span><span class="tr-wm">no-A/B rollouts</span></div>
+        <div class="tr-w"><span class="tr-wn">Churn modeling</span><span class="tr-wo">XGBoost and SHAP routing, validated with causal rigor.</span><span class="tr-wm">in production</span></div>
       </div>
     </div>
   </section>
 
-  <section style="padding:58px 0;border-top:1px solid var(--cream-faint)">
+  <!-- PRICING -->
+  <section class="sec-price" id="services">
     <div class="wrap">
-      <div class="eyebrow rv" style="margin-bottom:30px"><span class="bar"></span>Two ways to work together</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
-        <div class="rv">
-          <div style="font-family:var(--serif);font-size:clamp(21px,2.6vw,27px);font-weight:700;letter-spacing:-.01em;line-height:1.2">The Audit&nbsp;&nbsp;<span class="gold">$4,000 · 2 weeks</span></div>
-          <div style="color:var(--cream-dim);font-size:16px;margin-top:9px">I score exactly where your tests are lying, and hand you the roadmap.</div>
+      <div class="eyebrow rv"><span class="bar"></span>What it costs</div>
+      <h2 class="sec-head rv">Two ways to <em>work together.</em></h2>
+      <div class="pr-grid rv">
+        <div class="pr-card feat">
+          <div class="pr-tag">Start here</div>
+          <div class="pr-name">The Audit</div>
+          <div class="pr-price">$4,000 <small>fixed</small></div>
+          <div class="pr-terms">Two weeks, remote.</div>
+          <ul class="pr-list"><li>Trustworthiness scorecard</li><li>Prioritized fix roadmap</li><li>Team walkthrough</li></ul>
+          <div class="pr-guar"><b>Guarantee.</b> A finding that changes a shipping decision, or you don't pay.</div>
+          <a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a 20-minute call <span>&rarr;</span></a>
         </div>
-        <div class="rv">
-          <div style="font-family:var(--serif);font-size:clamp(21px,2.6vw,27px);font-weight:700;letter-spacing:-.01em;line-height:1.2">Fractional Lead&nbsp;&nbsp;<span class="gold">from $8k/mo</span></div>
-          <div style="color:var(--cream-dim);font-size:16px;margin-top:9px">I run the fix — 2–3 days a week — and level up your team.</div>
+        <div class="pr-card">
+          <div class="pr-name">Fractional Lead</div>
+          <div class="pr-price">from $8,000 <small>/mo</small></div>
+          <div class="pr-terms">2&ndash;3 days a week. Month-to-month after a 3-month start.</div>
+          <ul class="pr-list"><li>I run the roadmap I built in the audit</li><li>Own the experiment review</li><li>Causal measurement for launches you can't A/B test</li><li>Level up your team</li></ul>
+          <a class="btn btn-ghost" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a call <span>&rarr;</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="proof">
-    <div class="wrap">
-      <div class="eyebrow rv"><span class="bar"></span>Receipts, not adjectives</div>
-      <div class="stats">
-        <div class="stat rv"><div class="num">59×</div><div class="cap">a revenue metric was inflating results — it looked <b>exactly like real signal.</b> Caught before the team shipped on it.</div></div>
-        <div class="stat rv"><div class="num">2 rates ↑</div><div class="cap">churned <b>and</b> retained both rose in one test — a polarization artifact. Killed a "winner" that would have hurt.</div></div>
-        <div class="stat rv"><div class="num">30–40%</div><div class="cap">earlier that experiments could have <b>stopped</b>, with sequential testing — faster decisions, same confidence.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="wrap">
-      <div class="eyebrow rv"><span class="bar"></span>How we work together</div>
-      <h2 class="sec-head rv">Start with a fixed-fee audit. Keep me if it's worth it.</h2>
-      <p class="sec-sub rv">No open-ended retainers to sign blind. Two weeks, a clear scorecard, then you decide.</p>
-      <div class="cards">
-        <div class="card rv">
-          <div class="tag">The wedge · 2 weeks</div>
-          <h3>Experimentation Pipeline Audit</h3>
-          <div class="price">$4,000 <small>fixed</small></div>
-          <div class="terms">14 days · 50% upfront</div>
-          <ul>
-            <li><b>Statistical rigor</b> — peeking, power, triggering, run-duration, multiple comparisons</li>
-            <li><b>Metric design</b> — proxy metrics, guardrails, the "both rates rose" traps</li>
-            <li><b>Tooling</b> — Amplitude / Statsig / GrowthBook / Eppo, configured for honest reads</li>
-            <li><b>Deliverables</b> — a trustworthiness scorecard + a prioritized test roadmap + a team walkthrough</li>
-          </ul>
-          <div class="card-guarantee">
-            <span class="ico">✓</span>
-            <span class="txt"><span class="lbl">The guarantee</span>At least one finding that <b>changes a shipping decision</b>, or you don't pay. Not a count of nitpicks. One call you'd otherwise have gotten wrong.</span>
-          </div>
-          <div class="note">The fee <span class="gold">credits toward your first month</span> if we continue.</div>
-        </div>
-        <div class="card rv">
-          <div class="tag">The engagement · ongoing</div>
-          <h3>Fractional Experimentation Lead</h3>
-          <div class="price">from $8,000 <small>/ month</small></div>
-          <div class="terms">2–3 days/week · 3-month minimum</div>
-          <ul>
-            <li><b>I run the roadmap</b> I built in the audit — and own the experiment review</li>
-            <li><b>Install the rigor</b> your platform was bought for but never got</li>
-            <li><b>Causal measurement</b> for launches you can't A/B test — interrupted time series, diff-in-diff</li>
-            <li><b>Level up the team</b> so the practice outlasts me</li>
-          </ul>
-          <div class="card-guarantee">
-            <span class="ico">↻</span>
-            <span class="txt"><span class="lbl">No lock-in</span>3-month start, then <b>month-to-month.</b> You own every playbook and dashboard I build — leave the day the practice runs without me.</span>
-          </div>
-          <div class="note">You get the senior operator directly — <span class="gold">not an agency junior.</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="compare" style="border-top:1px solid var(--cream-faint)">
-    <div class="wrap">
-      <div class="eyebrow rv"><span class="bar"></span>The honest comparison</div>
-      <h2 class="sec-head rv">The real question isn't my fee. It's <em>what the alternative costs you.</em></h2>
-      <p class="sec-sub rv">Three ways to fix an experimentation pipeline you can't trust — in time, in cash, and in bad ships.</p>
-      <div class="compare rv">
-        <div class="compare-grid">
-          <!-- header -->
-          <div class="compare-corner"></div>
-          <div class="compare-col-head is-featured">
-            <span class="compare-col-cap">Recommended</span>
-            <span class="compare-col-title">Audit → Fractional</span>
-            <span class="compare-col-sub">Start at $4k. Scale only if it works.</span>
-          </div>
-          <div class="compare-col-head">
-            <span class="compare-col-title">Hire it in-house</span>
-            <span class="compare-col-sub">A senior experimentation lead, full-time.</span>
-          </div>
-          <div class="compare-col-head">
-            <span class="compare-col-title">Do nothing</span>
-            <span class="compare-col-sub">Keep shipping on the current pipeline.</span>
-          </div>
-
-          <!-- row 1 -->
-          <div class="compare-cell compare-rowlabel">Time to first insight</div>
-          <div class="compare-cell is-featured"><span class="good">2 weeks</span></div>
-          <div class="compare-cell">3–5 months to hire + ramp</div>
-          <div class="compare-cell bad">Never</div>
-
-          <!-- row 2 -->
-          <div class="compare-cell compare-rowlabel">Year-1 cash cost</div>
-          <div class="compare-cell is-featured">$4k audit, then from $8k/mo <b>only if you continue</b></div>
-          <div class="compare-cell">$180k–$240k fully loaded</div>
-          <div class="compare-cell">$0 up front</div>
-
-          <!-- row 3 -->
-          <div class="compare-cell compare-rowlabel">Who owns the rigor</div>
-          <div class="compare-cell is-featured"><span class="good">A senior operator, week one</span></div>
-          <div class="compare-cell">Whoever you can hire and retain</div>
-          <div class="compare-cell bad">No one</div>
-
-          <!-- row 4 -->
-          <div class="compare-cell compare-rowlabel">Time to productive</div>
-          <div class="compare-cell is-featured"><span class="good">Immediately</span></div>
-          <div class="compare-cell">3–6 months to full speed</div>
-          <div class="compare-cell">—</div>
-
-          <!-- row 5 -->
-          <div class="compare-cell compare-rowlabel">What you commit to</div>
-          <div class="compare-cell is-featured">Cancel after the audit</div>
-          <div class="compare-cell">Salary, equity, severance</div>
-          <div class="compare-cell">—</div>
-
-          <!-- row 6 -->
-          <div class="compare-cell compare-rowlabel">Your false "wins"</div>
-          <div class="compare-cell is-featured"><span class="good">Found &amp; quantified in 14 days</span></div>
-          <div class="compare-cell">Found once they ramp</div>
-          <div class="compare-cell bad">Keep shipping</div>
-        </div>
-      </div>
-      <p class="compare-foot rv">The audit costs less than <b>two weeks</b> of a senior hire's loaded salary — and tells you whether you even need one.</p>
-    </div>
-  </section>
-
-  <section style="padding:74px 0;border-top:1px solid var(--cream-faint);text-align:center">
-    <div class="wrap">
-      <p class="rv" style="font-family:var(--serif);font-weight:700;font-size:clamp(22px,3.2vw,32px);line-height:1.15;letter-spacing:-.012em;margin:0 auto 26px;color:var(--cream);max-width:22ch">Not sure how much of your test data you can trust?</p>
-      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-primary rv">Book a 20-min call</a>
-    </div>
-  </section>
-
-  <section style="border-top:1px solid var(--cream-faint)">
-    <div class="wrap">
-      <div class="eyebrow rv"><span class="bar"></span>Who this is for</div>
-      <div class="who-grid">
-        <ul class="fit">
-          <li class="rv">Seed to Series B, with a product and real traffic</li>
-          <li class="rv">A data team of 1–5 that can't yet trust its experiment reads</li>
-          <li class="rv">Just hired (or about to) for experimentation or growth analytics</li>
-          <li class="rv">Bought the platform — but no senior person owns the rigor</li>
-        </ul>
-        <div class="notfit rv">
-          <div class="eyebrow">Probably not a fit</div>
-          <p>Enterprises with a dedicated experimentation platform team, or pre-product companies with no traffic to test on yet. I'd tell you so on the call rather than take the fee.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="about" style="border-top:1px solid var(--cream-faint)">
-    <div class="wrap">
-      <div class="eyebrow rv"><span class="bar"></span>Who you'd be working with</div>
-      <p class="rv">I'm David Arzumanian. Eight years making numbers tell the truth in product analytics.</p>
-      <div class="body rv">
-        I've spent my career on the unglamorous half of experimentation: the part where a "win" turns out to be a logging bug, a proxy metric quietly disagrees with revenue, and someone has to say "we can't ship on this yet." Most recently I built the experimentation rigor at a subscription e-commerce company at scale. I work these traps out loud on <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a> and in long-form on the <a href="/writing/">writing</a> page. Every role and how I think is public — verify all of it before we talk.
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" style="border-top:1px solid var(--cream-faint)">
+  <!-- FAQ -->
+  <section class="sec-faq" id="faq">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>Common questions</div>
       <h2 class="sec-head rv">Questions I get from <em>product teams</em></h2>
-      <div class="faq rv">
-        <details class="faq-item">
-          <summary>Why did my A/B test "winner" stop working after we shipped it?</summary>
-          <div class="faq-a">Usually one of three things: you <b>stopped the test early</b> the moment it looked significant (peeking inflates false positives two to five times), the lift was <b>regression to the mean</b>, or it was a <b>novelty effect</b> that faded. The number was real on screen and noise in reality. A pre-set run length and a sequential boundary tell the difference <em>before</em> you ship.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Is it bad to stop a test early when it hits significance?</summary>
-          <div class="faq-a">Yes, if you stop the instant a fixed-horizon p-value crosses 0.05. Checking repeatedly and stopping on the first "win" is <b>peeking</b>, and it can turn a 5% false-positive rate into 20 to 30%. The fix is not "never look" — it is <em>sequential testing</em>, which lets you stop early safely with boundaries calibrated for continuous monitoring.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Do I need to correct for multiple comparisons?</summary>
-          <div class="faq-a">If you read several metrics, segments, or variants off one test and celebrate whichever crosses the line, then yes. Every extra comparison is another lottery ticket for a false positive. Without correction a meaningful share of your "wins" are noise; with it, you ship on signal.</div>
-        </details>
-        <details class="faq-item">
-          <summary>When should I hire a full-time experimentation lead vs. a fractional one?</summary>
-          <div class="faq-a">Below roughly <b>8 to 10 tests a month</b>, a full-time hire is hard to justify and the real problem is usually underpowered tests, not headcount. A <b>fractional lead</b> installs the rigor, owns the review, and levels up your team two to three days a week. When test volume and stakes outgrow that, you hire in-house and I hand it off.</div>
-        </details>
-        <details class="faq-item">
-          <summary>What does the $4,000 audit actually include?</summary>
-          <div class="faq-a">Two weeks, fixed fee. I review your statistical rigor, metric design, and tooling, then hand you a <b>trustworthiness scorecard</b>, a <b>prioritized roadmap</b>, and a <b>team walkthrough</b>. The guarantee: at least one finding that changes a shipping decision, or you don't pay. The fee credits toward your first month if we continue.</div>
-        </details>
-        <details class="faq-item">
-          <summary>Which A/B testing tools do you work with?</summary>
-          <div class="faq-a">The methodology is <b>tool-agnostic</b> — I audit whatever you run. In practice I am deepest in Statsig, Eppo, GrowthBook, and Amplitude. The point is not the tool; it is whether you are using its stats engine in a way you can actually trust.</div>
-        </details>
+      <div class="fq-list rv">
+        <details open><summary>Isn't "just don't peek" enough?<span class="fq-x">+</span></summary><div class="fq-a">Telling people not to peek doesn't survive a launch week. The real fix is sequential testing: valid stopping rules so you CAN look early without inflating false positives.</div></details>
+        <details><summary>Do I have to switch tools?<span class="fq-x">+</span></summary><div class="fq-a">No. The methodology is tool-agnostic. I audit whatever you run: Amplitude, Statsig, GrowthBook, Eppo, or something built in-house.</div></details>
+        <details><summary>We're pre-product-market-fit. Too early?<span class="fq-x">+</span></summary><div class="fq-a">Probably, and I'll tell you that on the call rather than take the fee. This is for teams with real traffic and tests they can't fully trust yet.</div></details>
+        <details><summary>What do I actually walk away with?<span class="fq-x">+</span></summary><div class="fq-a">A trustworthiness scorecard, a prioritized fix roadmap, and a team walkthrough. <a href="#audit">See the audit &rarr;</a></div></details>
       </div>
     </div>
   </section>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-    {"@type":"Question","name":"Why did my A/B test winner stop working after we shipped it?","acceptedAnswer":{"@type":"Answer","text":"Usually peeking (stopping early the moment it looked significant, which inflates false positives), regression to the mean, or a novelty effect that faded. The lift was real on screen and noise in reality. A pre-set run length and a sequential boundary tell the difference before you ship."}},
-    {"@type":"Question","name":"Is it bad to stop a test early when it hits significance?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you stop the instant a fixed-horizon p-value crosses 0.05. Checking repeatedly and stopping on the first win is peeking, and it can turn a 5 percent false-positive rate into 20 to 30 percent. The fix is sequential testing, which lets you stop early safely with boundaries calibrated for continuous monitoring."}},
-    {"@type":"Question","name":"Do I need to correct for multiple comparisons?","acceptedAnswer":{"@type":"Answer","text":"If you read several metrics, segments, or variants off one test and celebrate whichever crosses the line, yes. Every extra comparison is another chance at a false positive. Without correction a meaningful share of your wins are noise."}},
-    {"@type":"Question","name":"When should I hire a full-time experimentation lead vs a fractional one?","acceptedAnswer":{"@type":"Answer","text":"Below roughly 8 to 10 tests a month a full-time hire is hard to justify and the real problem is usually underpowered tests. A fractional lead installs the rigor and owns the review two to three days a week; when volume and stakes outgrow that, you hire in-house."}},
-    {"@type":"Question","name":"What does the 4000 dollar audit include?","acceptedAnswer":{"@type":"Answer","text":"Two weeks, fixed fee. A review of statistical rigor, metric design, and tooling, delivered as a trustworthiness scorecard, a prioritized roadmap, and a team walkthrough. Guarantee: at least one finding that changes a shipping decision or you don't pay, and the fee credits toward your first month if you continue."}},
-    {"@type":"Question","name":"Which A/B testing tools do you work with?","acceptedAnswer":{"@type":"Answer","text":"The methodology is tool-agnostic and I audit whatever you run; deepest in Statsig, Eppo, GrowthBook, and Amplitude. The point is whether you are using the stats engine in a way you can trust."}}
+    {"@type":"Question","name":"Is not peeking enough to keep A/B tests trustworthy?","acceptedAnswer":{"@type":"Answer","text":"Telling people not to peek does not survive a launch week. The real fix is sequential testing: valid stopping rules so you can look early without inflating false positives."}},
+    {"@type":"Question","name":"Do I have to switch A/B testing tools?","acceptedAnswer":{"@type":"Answer","text":"No. The methodology is tool-agnostic. I audit whatever you run: Amplitude, Statsig, GrowthBook, Eppo, or something built in-house."}},
+    {"@type":"Question","name":"We are pre-product-market-fit. Is it too early for an audit?","acceptedAnswer":{"@type":"Answer","text":"Probably, and I will tell you that on the call rather than take the fee. This is for teams with real traffic and tests they cannot fully trust yet."}},
+    {"@type":"Question","name":"What do I walk away with from the audit?","acceptedAnswer":{"@type":"Answer","text":"A trustworthiness scorecard, a prioritized fix roadmap, and a team walkthrough."}}
   ]}
   </script>
 
-  <section class="final" id="book">
+  <!-- CLOSING -->
+  <section class="closing" id="book">
     <div class="wrap">
+      <div class="eyebrow rv"><span class="bar"></span>The next step</div>
       <h2 class="rv">Which of your numbers are <em>safe to ship on?</em></h2>
-      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-primary rv">Book a 20-minute call</a>
+      <div class="fin-stair rv">
+        <div class="fin-step"><div class="fin-v">90 sec</div><div class="fin-k"><b>Free diagnostic.</b> No email. Score your pipeline and see your top 3 trust risks.</div></div>
+        <div class="fin-step"><div class="fin-v">$4,000</div><div class="fin-k"><b>Two-week fixed-fee audit.</b> I find the single riskiest number in your reads.</div></div>
+        <div class="fin-step"><div class="fin-v">Guarantee</div><div class="fin-k">A finding that changes a shipping decision, or <b>you don't pay.</b></div></div>
+      </div>
+      <div class="fin-cta rv">
+        <a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a 20-minute call <span>&rarr;</span></a>
+        <a class="fin-sec" href="#diagnostic">or run the 90-second diagnostic &rarr;</a>
+      </div>
+      <div class="fin-avail rv">Taking 2 new audit slots this month.</div>
     </div>
   </section>
 </main>
@@ -1489,216 +1112,179 @@
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-  /* DIAGNOSTIC — progressive reveal + collapse on answer */
+  /* DIAGNOSTIC — step wizard (one question at a time) + scoring */
   (function(){
     const form = document.getElementById('diag-form');
     if (!form) return;
     const state = { tool: null, volume: 5, peek: null, mcc: null, review: null };
-    const questions = Array.from(document.querySelectorAll('.diag-q'));
     const diagPanel = document.querySelector('.diag-panel');
-    // Only auto-scroll the page when the visitor is actually looking at the
-    // diagnostic. If they've scrolled down to the work below, a fallback timer
-    // must never yank them back up here.
-    function diagInView(){
-      if (!diagPanel) return true;
-      const r = diagPanel.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-      return visible > Math.min(200, r.height * 0.35);
+    const stepsWrap = document.getElementById('diag-steps');
+    const steps = Array.from(stepsWrap.querySelectorAll('.diag-wstep'));
+    const TOTAL = steps.length;                       // 5
+    const STEP_KEY = steps.map(s => s.dataset.qId);   // ['tool','volume','peek','mcc','review']
+    const backBtn = document.getElementById('diag-back');
+    const nextBtn = document.getElementById('diag-next');
+    const submitBtn = document.getElementById('diag-submit');
+    const dots = Array.from(document.querySelectorAll('.diag-dot'));
+    const stepCurEl = document.getElementById('diag-step-cur');
+    const REQUIRED = ['tool','peek','mcc','review'];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    let current = 1;
+    let advanceTimer = null;     // pending auto-advance after a selection (cancelled on any navigation)
+    const visited = new Set();   // dots fill once a step has been reached (volume defaults to 5 but isn't "done" unseen)
+
+    // Reserve the panel height up front. Steps are grid-stacked so the card is already as tall
+    // as the tallest step (no step-to-step shift); this also locks the form->result swap envelope.
+    function lockHeight(){ const h = diagPanel.offsetHeight; if (h > 80) diagPanel.style.minHeight = h + 'px'; }
+    if (document.readyState === 'complete') requestAnimationFrame(lockHeight);
+    else window.addEventListener('load', () => requestAnimationFrame(lockHeight));
+
+    function isAnswered(n){ const k = STEP_KEY[n - 1]; return k === 'volume' ? true : state[k] !== null; }
+    function firstControl(n){ return steps[n - 1].querySelector('.diag-opt, .diag-slider'); }
+    function updateNav(){
+      backBtn.hidden = current === 1;
+      const last = current === TOTAL;
+      nextBtn.hidden = last;
+      submitBtn.hidden = !last;
+      nextBtn.disabled = !isAnswered(current);
+      submitBtn.disabled = !REQUIRED.every(k => state[k] !== null);
     }
-    // Q1 starts visible; the rest are hidden until earned
-    if (questions[0]) questions[0].classList.add('is-visible');
-
-    let q2Touched = false, q2AutoTimer = null;
-
-    // Human-readable answer labels for collapsed view
-    const ANSWER_LABELS = {
-      tool: { growthbook:'GrowthBook', mixpanel:'Mixpanel Experiments', statsig:'Statsig',
-              optimizely:'Optimizely', eppo:'Eppo', amplitude:'Amplitude Experiment',
-              inhouse:'Built in-house', none:'Not testing yet' },
-      peek: { always:'Always peek', sometimes:'Sometimes peek', never:'Never peek' },
-      mcc:  { yes:'Yes — corrected', no:'No correction', unknown:'Not sure' },
-      review: { analyst:'Analyst', pm:'PM only', both:'Analyst + PM', none:'No formal review' }
-    };
-
-    function getAnswerLabel(qId, val){
-      if (qId === 'volume') return (val >= 30 ? '30+' : val) + ' / month';
-      return (ANSWER_LABELS[qId] && ANSWER_LABELS[qId][val]) || val;
-    }
-
-    function collapseQ(q){
-      if (!q || q.classList.contains('is-answered')) return;
-      const qId = q.dataset.qId;
-      const val = state[qId];
-      if (val === null || val === undefined) return;
-      const valEl = q.querySelector('.diag-q-collapsed-val');
-      if (valEl) valEl.textContent = getAnswerLabel(qId, val);
-      q.classList.add('is-answered');
-    }
-
-    function expandQ(q){
-      if (!q) return;
-      q.classList.remove('is-answered');
-    }
-
     function updateProgress(){
-      // "Question N of 5" — N = latest visible question index + 1
-      let latestVisible = 0;
-      questions.forEach((q, i) => { if (q.classList.contains('is-visible')) latestVisible = i + 1; });
-      // If all categorical questions answered, show ready state
-      const allCatAnswered = ['tool','peek','mcc','review'].every(k => state[k] !== null);
-      const progressEl = document.getElementById('diag-progress');
-      if (allCatAnswered) {
-        progressEl.innerHTML = `<strong style="color:var(--gold)">✓ Ready to score</strong>`;
-      } else {
-        progressEl.innerHTML = `Question <strong>${latestVisible}</strong> of 5`;
+      stepCurEl.textContent = current;
+      dots.forEach((d, i) => {
+        const n = i + 1;
+        d.classList.toggle('is-current', n === current);
+        d.classList.toggle('is-done', n !== current && visited.has(n) && isAnswered(n));
+      });
+    }
+    function goStep(n, focus){
+      clearTimeout(advanceTimer);
+      current = Math.max(1, Math.min(TOTAL, n));
+      visited.add(current);
+      steps.forEach((s, i) => s.classList.toggle('is-active', i === current - 1));
+      updateNav(); updateProgress();
+      if (focus !== false){ const c = firstControl(current); if (c) c.focus({ preventScroll: true }); }
+    }
+
+    // Categorical questions: roving-tabindex radiogroups. Click / Enter / Space = select (+ auto-advance);
+    // arrow keys move the highlight only (never auto-advance).
+    document.querySelectorAll('.diag-options[role="radiogroup"]').forEach(group => {
+      const opts = Array.from(group.querySelectorAll('.diag-opt'));
+      const stepNum = parseInt(group.closest('.diag-wstep').dataset.step, 10);
+      opts.forEach((o, i) => o.tabIndex = i === 0 ? 0 : -1);
+      function select(btn){
+        opts.forEach(b => { b.classList.remove('is-selected'); b.setAttribute('aria-checked','false'); b.tabIndex = -1; });
+        btn.classList.add('is-selected'); btn.setAttribute('aria-checked','true'); btn.tabIndex = 0;
+        state[btn.dataset.q] = btn.dataset.v;
+        updateNav(); updateProgress();
       }
-      document.getElementById('diag-submit').disabled = !allCatAnswered;
-    }
-
-    function revealNext(currentQ, delay = 280){
-      const idx = questions.indexOf(currentQ);
-      if (idx < 0) return;
-
-      // ALWAYS collapse the current question and update progress —
-      // even if this is the last question or the next is already visible.
-      // This is what enables the submit button after Q5 answered.
-      collapseQ(currentQ);
-      updateProgress();
-
-      const isLast = idx >= questions.length - 1;
-      if (isLast) return;
-      const next = questions[idx + 1];
-      if (next.classList.contains('is-visible')) return;
-
-      setTimeout(() => {
-        next.classList.add('is-visible');
-        updateProgress();
-        setTimeout(() => {
-          const rect = next.getBoundingClientRect();
-          const inView = rect.top >= 80 && rect.bottom <= window.innerHeight - 40;
-          if (!inView && diagInView()) next.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 220);
-        // If we just revealed Q2 (the slider), start the auto-progress fallback timer
-        if (idx + 1 === 1 && questions[1]) {
-          clearTimeout(q2AutoTimer);
-          q2AutoTimer = setTimeout(() => {
-            if (!q2Touched) revealNext(questions[1], 0);
-          }, 3200);
-        }
-      }, delay);
-    }
-
-    // Pill button answer (Q1, Q3, Q4, Q5)
-    document.querySelectorAll('.diag-opt').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const q = btn.dataset.q, v = btn.dataset.v;
-        document.querySelectorAll(`.diag-opt[data-q="${q}"]`).forEach(b => b.classList.remove('is-selected'));
-        btn.classList.add('is-selected');
-        state[q] = v;
-        const currentQ = btn.closest('.diag-q');
-        revealNext(currentQ);
+      function commit(btn){
+        select(btn);
+        clearTimeout(advanceTimer);
+        if (stepNum < TOTAL) advanceTimer = setTimeout(() => goStep(stepNum + 1), reduceMotion ? 0 : 220);
+        else submitBtn.focus({ preventScroll: true });   // last step: enable + jump to Score
+      }
+      opts.forEach(btn => btn.addEventListener('click', () => commit(btn)));
+      group.addEventListener('keydown', (e) => {
+        const i = opts.indexOf(document.activeElement); let j = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % opts.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + opts.length) % opts.length;
+        else if (e.key === 'Home') j = 0;
+        else if (e.key === 'End') j = opts.length - 1;
+        else if ((e.key === ' ' || e.key === 'Enter') && i >= 0) { e.preventDefault(); commit(opts[i]); return; }
+        if (j >= 0) { e.preventDefault(); select(opts[j]); opts[j].focus(); }
       });
     });
 
-    // Slider (Q2) — debounced so the user can actually find their value
+    // Q2 volume: slider + steppers + live readout
     const volumeSlider = document.getElementById('diag-volume');
-    let q2DebounceTimer = null;
-    const Q2_DEBOUNCE_MS = 900; // wait this long after the last slider move before locking the answer
-    volumeSlider.addEventListener('input', () => {
-      state.volume = parseInt(volumeSlider.value, 10);
-      document.getElementById('diag-volume-val').textContent = state.volume >= 30 ? '30+' : state.volume;
-      // Cancel the no-interaction auto-reveal — the user IS interacting
-      clearTimeout(q2AutoTimer);
-      // Debounce the lock-in: only collapse once the user has stopped moving
-      clearTimeout(q2DebounceTimer);
-      q2DebounceTimer = setTimeout(() => {
-        q2Touched = true;
-        const q2 = volumeSlider.closest('.diag-q');
-        // Keep the collapsed pill in sync with the final value
-        const valEl = q2.querySelector('.diag-q-collapsed-val');
-        if (valEl) valEl.textContent = getAnswerLabel('volume', state.volume);
-        revealNext(q2, 320);
-      }, Q2_DEBOUNCE_MS);
-    });
+    const volumeVal = document.getElementById('diag-volume-val');
+    function setVolume(v){
+      v = Math.max(0, Math.min(30, v));
+      state.volume = v; volumeSlider.value = v;
+      volumeSlider.setAttribute('aria-valuenow', v);
+      volumeSlider.setAttribute('aria-valuetext', (v >= 30 ? '30 or more' : v) + ' per month');
+      volumeVal.textContent = v >= 30 ? '30+' : v;
+    }
+    volumeSlider.addEventListener('input', () => setVolume(parseInt(volumeSlider.value, 10)));
+    document.getElementById('diag-vol-minus').addEventListener('click', () => setVolume(state.volume - 1));
+    document.getElementById('diag-vol-plus').addEventListener('click', () => setVolume(state.volume + 1));
 
-    // Change button — re-expand a previously answered question
-    document.querySelectorAll('.diag-q-collapsed-change').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const q = btn.closest('.diag-q');
-        expandQ(q);
-        updateProgress();
-        // For Q2, mark as not-yet-touched so the user can re-adjust without auto-advancing
-        if (q.dataset.qId === 'volume') {
-          // Keep q2Touched true so we don't fire another auto-timer
-        }
-        setTimeout(() => {
-          const rect = q.getBoundingClientRect();
-          if ((rect.top < 80 || rect.bottom > window.innerHeight - 40) && diagInView()) {
-            q.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 80);
-      });
-    });
+    // wizard nav
+    backBtn.addEventListener('click', () => goStep(current - 1));
+    nextBtn.addEventListener('click', () => { if (isAnswered(current)) goStep(current + 1); });
 
-    // Initial progress
-    updateProgress();
+    // Answer recap (shown after scoring)
+    const RECAP = {
+      tool:{growthbook:'GrowthBook',mixpanel:'Mixpanel',statsig:'Statsig',optimizely:'Optimizely',eppo:'Eppo',amplitude:'Amplitude',inhouse:'In-house',none:'Not testing'},
+      peek:{always:'Always peek',sometimes:'Sometimes peek',never:'Never peek'},
+      mcc:{yes:'Corrected',no:'No correction',unknown:'Not sure'},
+      review:{analyst:'Analyst',pm:'PM only',both:'Analyst + PM',none:'No review'}
+    };
+    function buildRecap(){
+      return [RECAP.tool[state.tool], (state.volume>=30?'30+':state.volume)+'/mo', RECAP.peek[state.peek], RECAP.mcc[state.mcc], RECAP.review[state.review]]
+        .map(p => '<b>' + p + '</b>').join(' · ');
+    }
+
+    goStep(1, false);
     function computeScore(){
+      // Not testing yet is a different situation: you can't trust wins you don't measure. Verdict is overridden on submit.
+      if (state.tool === 'none') return 32;
       let score = 100;
-      const tp = { growthbook:10, mixpanel:15, statsig:5, optimizely:10, eppo:3, amplitude:12, inhouse:20, none:0 };
-      score -= tp[state.tool] || 0;
-      if (state.volume >= 10) score -= 12; else if (state.volume >= 6) score -= 8; else if (state.volume >= 3) score -= 4;
-      if (state.peek === 'always') score -= 25; else if (state.peek === 'sometimes') score -= 14;
-      if (state.mcc === 'no') score -= 10; else if (state.mcc === 'unknown') score -= 14;
-      if (state.review === 'pm') score -= 10; else if (state.review === 'none') score -= 22; else if (state.review === 'both') score -= 3;
-      if (state.peek !== 'never' && state.mcc !== 'yes' && state.volume >= 6) score -= 8;
-      if (state.peek === 'always' && state.review === 'none') score -= 6;
+      // Peeking without a valid sequential rule is the dominant source of false positives.
+      if (state.peek === 'always') score -= 28; else if (state.peek === 'sometimes') score -= 15;
+      // Multiple-comparisons discipline within a test. "Not sure" is a bigger tell than a deliberate no.
+      if (state.mcc === 'unknown') score -= 12; else if (state.mcc === 'no') score -= 8;
+      // Who owns methodology: cross-functional review (both) is the gold standard; no review is the real gap.
+      if (state.review === 'none') score -= 22; else if (state.review === 'pm') score -= 10; else if (state.review === 'analyst') score -= 2; // both = 0
+      // High volume WITHOUT correction is a genuine multiple-comparisons problem (volume itself is a maturity signal, not a risk).
+      if (state.volume >= 8 && state.mcc !== 'yes') score -= 8;
+      // Peeking with no methodology backstop compounds.
+      if (state.peek === 'always' && state.review === 'none') score -= 5;
+      // Tool is informational, not scored: method and process drive trust, not the vendor.
       return Math.max(5, Math.min(100, score));
     }
     function generateRisks(){
-      const r = [];
-      if (state.peek === 'always') r.push({p:100,t:'Peeking is inflating your win rate by an estimated 30–50%.',d:`You stop tests when they "look significant." Without sequential boundaries calibrated to your traffic, roughly <strong>1 in 3 of your shipped "wins" is noise</strong> that happened to cross 0.05. This is the single largest source of false positives, and it compounds with everything else.`});
-      else if (state.peek === 'sometimes') r.push({p:75,t:'Inconsistent stopping rules are biasing your results.',d:`Stopping "when it depends" means the bias is unpredictable. Some of your wins are real; some are early-stop artifacts. <em>Which is which?</em> Without sequential math you can't tell.`});
-      if (state.volume >= 6 && state.mcc !== 'yes') { const vol = state.volume >= 30 ? '30+' : state.volume; r.push({p:80,t:'You\'re running too many tests without alpha correction.',d:`${vol} tests per month × 3–5 metrics each = 18+ independent significance checks per month. At α=0.05, you expect <strong>~1 false positive per month from pure chance</strong> — before any other issues.`}); }
-      if (state.mcc === 'unknown') r.push({p:70,t:'Statistical methodology isn\'t being reviewed.',d:`"I'm not sure what this means" on multiple-comparison correction is the strongest signal that nobody on the team is currently auditing methodology.`});
-      if (state.tool === 'mixpanel') r.push({p:65,t:'Mixpanel\'s experiment module defaults are fragile.',d:`Mixpanel counts every conversion in the funnel as independent, which inflates significance. Without explicit triggering analysis and variance reduction, reads are systematically optimistic.`});
-      else if (state.tool === 'growthbook') r.push({p:60,t:'GrowthBook\'s default boundary isn\'t calibrated to your traffic.',d:`GrowthBook ships with a generic sequential setting not tuned to your metric distributions. Tests "stop properly" — but at thresholds that are wrong for your variance. Realised power lags the spec by <em>20–30%</em>.`});
-      else if (state.tool === 'inhouse') r.push({p:62,t:'In-house experimentation tools accumulate silent bugs.',d:`Without third-party methodology review, in-house systems drift: rounding bugs, exclusion-list errors, late-arriving event handling, timezone math. These compound over months.`});
-      else if (state.tool === 'amplitude') r.push({p:55,t:'Amplitude Experiment is opaque about its assumptions.',d:`Amplitude's significance calculations are a black box — you can't audit the exact procedure, the variance treatment, or the family-wise error correction.`});
-      else if (state.tool === 'optimizely') r.push({p:55,t:'Optimizely\'s defaults assume more traffic than you have.',d:`Optimizely's stats engine is designed for enterprise-scale traffic. At Seed–B volumes, the variance estimates are unreliable.`});
-      if (state.review === 'pm') r.push({p:65,t:'PMs alone aren\'t structured to catch methodology issues.',d:`PMs are incentivised to ship. The role isn't built to question the methodology that produced the result — that's an analyst's job.`});
-      else if (state.review === 'none') r.push({p:90,t:'No formal review = no quality floor.',d:`If nobody reviews experiment results before they ship, you don't have an experimentation pipeline — you have a metric dashboard with statistical tests bolted on.`});
       if (state.tool === 'none') return [
-        {t:'You\'re shipping on intuition, not data.',d:`Without any A/B testing infrastructure, you have no way to separate "the feature worked" from "the market moved" from "we got lucky." <em>Starting is more important than which tool.</em>`},
-        {t:'The cost of the first wrong-direction ship is enormous.',d:`Pre-testing companies regularly ship redesigns or pricing changes that drop revenue 10–30% — and don't notice for weeks.`},
-        {t:'Your competitors who test will compound past you.',d:`Companies that test ship roughly 2× the validated improvements per year as companies that don't.`}
+        {t:'You\'re shipping on judgment, not measured results.',d:`Without experiments there's no way to separate "the feature worked" from "the market moved" or "we got lucky." That's fine early, and it gets expensive to guess once you have real traffic.`},
+        {t:'The first wrong-direction ship is the costly one.',d:`A redesign or a pricing change can quietly move revenue the wrong way and go unnoticed for weeks. A basic test would have caught it.`},
+        {t:'Starting well beats starting fast.',d:`The trap is standing up a tool and trusting whatever it prints. The setup, the metrics, the power, the stopping rules, is what makes the first results worth acting on.`}
       ];
+      const r = [];
+      if (state.peek === 'always') r.push({p:100,t:'Peeking is your single biggest source of false positives.',d:`Stopping the moment a test crosses significance, without a sequential or always-valid stopping rule, inflates your false-positive rate, often several times over. A share of your "wins" are likely noise that happened to cross 0.05 on the day you looked. How much depends on how often and how early you stop, which is exactly what an audit measures on your own data.`});
+      else if (state.peek === 'sometimes') r.push({p:75,t:'Inconsistent stopping rules bias results unpredictably.',d:`Stopping "when it depends" means the bias varies test to test. Some wins are real, some are early-stop artifacts, and without a fixed rule there's no way to tell which from the dashboard alone.`});
+      if (state.volume >= 8 && state.mcc !== 'yes') { const vol = state.volume >= 30 ? '30+' : state.volume; r.push({p:80,t:'High test volume without correction invites chance wins.',d:`At ${vol} tests a month across several metrics each, you're running dozens of significance checks. With no correction and no single pre-registered primary metric, some "wins" are luck: at the usual 0.05 threshold, about 1 in 20 truly-null checks crosses significance by chance alone.`}); }
+      if (state.mcc === 'unknown') r.push({p:70,t:'Nobody is currently minding the methodology.',d:`"Not sure" on multiple comparisons is less about that one technique and more a signal that no one is actively auditing how reads are produced. That's the gap to close first.`});
+      if (state.review === 'pm') r.push({p:60,t:'No specialist is checking how the result was produced.',d:`One owner shipping their own read works until the read is subtly wrong: an unbalanced split, a triggering bug, a metric that moved for an unrelated reason. A second set of eyes trained on methodology is what catches those.`});
+      else if (state.review === 'none') r.push({p:90,t:'No review means no quality floor.',d:`If nothing is checked before a result ships, you have a metrics dashboard with significance tests attached rather than an experimentation pipeline. One process step, a quick methodology review, removes most of the worst failures.`});
       r.sort((a,b) => b.p - a.p);
       const top = r.slice(0, 3);
-      while (top.length < 3) top.push({t:'Methodology drift is the silent problem.',d:`Even when individual tests are clean, organisational drift is the long-term issue. The audit catches drift before it becomes load-bearing.`});
+      while (top.length < 3) top.push({t:'Methodology drift is the quiet long-term risk.',d:`Even when individual tests are clean, definitions and habits drift over months. A recurring check catches that drift before a roadmap gets built on it.`});
       return top;
     }
+    // verdict bands carry a colour (green -> red ramp) used for BOTH the score number and the tag pill
+    // green (= CTA hue) -> lime -> amber -> orange -> red signal ramp. color = vivid (big score number); pill = readable (small tag text).
     function getVerdict(s){
-      if (s >= 85) return { tag:'solid', label:'Solid', text:'Your pipeline is in good shape. There are still refinements available — but you\'re not actively shipping noise.' };
-      if (s >= 65) return { tag:'good', label:'Good with risks', text:'Foundation is decent but the specific risks below are worth addressing before they compound.' };
-      if (s >= 45) return { tag:'warn', label:'Concerning', text:'Multiple compounding issues. A meaningful portion of your "wins" are likely noise.' };
-      if (s >= 25) return { tag:'warn', label:'At significant risk', text:'Most of your shipped "wins" are likely noise. The roadmap that flows from them is built on bias.' };
-      return { tag:'critical', label:'Critical', text:'You\'re almost certainly shipping false positives at scale. This is the configuration the audit was built for.' };
+      if (s >= 85) return { label:'Solid',                color:'#2E9E5C', pill:'#1F7A45', tint:'rgba(46,158,92,.16)',  text:'Your process covers the big failure modes. A tune-up, not a rescue.' };
+      if (s >= 65) return { label:'Good with risks',      color:'#6FA82E', pill:'#54791A', tint:'rgba(111,168,46,.18)', text:'A decent foundation with a few specific gaps below worth closing before you scale spend on the results.' };
+      if (s >= 45) return { label:'Concerning',           color:'#D29A1C', pill:'#8E6810', tint:'rgba(210,154,28,.18)', text:'A few gaps that can let false positives through. Worth fixing before you bet roadmap on these reads.' };
+      if (s >= 25) return { label:'At significant risk',  color:'#D46B1C', pill:'#964912', tint:'rgba(212,107,28,.18)', text:'The combination here makes it genuinely hard to separate real wins from noise.' };
+      return         { label:'Critical',           color:'#CD3A2E', pill:'#9C2820', tint:'rgba(205,58,46,.15)',  text:'The basics that keep experiment wins trustworthy are not in place yet.' };
     }
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (!state.tool || !state.peek || !state.mcc || !state.review) return;
+      if (!REQUIRED.every(k => state[k] !== null)) return;
       const score = computeScore(), risks = generateRisks(), verdict = getVerdict(score);
+      if (state.tool === 'none') { verdict.label = 'Not testing yet'; verdict.color = '#D29A1C'; verdict.pill = '#8E6810'; verdict.tint = 'rgba(210,154,28,.18)'; verdict.text = "There's nothing to trust or distrust yet. The risk is shipping blind, and a rigorous setup is where to start."; }
       const resultEl = document.getElementById('diag-result');
-      resultEl.classList.add('is-shown');
       const tagEl = document.getElementById('diag-verdict-tag');
       tagEl.textContent = verdict.label;
-      tagEl.className = 'diag-verdict-tag ' + verdict.tag;
+      tagEl.className = 'diag-verdict-tag';
+      tagEl.style.color = verdict.pill || verdict.color;
+      tagEl.style.background = verdict.tint;
       document.getElementById('diag-verdict').textContent = verdict.text;
       document.getElementById('diag-risks-list').innerHTML = risks.map((r,i) => `<div class="diag-risk"><span class="diag-risk-num">${i+1}</span><div class="diag-risk-title">${r.t}</div><div class="diag-risk-desc">${r.d}</div></div>`).join('');
-      // Make the optional "email my scorecard" link a real handoff: prefill the
-      // visitor's score + top risks. No gate, no backend — the diagnostic itself
-      // never needs an email; this is value-first capture only.
+      // optional "email my scorecard" mailto handoff: prefill score + top risks (no gate, no backend)
       const emailLink = document.getElementById('diag-email-link');
       if (emailLink) {
         const plain = s => s.replace(/<[^>]+>/g, '');
@@ -1710,17 +1296,54 @@
           + '?subject=' + encodeURIComponent(`My pipeline diagnostic results (${score}/100)`)
           + '&body=' + encodeURIComponent(body));
       }
+      // swap the wizard for the result, in the same reserved card; risks start collapsed
+      document.getElementById('diag-recap-text').innerHTML = buildRecap();
+      document.getElementById('diag-recap').hidden = false;
+      const risksEl = document.getElementById('diag-risks');
+      const moreBtn = document.getElementById('diag-more');
+      risksEl.hidden = true;
+      moreBtn.setAttribute('aria-expanded', 'false');
+      moreBtn.querySelector('.diag-more-txt').textContent = 'Show the 3 risks';
+      diagPanel.classList.add('is-scored');
+      resultEl.classList.add('is-shown');
       const scoreEl = document.getElementById('diag-score-num');
-      const startT = performance.now(), dur = 1200;
-      function tick(t){
-        const p = Math.min(1, (t - startT) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);
-        scoreEl.textContent = Math.round(score * eased);
-        if (p < 1) requestAnimationFrame(tick);
-        else scoreEl.textContent = score;
+      scoreEl.style.color = verdict.color;
+      if (reduceMotion) { scoreEl.textContent = score; }
+      else {
+        const startT = performance.now(), dur = 1200;
+        (function tick(t){
+          const p = Math.min(1, ((t || startT) - startT) / dur);
+          scoreEl.textContent = Math.round(score * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick); else scoreEl.textContent = score;
+        })();
       }
-      requestAnimationFrame(tick);
-      setTimeout(() => { if (diagInView()) resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120);
+      // announce the result to screen readers: focus the head with a full spoken summary (set once, so the count-up doesn't flood)
+      const head = document.querySelector('.diag-result-head');
+      if (head) {
+        head.setAttribute('tabindex', '-1');
+        head.setAttribute('aria-label', `Your trustworthiness score: ${score} out of 100. ${verdict.label}. ${verdict.text} Three risks for your setup are available below.`);
+        head.focus({ preventScroll: true });
+      }
+      setTimeout(() => { diagPanel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }); }, 60);
+    });
+    // Show more / less — unfold the detailed risks
+    (function(){
+      const moreBtn = document.getElementById('diag-more');
+      const risksEl = document.getElementById('diag-risks');
+      if (!moreBtn || !risksEl) return;
+      moreBtn.addEventListener('click', () => {
+        const open = risksEl.hidden;
+        risksEl.hidden = !open;
+        moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        moreBtn.querySelector('.diag-more-txt').textContent = open ? 'Hide the 3 risks' : 'Show the 3 risks';
+      });
+    })();
+    // Edit answers — restore the wizard at step 1 (all prior selections preserved)
+    document.getElementById('diag-recap-edit').addEventListener('click', () => {
+      diagPanel.classList.remove('is-scored');
+      document.getElementById('diag-result').classList.remove('is-shown');
+      document.getElementById('diag-recap').hidden = true;
+      goStep(1);
     });
     // (email-capture removed — it was a non-functional mock; the secondary CTA is now a real mailto link)
   })();
