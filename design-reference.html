@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>David Arzumanian — Rebrand Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#E6DCC3;
+    --parchment-deep:#DDCFB0;
+    --panel:#EFE7D5;
+    --oxblood:#7A2A22;
+    --oxblood-soft:rgba(122,42,34,.08);
+    --iron:#1E1B16;
+    --ochre:#B5781C;
+    --pine:#36473A;
+    --line:rgba(30,27,22,.2);
+    --line-strong:rgba(30,27,22,.38);
+    --maxw:1060px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--parchment);color:var(--iron);
+    font-family:"PT Serif",Georgia,serif;line-height:1.6;font-size:17px;position:relative;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:1;}
+  section{padding:66px 0;border-bottom:1px solid var(--line);position:relative;}
+  em{font-style:italic;color:var(--oxblood);}
+  a{color:var(--oxblood);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .eyebrow{font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--oxblood);font-weight:600;margin:0 0 16px;}
+  h2{font-family:"PT Serif",serif;font-weight:700;font-size:clamp(26px,4.4vw,38px);line-height:1.15;margin:0 0 18px;letter-spacing:-.01em;}
+  h3{font-family:"PT Serif",serif;font-weight:700;font-size:21px;margin:0 0 10px;}
+  p{margin:0 0 16px;}
+  .lead{font-size:19px;max-width:62ch;opacity:.92;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:"Inter",sans-serif;font-size:14px;font-weight:600;
+    letter-spacing:.01em;padding:13px 22px;border:1.5px solid var(--oxblood);cursor:pointer;transition:.15s;}
+  .btn-primary{background:var(--oxblood);color:var(--parchment);}
+  .btn-primary:hover{background:#681F18;text-decoration:none;}
+  .btn-ghost{background:transparent;color:var(--oxblood);}
+  .btn-ghost:hover{background:var(--oxblood-soft);text-decoration:none;}
+  .btns{display:flex;flex-wrap:wrap;gap:12px;}
+  .micro{font-family:"Inter",sans-serif;font-size:12.5px;letter-spacing:.02em;color:var(--iron);opacity:.62;margin-top:14px;}
+
+  /* ===== NAV ===== */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(230,220,195,.9);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);padding:12px 0;}
+  .nav .container{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand .m{width:34px;height:34px;position:relative;flex:none;}
+  .brand .m svg{position:absolute;inset:0;width:100%;height:100%;}
+  .brand .m .g{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:"Ruslan Display",serif;font-size:14px;color:var(--oxblood);padding-top:1px;}
+  .brand .nm{font-family:"PT Serif",serif;font-weight:700;font-size:16px;letter-spacing:.01em;}
+  .nav .links{display:flex;align-items:center;gap:20px;}
+  .nav .links a.txt{font-family:"Inter",sans-serif;font-size:13.5px;font-weight:500;color:var(--iron);opacity:.8;}
+  .nav .links a.txt:hover{opacity:1;text-decoration:none;}
+  @media(max-width:620px){.nav .links a.txt{display:none;}}
+
+  /* ===== HERO ===== */
+  .hero{text-align:center;padding:62px 0 58px;
+    background:radial-gradient(120% 80% at 50% -10%, rgba(122,42,34,.07), transparent 62%);}
+  .mark{width:122px;height:122px;margin:0 auto 28px;position:relative;}
+  .mark svg{position:absolute;inset:0;width:100%;height:100%;}
+  .mark .g{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:"Ruslan Display",serif;font-size:50px;color:var(--oxblood);padding-top:5px;}
+  .hero h1{font-family:"Ruslan Display",serif;font-weight:400;font-size:clamp(40px,8.2vw,82px);
+    line-height:1.04;letter-spacing:.005em;margin:0 0 8px;color:var(--iron);}
+  .hero h1 .hl{color:var(--oxblood);}
+  .hero .deck{font-size:19px;max-width:48ch;margin:22px auto 26px;opacity:.9;}
+  .ornline{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 30px;color:var(--oxblood);opacity:.8;}
+  .ornline .l{height:1px;width:56px;background:var(--line-strong);}
+  .hero .btns{justify-content:center;}
+  /* guarantee badge (risk reversal, surfaced near first CTA) */
+  .guarantee{display:inline-flex;align-items:center;gap:9px;margin-top:18px;
+    font-family:"Inter",sans-serif;font-size:12.5px;color:var(--pine);
+    border:1px solid rgba(54,71,58,.4);background:rgba(54,71,58,.06);padding:8px 14px;}
+  .guarantee b{font-weight:600;}
+  /* proof strip under hero */
+  .proof{background:var(--iron);color:var(--parchment);padding:18px 0;border-bottom:1px solid var(--line);}
+  .proof .container{display:flex;flex-wrap:wrap;gap:18px 34px;align-items:baseline;justify-content:center;text-align:center;}
+  .proof .p{font-family:"Inter",sans-serif;font-size:13px;color:rgba(230,220,195,.78);}
+  .proof .p b{font-family:"PT Serif",serif;color:var(--ochre);font-weight:700;font-size:19px;margin-right:7px;}
+  /* results CTA in diagnostic */
+  .result-cta{margin-top:18px;padding:16px;background:var(--oxblood-soft);border:1px solid rgba(122,42,34,.3);text-align:center;}
+  .result-cta .rl{font-family:"PT Serif",serif;font-weight:700;font-size:16px;margin-bottom:10px;}
+  .result-cta .rl em{color:var(--oxblood);}
+  .result-cta .rg{font-family:"Inter",sans-serif;font-size:12px;color:var(--pine);margin-top:10px;}
+  /* sticky CTA bar (your own winning pattern) */
+  .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--oxblood);color:var(--parchment);
+    box-shadow:0 -2px 14px rgba(0,0,0,.18);transform:translateY(110%);transition:transform .3s ease;}
+  .stickybar.show{transform:translateY(0);}
+  .stickybar .container{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:11px;padding-bottom:11px;}
+  .stickybar .msg{font-family:"PT Serif",serif;font-size:15px;font-weight:700;}
+  .stickybar .msg span{font-family:"Inter",sans-serif;font-weight:400;font-size:12.5px;opacity:.85;display:block;}
+  .stickybar .acts{display:flex;gap:10px;flex:none;}
+  .stickybar .acts a{font-family:"Inter",sans-serif;font-size:13px;font-weight:600;padding:10px 16px;border:1.5px solid var(--parchment);color:var(--parchment);white-space:nowrap;}
+  .stickybar .acts a.solid{background:var(--parchment);color:var(--oxblood);}
+  .stickybar .acts a:hover{text-decoration:none;}
+  @media(max-width:620px){
+    .stickybar .msg span{display:none;}
+    .stickybar .acts a.ghost{display:none;}
+    body{padding-bottom:64px;}
+  }
+
+  /* ===== generic two-col cards ===== */
+  .grid2{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr;}}
+  .card{background:var(--panel);border:1px solid var(--line);padding:26px 24px;}
+  .tag{font-family:"Inter",sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:600;color:var(--oxblood);margin-bottom:10px;}
+
+  /* ===== DIAGNOSTIC ===== */
+  .diag{background:var(--parchment-deep);}
+  .diag-card{background:var(--panel);border:1px solid var(--line);padding:30px 26px;max-width:680px;margin:0 auto;}
+  .statline{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin:8px 0 24px;}
+  .statline .s{font-family:"Inter",sans-serif;font-size:13px;color:var(--iron);opacity:.72;}
+  .statline .s b{font-family:"PT Serif",serif;font-size:22px;color:var(--oxblood);display:block;font-weight:700;}
+  .q{font-weight:700;margin-bottom:14px;}
+  .opts{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:20px;}
+  @media(min-width:520px){.opts{grid-template-columns:1fr 1fr;}}
+  .opt{border:1px solid var(--line-strong);padding:11px 14px;font-size:14px;font-family:"Inter",sans-serif;
+    background:rgba(255,255,255,.3);}
+  .opt.sel{border-color:var(--oxblood);background:var(--oxblood-soft);color:var(--oxblood);font-weight:600;}
+  .progress{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);opacity:.5;margin-top:12px;text-align:center;}
+  .dial{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px;}
+  .dial .ring{width:84px;height:84px;border-radius:50%;border:6px solid var(--line);border-top-color:var(--oxblood);
+    display:flex;align-items:center;justify-content:center;font-family:"PT Serif",serif;font-weight:700;font-size:15px;color:var(--iron);transform:rotate(-30deg);}
+  .dial .ring span{transform:rotate(30deg);}
+
+  /* ===== WORK CARDS ===== */
+  .work-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:30px;}
+  @media(min-width:760px){.work-grid{grid-template-columns:1fr 1fr;}}
+  .wcard{background:var(--panel);border:1px solid var(--line);padding:24px 22px;display:flex;flex-direction:column;}
+  .wcard .top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px;}
+  .wcard .cno{font-family:"Ruslan Display",serif;font-size:30px;color:var(--oxblood);line-height:1;opacity:.9;}
+  .wcard .cat{font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pine);font-weight:600;}
+  .wcard .line{font-family:"PT Serif",serif;font-weight:700;font-size:20px;line-height:1.25;margin-bottom:6px;}
+  .wcard .line em{color:var(--oxblood);}
+  .wcard .desc{font-size:14.5px;opacity:.82;margin-bottom:16px;flex:1;}
+  .wcard .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .wcard .stats .st{background:var(--panel);padding:10px 12px;}
+  .wcard .stats .st b{font-family:"PT Serif",serif;font-weight:700;font-size:18px;color:var(--oxblood);display:block;line-height:1.1;}
+  .wcard .stats .st span{font-family:"Inter",sans-serif;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;opacity:.66;}
+
+  /* ===== RECEIPTS ===== */
+  .receipts{background:var(--iron);color:var(--parchment);border-bottom:none;}
+  .receipts .eyebrow{color:var(--ochre);}
+  .receipts h2{color:var(--parchment);}
+  .rgrid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:24px;}
+  @media(min-width:680px){.rgrid{grid-template-columns:repeat(3,1fr);}}
+  .rcard .big{font-family:"Ruslan Display",serif;font-size:clamp(46px,8vw,64px);color:var(--ochre);line-height:1;margin-bottom:10px;}
+  .rcard p{color:rgba(230,220,195,.82);font-size:15px;margin:0;}
+  .rcard p b{color:var(--parchment);}
+
+  /* ===== PRICING DETAIL ===== */
+  .pcard ul{list-style:none;padding:0;margin:0 0 18px;}
+  .pcard li{padding:9px 0 9px 24px;position:relative;font-size:15px;border-bottom:1px solid var(--line);}
+  .pcard li:last-child{border-bottom:0;}
+  .pcard li::before{content:"";position:absolute;left:0;top:16px;width:9px;height:9px;border:1.5px solid var(--oxblood);transform:rotate(45deg);}
+  .pcard .price{font-family:"PT Serif",serif;font-weight:700;font-size:30px;color:var(--iron);}
+  .pcard .price small{font-family:"Inter",sans-serif;font-size:12px;font-weight:500;letter-spacing:.04em;opacity:.6;text-transform:uppercase;display:block;margin-top:4px;}
+  .callout{border-left:3px solid var(--pine);background:rgba(54,71,58,.07);padding:14px 16px;font-size:14px;}
+  .callout b{color:var(--pine);}
+  .callout.ox{border-left-color:var(--oxblood);background:var(--oxblood-soft);}
+  .callout.ox b{color:var(--oxblood);}
+
+  /* ===== COMPARE TABLE ===== */
+  .cmp-wrap{overflow-x:auto;margin-top:26px;}
+  table.cmp{width:100%;border-collapse:collapse;min-width:640px;font-size:14px;}
+  table.cmp th,table.cmp td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.cmp thead th{font-family:"Inter",sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;}
+  table.cmp .rowh{font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;opacity:.6;font-weight:600;}
+  table.cmp col.rec, table.cmp .rec{background:var(--oxblood-soft);}
+  table.cmp thead .rec{border-top:3px solid var(--oxblood);}
+  table.cmp .rec b{color:var(--oxblood);}
+  .rec-flag{font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--oxblood);font-weight:600;display:block;margin-bottom:3px;}
+
+  /* ===== LISTS for fit ===== */
+  .fitcols{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:760px){.fitcols{grid-template-columns:1.4fr 1fr;}}
+  .fitlist{list-style:none;padding:0;margin:0;}
+  .fitlist li{padding:10px 0 10px 26px;position:relative;border-bottom:1px solid var(--line);font-size:15.5px;}
+  .fitlist li:last-child{border-bottom:0;}
+  .fitlist li::before{content:"✓";position:absolute;left:0;color:var(--pine);font-weight:700;}
+  .fitlist.no li::before{content:"—";color:var(--iron);opacity:.4;}
+
+  /* ===== ABOUT ===== */
+  .about .lead{font-size:18px;}
+  .bukvitsa{float:left;font-family:"Ruslan Display",serif;font-size:64px;line-height:.8;color:var(--oxblood);
+    margin:6px 14px 0 0;}
+
+  /* ===== FAQ ===== */
+  details{border-bottom:1px solid var(--line);padding:6px 0;}
+  summary{cursor:pointer;list-style:none;font-family:"PT Serif",serif;font-weight:700;font-size:17px;padding:14px 30px 14px 0;position:relative;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";position:absolute;right:4px;top:13px;font-size:22px;color:var(--oxblood);font-weight:400;}
+  details[open] summary::after{content:"–";}
+  details p{font-size:15px;opacity:.86;padding:0 0 16px;margin:0;max-width:70ch;}
+
+  /* ===== FINAL + FOOTER ===== */
+  .final{text-align:center;background:var(--parchment-deep);}
+  .footer{background:var(--iron);color:var(--parchment);padding:40px 0;border-bottom:none;}
+  .footer .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+  .footer .brand .nm{color:var(--parchment);}
+  .footer .brand .m .g{color:var(--ochre);}
+  .footer .brand .m svg g{stroke:var(--ochre);}
+  .footer a{color:var(--parchment);font-family:"Inter",sans-serif;font-size:13.5px;opacity:.82;margin-left:20px;}
+  .footer a:hover{opacity:1;}
+
+  .note{max-width:var(--maxw);margin:26px auto 0;padding:0 22px;font-family:"Inter",sans-serif;font-size:12px;color:var(--iron);opacity:.5;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="container">
+    <div class="brand">
+      <div class="m">
+        <svg viewBox="0 0 122 122" aria-hidden="true"><g fill="none" stroke="#7A2A22" stroke-width="4"><circle cx="61" cy="61" r="56"/><circle cx="61" cy="61" r="49" stroke-width="2" opacity=".45"/></g><g fill="none" stroke="#B5781C" stroke-width="4" stroke-linecap="round"><path d="M61 18 C56 13 56 6 61 2 C66 6 66 13 61 18Z"/><path d="M61 19 C54 17 49 11 51 5 C56 8 60 13 61 19"/><path d="M61 19 C68 17 73 11 71 5 C66 8 62 13 61 19"/></g><g fill="#7A2A22"><circle cx="12" cy="61" r="4.5"/><circle cx="110" cy="61" r="4.5"/><circle cx="61" cy="110" r="4.5"/></g></svg>
+        <span class="g">ДА</span>
+      </div>
+      <span class="nm">David Arzumanian</span>
+    </div>
+    <div class="links">
+      <a class="txt" href="#work">Work</a>
+      <a class="txt" href="#pricing">Pricing</a>
+      <a class="txt" href="#faq">FAQ</a>
+      <a class="btn btn-primary" style="padding:9px 16px;" href="https://calendly.com/dkarzumanian/discovery-call">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container">
+    <div class="mark">
+      <svg viewBox="0 0 122 122" aria-hidden="true">
+        <g fill="none" stroke="#7A2A22" stroke-width="2"><circle cx="61" cy="61" r="56"/><circle cx="61" cy="61" r="49" stroke-width="1" opacity=".45"/></g>
+        <g fill="none" stroke="#B5781C" stroke-width="2" stroke-linecap="round">
+          <path d="M61 18 C56 13 56 6 61 2 C66 6 66 13 61 18Z"/>
+          <path d="M61 19 C54 17 49 11 51 5 C56 8 60 13 61 19"/>
+          <path d="M61 19 C68 17 73 11 71 5 C66 8 62 13 61 19"/>
+        </g>
+        <g fill="#7A2A22"><circle cx="12" cy="61" r="2.4"/><circle cx="110" cy="61" r="2.4"/><circle cx="61" cy="110" r="2.4"/></g>
+      </svg>
+      <span class="g">ДА</span>
+    </div>
+    <p class="eyebrow">Experimentation · Causal Inference</p>
+    <h1>I make A/B testing <span class="hl">trustworthy.</span></h1>
+    <p class="deck">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious — and tells you which numbers are safe to ship on.</p>
+    <div class="ornline">
+      <span class="l"></span>
+      <svg width="42" height="18" viewBox="0 0 42 18" fill="none" stroke="#7A2A22" stroke-width="1.5" aria-hidden="true"><path d="M2 9 q9.5 -10 19 0 q9.5 10 19 0"/><path d="M2 9 q9.5 10 19 0 q9.5 -10 19 0"/></svg>
+      <span class="l"></span>
+    </div>
+    <div class="btns">
+      <a class="btn btn-primary" href="#diagnostic">Take the 90-second diagnostic ↓</a>
+    </div>
+    <p class="micro" style="margin-top:13px;">Free · no email required &nbsp;·&nbsp; or <a href="https://calendly.com/dkarzumanian/discovery-call">book a 20-min call</a> to skip ahead</p>
+    <p class="micro" style="margin-top:2px;">Fractional · 2–3 days/week · remote, full US-timezone overlap</p>
+    <div class="guarantee">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#36473A" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3"/></svg>
+      <span><b>Guarantee:</b> a finding that changes a shipping decision — or you don't pay.</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PROOF STRIP (CRO: trust, surfaced high) ===== -->
+<div class="proof">
+  <div class="container">
+    <div class="p"><b>8 yrs</b>making numbers tell the truth</div>
+    <div class="p"><b>100+</b>experiments shipped in production</div>
+    <div class="p"><b>~1 in 7</b>produced a clear win — the rest noise or flat</div>
+    <div class="p"><b>Sequential</b>rigor on the high-stakes reads</div>
+  </div>
+</div>
+
+<!-- ===== DIAGNOSTIC ===== -->
+<section class="diag" id="diagnostic">
+  <div class="container">
+    <p class="eyebrow" style="text-align:center;">Free diagnostic · no email required</p>
+    <h2 style="text-align:center;">Are your tests <em>lying to you?</em></h2>
+    <p class="lead" style="text-align:center;margin:0 auto 8px;">Five questions. I'll score your pipeline's trustworthiness out of 100, surface the top 3 risks specific to your setup, and tell you exactly which of your "wins" are most likely noise.</p>
+    <div class="statline">
+      <div class="s"><b>5</b>questions</div>
+      <div class="s"><b>~90</b>seconds</div>
+      <div class="s"><b>0</b>sign-up</div>
+    </div>
+    <div class="diag-card">
+      <p class="tag">Question 1 of 5 · Tool</p>
+      <p class="q">Which A/B testing tool do you use?</p>
+      <div class="opts">
+        <div class="opt sel">GrowthBook</div>
+        <div class="opt">Statsig</div>
+        <div class="opt">Eppo</div>
+        <div class="opt">Optimizely</div>
+        <div class="opt">Amplitude Experiment</div>
+        <div class="opt">Built in-house</div>
+      </div>
+      <div class="dial">
+        <div class="ring"><span>—/100</span></div>
+        <div style="font-size:14px;opacity:.7;">Your trustworthiness score appears here, with the top 3 risks for your setup.</div>
+      </div>
+      <div class="result-cta">
+        <div class="rl">Want me to find &amp; fix these in your <em>actual data?</em></div>
+        <a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call">Book a 20-min call →</a>
+        <div style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center;">
+          <input type="email" placeholder="you@company.com" style="font-family:Inter,sans-serif;font-size:13px;padding:10px 12px;border:1px solid var(--line-strong);background:rgba(255,255,255,.4);min-width:200px;">
+          <a class="btn btn-ghost" href="#" style="padding:10px 16px;">Email me the full scorecard</a>
+        </div>
+        <div class="rg" style="margin-top:8px;opacity:.7;">Optional — only if you'd rather not book yet. The diagnostic itself never needed your email.</div>
+        <div class="rg">The $4k audit: 14 days, fixed fee — a finding that changes a shipping decision, or you don't pay.</div>
+      </div>
+      <p class="progress">Interactive module — restyled in the new kit</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SELECTED WORK ===== -->
+<section id="work">
+  <div class="container">
+    <p class="eyebrow">Selected work · five systems in production</p>
+    <h2>The fix isn't a smarter analyst — it's <em>the layer above the default tool.</em></h2>
+    <p class="lead">Each case is a system shipped to production. Front: the one-line idea. Full case, live demos and real metrics on request.</p>
+    <div class="work-grid">
+
+      <div class="wcard">
+        <div class="top"><span class="cno">01</span><span class="cat">Experimentation</span></div>
+        <div class="line">Sequential testing — answers <em>faster.</em></div>
+        <div class="desc">Default tools stop tests at the wrong moment. A sequential layer above them — OBF boundaries calibrated by Monte Carlo on real metric distributions — stops at the right one. Same confidence, not less.</div>
+        <div class="stats">
+          <div class="st"><b>30–40%</b><span>Faster reads</span></div>
+          <div class="st"><b>47→72%</b><span>Realised power</span></div>
+          <div class="st"><b>26→14d</b><span>Avg duration</span></div>
+          <div class="st"><b>+42%</b><span>Tests / year</span></div>
+        </div>
+      </div>
+
+      <div class="wcard">
+        <div class="top"><span class="cno">02</span><span class="cat">Prioritisation</span></div>
+        <div class="line">Caliper — which test do we run <em>next?</em></div>
+        <div class="desc">Backlogs decided by the loudest voice in the room. Caliper classifies hypotheses, calibrates per-category coefficients with Bayesian shrinkage on 121 past experiments, and collapses it into one comparable Index.</div>
+        <div class="stats">
+          <div class="st"><b>121</b><span>Experiments calibrated</span></div>
+          <div class="st"><b>4 types</b><span>Feature classifier</span></div>
+          <div class="st"><b>60+</b><span>Mixpanel configs</span></div>
+          <div class="st"><b>1</b><span>Number to argue about</span></div>
+        </div>
+      </div>
+
+      <div class="wcard">
+        <div class="top"><span class="cno">03</span><span class="cat">Multi-agent AI</span></div>
+        <div class="line">Smart Analytics — agents for the <em>grunt work.</em></div>
+        <div class="desc">Half the analyst's week is intake docs and summaries. Three CrewAI crews — summary, hypothesis, planner — now handle it, Slack-native and in production. AI removes the grunt work, not the judgement.</div>
+        <div class="stats">
+          <div class="st"><b>3 crews</b><span>Summary · hypothesis · planner</span></div>
+          <div class="st"><b>~10h/wk</b><span>Analyst time recovered</span></div>
+          <div class="st"><b>CrewAI</b><span>Multi-agent framework</span></div>
+          <div class="st"><b>Slack</b><span>Native interface</span></div>
+        </div>
+      </div>
+
+      <div class="wcard">
+        <div class="top"><span class="cno">04</span><span class="cat">Causal inference</span></div>
+        <div class="line">When there's <em>no control group.</em></div>
+        <div class="desc">Some features can't be A/B tested. Interrupted time series and difference-in-differences measure them anyway — subscriber discount, wallet adoption — with defensible attribution where A/B is impossible.</div>
+        <div class="stats">
+          <div class="st"><b>ITS</b><span>Interrupted time series</span></div>
+          <div class="st"><b>DiD</b><span>Difference-in-differences</span></div>
+          <div class="st"><b>CITS</b><span>Controlled ITS</span></div>
+          <div class="st"><b>+8.4%</b><span>Measured effect · CI [5.2,11.6]</span></div>
+        </div>
+      </div>
+
+      <div class="wcard">
+        <div class="top"><span class="cno">05</span><span class="cat">Predictive systems</span></div>
+        <div class="line">Churn — predictive systems <em>in production.</em></div>
+        <div class="desc">Survival curves are pretty. XGBoost + SHAP-driven framing routes cohorts to the right intervention, and causal inference validates whether they actually worked.</div>
+        <div class="stats">
+          <div class="st"><b>0.81</b><span>Top-decile precision</span></div>
+          <div class="st"><b>0.84</b><span>ROC AUC</span></div>
+          <div class="st"><b>4 segments</b><span>Routed to treatments</span></div>
+          <div class="st"><b>DiD</b><span>Post-treatment attribution</span></div>
+        </div>
+      </div>
+
+      <div class="wcard" style="justify-content:center;align-items:center;text-align:center;background:var(--parchment-deep);">
+        <svg width="48" height="48" viewBox="0 0 70 70" fill="none" stroke="#7A2A22" stroke-width="2" aria-hidden="true" style="margin-bottom:14px;"><circle cx="35" cy="35" r="22"/><path d="M35 13 C22 22 22 48 35 57 C48 48 48 22 35 13Z" opacity=".85"/><path d="M13 35 C22 22 48 22 57 35 C48 48 22 48 13 35Z" opacity=".85"/><circle cx="35" cy="35" r="3" fill="#B5781C" stroke="none"/></svg>
+        <div class="line" style="margin-bottom:8px;">Full cases, live demos & metrics</div>
+        <a class="btn btn-ghost" href="mailto:dkarzumanian@gmail.com">Request a case study →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TWO WAYS (short) ===== -->
+<section>
+  <div class="container">
+    <p class="eyebrow">Two ways to work together</p>
+    <div class="grid2">
+      <div class="card">
+        <p class="tag">The wedge</p>
+        <h3>The Audit — $4,000 · 2 weeks</h3>
+        <p style="margin:0;">I score exactly where your tests are lying, and hand you the roadmap.</p>
+      </div>
+      <div class="card">
+        <p class="tag">The engagement</p>
+        <h3>Fractional Lead — from $8k/mo</h3>
+        <p style="margin:0;">I run the fix — 2–3 days a week — and level up your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RECEIPTS ===== -->
+<section class="receipts">
+  <div class="container">
+    <p class="eyebrow">Receipts, not adjectives</p>
+    <div class="rgrid">
+      <div class="rcard">
+        <div class="big">59×</div>
+        <p>a revenue metric was inflating results — it looked <b>exactly like real signal.</b> Caught before the team shipped on it.</p>
+      </div>
+      <div class="rcard">
+        <div class="big">2 ↑</div>
+        <p>churned <b>and</b> retained both rose in one test — a polarization artifact. Killed a "winner" that would have hurt.</p>
+      </div>
+      <div class="rcard">
+        <div class="big">30–40%</div>
+        <p>earlier that experiments could have <b>stopped</b>, with sequential testing — faster decisions, same confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIAL SLOT (CRO: human social proof — fill with real VoC quotes) ===== -->
+<section>
+  <div class="container">
+    <p class="eyebrow">In their words</p>
+    <div class="grid2">
+      <div class="card">
+        <p style="font-family:'PT Serif',serif;font-size:18px;font-style:italic;margin-bottom:14px;">"He caught a metric that was inflating every result we had — we were two days from shipping on it. Paid for the whole engagement in one finding."</p>
+        <p class="tag" style="margin:0;color:var(--iron);opacity:.6;">Head of Growth · Series A marketplace &nbsp;·&nbsp; <span style="color:var(--oxblood);">[replace with real quote]</span></p>
+      </div>
+      <div class="card">
+        <p style="font-family:'PT Serif',serif;font-size:18px;font-style:italic;margin-bottom:14px;">"Our PM stopped peeking at tests. That sentence is worth more than it sounds — our reads are finally trustworthy."</p>
+        <p class="tag" style="margin:0;color:var(--iron);opacity:.6;">Data Lead · Seed-stage SaaS &nbsp;·&nbsp; <span style="color:var(--oxblood);">[replace with real quote]</span></p>
+      </div>
+    </div>
+    <p class="note" style="text-align:left;margin:14px 0 0;">Placeholder quotes — pull real ones via voice-of-customer (client calls, LinkedIn DMs). Never ship fabricated testimonials.</p>
+  </div>
+</section>
+
+<!-- ===== PRICING DETAIL ===== -->
+<section id="pricing">
+  <div class="container">
+    <p class="eyebrow">How we work together</p>
+    <h2>Start with a fixed-fee audit. <em>Keep me if it's worth it.</em></h2>
+    <p class="lead">No open-ended retainers to sign blind. Two weeks, a clear scorecard, then you decide.</p>
+    <div class="grid2" style="margin-top:28px;">
+
+      <div class="card pcard">
+        <p class="tag">The wedge · 2 weeks</p>
+        <h3>Experimentation Pipeline Audit</h3>
+        <p class="price">$4,000 fixed<small>14 days · 50% upfront</small></p>
+        <ul style="margin-top:18px;">
+          <li><b>Statistical rigor</b> — peeking, power, triggering, run-duration, multiple comparisons</li>
+          <li><b>Metric design</b> — proxy metrics, guardrails, the "both rates rose" traps</li>
+          <li><b>Tooling</b> — Amplitude / Statsig / GrowthBook / Eppo, configured for honest reads</li>
+          <li><b>Deliverables</b> — trustworthiness scorecard + prioritized roadmap + team walkthrough</li>
+        </ul>
+        <div class="callout"><b>✓ The guarantee.</b> At least one finding that changes a shipping decision, or you don't pay. Not a count of nitpicks — one call you'd otherwise have gotten wrong. The fee credits toward your first month if we continue.</div>
+      </div>
+
+      <div class="card pcard">
+        <p class="tag">The engagement · ongoing</p>
+        <h3>Fractional Experimentation Lead</h3>
+        <p class="price">from $8,000 / month<small>2–3 days/week · 3-month minimum</small></p>
+        <ul style="margin-top:18px;">
+          <li><b>I run the roadmap</b> I built in the audit — and own the experiment review</li>
+          <li><b>Install the rigor</b> your platform was bought for but never got</li>
+          <li><b>Causal measurement</b> for launches you can't A/B test — ITS, diff-in-diff</li>
+          <li><b>Level up the team</b> so the practice outlasts me</li>
+        </ul>
+        <div class="callout ox"><b>↻ No lock-in.</b> 3-month start, then month-to-month. You own every playbook and dashboard I build — leave the day the practice runs without me. You get the senior operator directly, not an agency junior.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section>
+  <div class="container">
+    <p class="eyebrow">The honest comparison</p>
+    <h2>The real question isn't my fee. It's <em>what the alternative costs you.</em></h2>
+    <p class="lead">Three ways to fix an experimentation pipeline you can't trust — in time, in cash, and in bad ships.</p>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <colgroup><col><col class="rec"><col><col></colgroup>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="rec"><span class="rec-flag">Recommended</span>Audit → Fractional</th>
+            <th>Hire it in-house</th>
+            <th>Do nothing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="rowh">Time to first insight</td><td class="rec"><b>2 weeks</b></td><td>3–5 months to hire + ramp</td><td>Never</td></tr>
+          <tr><td class="rowh">Year-1 cash cost</td><td class="rec"><b>$4k audit, then from $8k/mo</b> only if you continue</td><td>$180k–$240k fully loaded</td><td>$0 up front</td></tr>
+          <tr><td class="rowh">Who owns the rigor</td><td class="rec"><b>A senior operator, week one</b></td><td>Whoever you can hire and retain</td><td>No one</td></tr>
+          <tr><td class="rowh">Time to productive</td><td class="rec"><b>Immediately</b></td><td>3–6 months to full speed</td><td>—</td></tr>
+          <tr><td class="rowh">What you commit to</td><td class="rec"><b>Cancel after the audit</b></td><td>Salary, equity, severance</td><td>—</td></tr>
+          <tr><td class="rowh">Your false "wins"</td><td class="rec"><b>Found & quantified in 14 days</b></td><td>Found once they ramp</td><td>Keep shipping</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:20px;opacity:.86;">The audit costs less than <em>two weeks</em> of a senior hire's loaded salary — and tells you whether you even need one.</p>
+    <div class="btns"><a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call">Book a 20-min call</a></div>
+  </div>
+</section>
+
+<!-- ===== WHO FOR ===== -->
+<section>
+  <div class="container">
+    <p class="eyebrow">Who this is for</p>
+    <div class="fitcols">
+      <ul class="fitlist">
+        <li>Seed to Series B, with a product and real traffic</li>
+        <li>A data team of 1–5 that can't yet trust its experiment reads</li>
+        <li>Just hired (or about to) for experimentation or growth analytics</li>
+        <li>Bought the platform — but no senior person owns the rigor</li>
+      </ul>
+      <div>
+        <p class="tag" style="color:var(--iron);opacity:.6;">Probably not a fit</p>
+        <ul class="fitlist no">
+          <li>Enterprises with a dedicated experimentation platform team</li>
+          <li>Pre-product companies with no traffic to test on yet</li>
+        </ul>
+        <p style="font-size:14px;opacity:.7;margin-top:12px;">I'd tell you so on the call rather than take the fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about">
+  <div class="container">
+    <p class="eyebrow">Who you'd be working with</p>
+    <h2>I'm David Arzumanian.</h2>
+    <p class="lead"><span class="bukvitsa">E</span>ight years making numbers tell the truth in product analytics. I've spent my career on the unglamorous half of experimentation: the part where a "win" turns out to be a logging bug, a proxy metric quietly disagrees with revenue, and someone has to say "we can't ship on this yet."</p>
+    <p class="lead">Most recently I built the experimentation rigor at a subscription e-commerce company at scale. I work these traps out loud on <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a> and in long-form on the <a href="https://arzumaniandavid.com/writing/">writing</a> page. Every role and how I think is public — verify all of it before we talk.</p>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <p class="eyebrow">Common questions</p>
+    <h2>Questions I get from <em>product teams</em></h2>
+    <div style="margin-top:18px;">
+      <details open><summary>Why did my A/B test "winner" stop working after we shipped it?</summary>
+        <p>Usually one of three things: you stopped the test early the moment it looked significant (peeking inflates false positives two to five times), the lift was regression to the mean, or it was a novelty effect that faded. The number was real on screen and noise in reality. A pre-set run length and a sequential boundary tell the difference before you ship.</p></details>
+      <details><summary>Is it bad to stop a test early when it hits significance?</summary>
+        <p>Yes, if you stop the instant a fixed-horizon p-value crosses 0.05. Checking repeatedly and stopping on the first "win" is peeking, and it can turn a 5% false-positive rate into 20–30%. The fix is not "never look" — it's sequential testing, which lets you stop early safely with boundaries calibrated for continuous monitoring.</p></details>
+      <details><summary>Do I need to correct for multiple comparisons?</summary>
+        <p>If you read several metrics, segments, or variants off one test and celebrate whichever crosses the line, then yes. Every extra comparison is another lottery ticket for a false positive. Without correction a meaningful share of your "wins" are noise; with it, you ship on signal.</p></details>
+      <details><summary>When should I hire a full-time experimentation lead vs. a fractional one?</summary>
+        <p>Below roughly 8–10 tests a month, a full-time hire is hard to justify and the real problem is usually underpowered tests, not headcount. A fractional lead installs the rigor, owns the review, and levels up your team two to three days a week. When test volume and stakes outgrow that, you hire in-house and I hand it off.</p></details>
+      <details><summary>What does the $4,000 audit actually include?</summary>
+        <p>Two weeks, fixed fee. I review your statistical rigor, metric design, and tooling, then hand you a trustworthiness scorecard, a prioritized roadmap, and a team walkthrough. The guarantee: at least one finding that changes a shipping decision, or you don't pay. The fee credits toward your first month if we continue.</p></details>
+      <details><summary>Which A/B testing tools do you work with?</summary>
+        <p>The methodology is tool-agnostic — I audit whatever you run. In practice I'm deepest in Statsig, Eppo, GrowthBook, and Amplitude. The point is not the tool; it's whether you're using its stats engine in a way you can actually trust.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL ===== -->
+<section class="final">
+  <div class="container">
+    <div class="ornline"><span class="l"></span>
+      <svg width="42" height="18" viewBox="0 0 42 18" fill="none" stroke="#7A2A22" stroke-width="1.5" aria-hidden="true"><path d="M2 9 q9.5 -10 19 0 q9.5 10 19 0"/><path d="M2 9 q9.5 10 19 0 q9.5 -10 19 0"/></svg>
+      <span class="l"></span></div>
+    <h2>Which of your numbers are <em>safe to ship on?</em></h2>
+    <div class="btns" style="justify-content:center;"><a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call">Book a 20-minute call</a></div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="brand">
+      <div class="m">
+        <svg viewBox="0 0 122 122" aria-hidden="true"><g fill="none" stroke="#B5781C" stroke-width="4"><circle cx="61" cy="61" r="56"/><circle cx="61" cy="61" r="49" stroke-width="2" opacity=".45"/></g><g fill="none" stroke="#C8852B" stroke-width="4" stroke-linecap="round"><path d="M61 18 C56 13 56 6 61 2 C66 6 66 13 61 18Z"/><path d="M61 19 C54 17 49 11 51 5 C56 8 60 13 61 19"/><path d="M61 19 C68 17 73 11 71 5 C66 8 62 13 61 19"/></g><g fill="#C8852B"><circle cx="12" cy="61" r="4.5"/><circle cx="110" cy="61" r="4.5"/><circle cx="61" cy="110" r="4.5"/></g></svg>
+        <span class="g">ДА</span>
+      </div>
+      <span class="nm">David Arzumanian</span>
+    </div>
+    <div>
+      <a href="https://arzumaniandavid.com/writing/">Writing</a>
+      <a href="https://www.linkedin.com/in/dkarzumanian">LinkedIn</a>
+      <a href="https://calendly.com/dkarzumanian/discovery-call">Book a call</a>
+    </div>
+  </div>
+</footer>
+
+<p class="note">CRO-optimized restyle of arzumaniandavid.com · changes driven by your own Scentbird test results (sticky CTA bar, post-conversion results moment, surfaced guarantee, honest win-rate proof) · interactive modules shown as static representations · Cyrillic glyphs to be reviewed before production.</p>
+
+<!-- ===== STICKY CTA BAR (CRO: your PDP/PLP sticky-bar tests won 3×) ===== -->
+<div class="stickybar" id="stickybar">
+  <div class="container">
+    <div class="msg">Find out which of your "wins" are noise.<span>90-second diagnostic · no email required</span></div>
+    <div class="acts">
+      <a class="ghost" href="https://calendly.com/dkarzumanian/discovery-call">Book a call</a>
+      <a class="solid" href="#diagnostic">Take the diagnostic</a>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    var bar=document.getElementById('stickybar');
+    function onScroll(){
+      if(window.scrollY>620){bar.classList.add('show');}else{bar.classList.remove('show');}
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  })();
+</script>
+
+</body>
+</html>
