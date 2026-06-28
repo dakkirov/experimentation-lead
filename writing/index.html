@@ -40,7 +40,7 @@
   }
   .logo{position:relative;display:inline-block;width:var(--logo,32px);height:var(--logo,32px);flex:none}
   .logo svg{position:absolute;inset:0;width:100%;height:100%}
-  ;color:var(--logo-ink,#7A2A22);font-size:calc(var(--logo,32px) * .40);letter-spacing:-.04em;line-height:1;padding-top:.04em}
+  .logo__glyph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:400;color:var(--logo-ink,#7A2A22);font-size:calc(var(--logo,32px) * .40);letter-spacing:-.04em;line-height:1;padding-top:.04em}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{background:var(--parchment);color:var(--iron);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.65}
@@ -54,14 +54,14 @@
   .wrap{max-width:880px;margin:0 auto;padding:0 32px}
   .head{padding:72px 0 16px}
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-  .head h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,60px);line-height:1.05;letter-spacing:-.02em;margin:16px 0 14px;color:var(--ink)}
+  .head h1{font-family:var(--serif);font-weight:700;font-size:clamp(38px,6vw,60px);line-height:1.05;letter-spacing:-.02em;margin:16px 0 14px;color:var(--ink)}
   .head h1 em{font-style:italic;color:var(--accent)}
   .head p{font-size:18px;color:var(--ink-dim);max-width:58ch;line-height:1.65}
   .list{padding:40px 0 8px;border-top:1px solid var(--line);margin-top:36px}
   .post{display:block;padding:30px 0;border-bottom:1px solid var(--line);transition:padding-left .25s ease}
   .post:hover{padding-left:8px}
   .post .cat{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-  .post h2{font-family:var(--serif);font-weight:500;font-size:clamp(23px,3.2vw,30px);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:8px 0 8px}
+  .post h2{font-family:var(--serif);font-weight:700;font-size:clamp(23px,3.2vw,30px);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:8px 0 8px}
   .post p{font-size:16px;color:var(--ink-dim);max-width:64ch;line-height:1.6}
   .post .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--accent)}
   .soon{padding:34px 0 0;font-size:15px;color:var(--ink-meta);font-style:italic;font-family:var(--serif)}
