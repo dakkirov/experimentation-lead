@@ -7,8 +7,13 @@
   --burgundy:#4A1019; --paper:#FAF4E8; --panel:#FFFFFF;
   --ink:#3A0C13; --ink-dim:rgba(58,12,19,.82); --ink-meta:rgba(58,12,19,.55);
   --line:rgba(58,12,19,.13); --accent:#7C1A27; --gold:#F2C744;
+  --display:'Kazimir','PT Serif',Georgia,serif;
   --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
 }
+/* ── ДА monogram (shared with homepage) ── */
+.logo{position:relative;display:inline-block;width:var(--logo,32px);height:var(--logo,32px);flex:none}
+.logo svg{position:absolute;inset:0;width:100%;height:100%}
+.logo__glyph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:500;color:var(--logo-ink,#7A2A22);font-size:calc(var(--logo,32px) * .40);letter-spacing:-.04em;line-height:1;padding-top:.04em}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--parchment);color:var(--iron);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
