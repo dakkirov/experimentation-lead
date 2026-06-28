@@ -30,6 +30,7 @@
 {"@context":"https://schema.org","@type":"BlogPosting","headline":"Why your A/B test winner didn't hold up","description":"The four reasons A/B test winners fade after launch — peeking, regression to the mean, novelty effects, multiple comparisons — and how to stop it.","author":{"@type":"Person","name":"David Arzumanian","url":"https://arzumaniandavid.com/"},"publisher":{"@type":"Person","name":"David Arzumanian"},"datePublished":"2026-06-26","mainEntityOfPage":"https://arzumaniandavid.com/writing/why-your-ab-test-winner-didnt-hold-up.html","url":"https://arzumaniandavid.com/writing/why-your-ab-test-winner-didnt-hold-up.html","image":"https://arzumaniandavid.com/og-image.png"}
 </script>
 <style>
+  @font-face{font-family:'Cyrillic Old';src:url('/fonts/cyrillic-old.woff2') format('woff2'),url('/fonts/cyrillic-old.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
   :root{
     /* ── Natural-dye brand tokens (Phase 1) ── */
     --parchment:#E6DCC3; --parchment-deep:#DDCFB0; --panel-warm:#EFE7D5;
@@ -39,7 +40,7 @@
     --burgundy:#1E1B16; --paper:#E6DCC3; --panel:#EFE7D5;
     --ink:#1E1B16; --ink-dim:rgba(30,27,22,.82); --ink-meta:rgba(30,27,22,.55);
     --line:rgba(30,27,22,.2); --accent:#7A2A22; --gold:#7A2A22;
-    --display:'Ruslan Display','PT Serif',Georgia,serif;
+    --display:'Cyrillic Old','Ruslan Display','PT Serif',Georgia,serif;
     --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
   .logo{position:relative;display:inline-block;width:var(--logo,32px);height:var(--logo,32px);flex:none}
@@ -55,7 +56,7 @@
   .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;color:var(--ink)}
   .mark a{color:var(--ink);border:0}
-  .cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:10px;border:0;transition:transform .2s ease, box-shadow .2s ease}
+  .cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:999px;border:0;transition:transform .2s ease, box-shadow .2s ease}
   .cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(122,42,34,.32)}
   /* article */
   .article{max-width:720px;margin:0 auto;padding:64px 32px 40px}
@@ -79,7 +80,7 @@
   .cta-box h3 em{font-style:italic;color:var(--ochre)}
   .cta-box p{font-size:15px;color:rgba(230,220,195,.8);margin:0 0 22px;line-height:1.6}
   .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{font-weight:600;font-size:14.5px;text-decoration:none;padding:13px 24px;border-radius:10px;border:0;transition:transform .2s ease, box-shadow .2s ease}
+  .btn{font-weight:600;font-size:14.5px;text-decoration:none;padding:13px 24px;border-radius:999px;border:0;transition:transform .2s ease, box-shadow .2s ease}
   .btn-primary{background:var(--parchment);color:var(--oxblood)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(122,42,34,.32)}
   .btn-ghost{border:1.5px solid rgba(230,220,195,.22);color:#E6DCC3}

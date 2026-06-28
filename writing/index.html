@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Cyrillic Old';src:url('/fonts/cyrillic-old.woff2') format('woff2'),url('/fonts/cyrillic-old.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
   :root{
     /* ── Natural-dye brand tokens (Phase 1) ── */
     --parchment:#E6DCC3; --parchment-deep:#DDCFB0; --panel-warm:#EFE7D5;
@@ -34,7 +35,7 @@
     --burgundy:#1E1B16; --paper:#E6DCC3; --panel:#EFE7D5;
     --ink:#1E1B16; --ink-dim:rgba(30,27,22,.82); --ink-meta:rgba(30,27,22,.55);
     --line:rgba(30,27,22,.2); --accent:#7A2A22; --gold:#7A2A22;
-    --display:'Ruslan Display','PT Serif',Georgia,serif;
+    --display:'Cyrillic Old','Ruslan Display','PT Serif',Georgia,serif;
     --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
   .logo{position:relative;display:inline-block;width:var(--logo,32px);height:var(--logo,32px);flex:none}

@@ -41,6 +41,13 @@
 <!-- ADOBE-FONTS-KIT -->
 
 <style>
+  /* Slavic display face for hero H1 + ДА mark — self-hosted (place the file at /fonts/) */
+  @font-face{
+    font-family:'Cyrillic Old';
+    src:url('/fonts/cyrillic-old.woff2') format('woff2'),
+        url('/fonts/cyrillic-old.otf') format('opentype');
+    font-weight:400;font-style:normal;font-display:swap;
+  }
   :root{
     /* ── Natural-dye brand tokens (Phase 1) ───────────────────────── */
     --parchment:#E6DCC3;   /* page bg (flax/linen) */
@@ -62,7 +69,7 @@
     --cream-dim:rgba(30,27,22,.82); --cream-meta:rgba(30,27,22,.56); --cream-faint:var(--line); --cream-soft:var(--line-strong);
     --gold-dim:var(--oxblood-soft);
     /* Type system: --display = the distinctive Slavic display face for hero H1 + ДА mark ONLY */
-    --display:'Ruslan Display','PT Serif',Georgia,serif;
+    --display:'Cyrillic Old','Ruslan Display','PT Serif',Georgia,serif;
     --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
     --ease:cubic-bezier(.22,1,.36,1);
   }
@@ -97,7 +104,7 @@
   .nav-links{display:flex;align-items:center;gap:24px}
   .nav-links a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--iron);opacity:.82;text-decoration:none;transition:opacity .2s ease, color .2s ease}
   .nav-links a:hover{opacity:1;color:var(--oxblood)}
-  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:10px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
+  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:999px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
   .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(122,42,34,.28)}
 
   /* hero — left-aligned copy + portrait at right (revision) */
@@ -110,12 +117,16 @@
   .hero .lead b{color:var(--iron);font-weight:600}
   .hero .ornline{justify-content:flex-start;margin:0 0 24px}
   .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:0;justify-content:flex-start}
-  /* portrait at right of hero */
-  .hero-portrait{position:relative;display:flex;justify-content:center;align-items:flex-end}
-  .hero-portrait::before{content:"";position:absolute;z-index:0;width:110%;height:86%;left:-5%;bottom:0;background:radial-gradient(58% 58% at 50% 42%, rgba(122,42,34,.13), transparent 72%)}
-  .hero-portrait img{position:relative;z-index:1;width:100%;max-width:360px;height:auto;display:block;filter:drop-shadow(0 22px 38px rgba(30,27,22,.22))}
+  /* portrait at right of hero — framed in an arched niche so it's grounded, not floating */
+  .hero-portrait{position:relative;display:flex;justify-content:center;align-items:center}
+  .hero-niche{position:relative;width:100%;max-width:360px;aspect-ratio:36/49;
+    background:linear-gradient(168deg, var(--panel) 0%, var(--parchment-deep) 62%, rgba(122,42,34,.12) 100%);
+    border:1.5px solid var(--line-strong);border-radius:188px 188px 16px 16px;overflow:hidden;
+    box-shadow:0 26px 54px rgba(30,27,22,.20)}
+  .hero-niche::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(122,42,34,.16);pointer-events:none}
+  .hero-niche img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
   /* rounded buttons (revision: rounded reads friendlier than square) */
-  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:10px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:999px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
   .btn-primary{background:var(--oxblood);color:var(--parchment)}
   .btn-primary:hover{transform:translateY(-2px);background:#681F18;box-shadow:0 10px 28px rgba(122,42,34,.26)}
   .btn-ghost{background:transparent;color:var(--oxblood)}
@@ -138,7 +149,7 @@
   .stickybar .msg{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--parchment)}
   .stickybar .msg span{font-family:var(--sans);font-weight:400;font-size:12.5px;opacity:.85;display:block}
   .stickybar .acts{display:flex;gap:10px;flex:none}
-  .stickybar .acts a{font-family:var(--sans);font-size:13px;font-weight:600;padding:10px 16px;border-radius:10px;border:1.5px solid var(--parchment);color:var(--parchment);white-space:nowrap;text-decoration:none}
+  .stickybar .acts a{font-family:var(--sans);font-size:13px;font-weight:600;padding:10px 16px;border-radius:999px;border:1.5px solid var(--parchment);color:var(--parchment);white-space:nowrap;text-decoration:none}
   .stickybar .acts a.solid{background:var(--parchment);color:var(--oxblood)}
   .avail{font-size:13.5px;color:var(--cream-dim);letter-spacing:.02em}
   .avail .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--oxblood);margin-right:9px;box-shadow:0 0 0 0 rgba(122,42,34,.6);animation:pulse 2.6s infinite}
@@ -225,7 +236,7 @@
   .diag-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--burgundy-2);cursor:pointer}
   .diag-slider-val{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--gold);font-weight:500;min-width:110px;letter-spacing:-.01em}
   .diag-foot{margin-top:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .diag-submit{background:var(--gold);color:var(--burgundy);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:0;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .2s ease}
+  .diag-submit{background:var(--gold);color:var(--burgundy);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:0;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .2s ease}
   .diag-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 30px rgba(122,42,34,.32)}
   .diag-submit:disabled{opacity:.30;cursor:not-allowed}
   .diag-progress{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-meta);font-weight:600}
@@ -485,7 +496,7 @@
   .proj-metric .v{font-family:var(--serif); font-weight:500; font-size:18px; color:var(--gold); line-height:1; letter-spacing:-.02em}
   .proj-metric .k{font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta); margin-top:4px; font-weight:600}
   .proj-foot{padding-top:14px}
-  .proj-cta{display:inline-flex; align-items:center; gap:10px; font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--burgundy); text-decoration:none; padding:10px 18px; background:var(--gold); border-radius:10px; transition:transform .2s ease, gap .2s ease, box-shadow .2s ease}
+  .proj-cta{display:inline-flex; align-items:center; gap:10px; font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--burgundy); text-decoration:none; padding:10px 18px; background:var(--gold); border-radius:999px; transition:transform .2s ease, gap .2s ease, box-shadow .2s ease}
   .proj-cta:hover{transform:translateY(-1px); gap:14px; box-shadow:0 8px 22px rgba(122,42,34,.32)}
   .proj-cta.muted{background:transparent; color:var(--gold); border:1.5px solid var(--gold); padding:8.5px 16.5px}
   .proj-cta.muted:hover{background:var(--gold); color:var(--burgundy)}
@@ -784,10 +795,12 @@
         <div class="guarantee rv" style="--i:7"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--pine)" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3"/></svg><span><b>Guarantee:</b> a finding that changes a shipping decision, or you don't pay.</span></div>
       </div>
       <div class="hero-portrait rv" style="--i:2">
-        <picture>
-          <source srcset="david-portrait.webp" type="image/webp">
-          <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="679" height="1000" loading="eager" decoding="async">
-        </picture>
+        <div class="hero-niche">
+          <picture>
+            <source srcset="david-portrait.webp" type="image/webp">
+            <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="679" height="1000" loading="eager" decoding="async">
+          </picture>
+        </div>
       </div>
     </div>
   </section>
