@@ -147,7 +147,8 @@
   .proofstrip{background:var(--iron);color:var(--parchment);padding:18px 0;position:relative;z-index:1}
   .proofstrip .wrap{max-width:1240px;display:flex;flex-wrap:nowrap;gap:0 30px;align-items:center;justify-content:center}
   .pl-label{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);white-space:nowrap;margin-right:6px}
-  .pl-logo{font-family:var(--serif);font-size:19px;font-weight:700;color:rgba(230,220,195,.88);letter-spacing:.005em;white-space:nowrap}
+  .pl-logo{height:22px;width:auto;flex:none;filter:brightness(0) invert(1);opacity:.84}
+  .pl-wordmark{font-family:var(--serif);font-size:19px;font-weight:700;color:rgba(230,220,195,.86);letter-spacing:.005em;white-space:nowrap}
   /* sticky CTA bar — slides up after ~620px; ghost text MUST stay parchment */
   .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--oxblood);color:var(--parchment);box-shadow:0 -3px 16px rgba(30,27,22,.22);transform:translateY(110%);transition:transform .3s ease}
   .stickybar.show{transform:translateY(0)}
@@ -815,12 +816,12 @@
   <div class="proofstrip">
     <div class="wrap">
       <span class="pl-label">Previously at</span>
-      <span class="pl-logo">Scentbird</span>
-      <span class="pl-logo">Avito</span>
-      <span class="pl-logo">Sbermarket</span>
-      <span class="pl-logo">T&#8209;Bank</span>
-      <span class="pl-logo">Monetate</span>
-      <span class="pl-logo">AEJuice</span>
+      <span class="pl-wordmark">Scentbird</span>
+      <img class="pl-logo" src="logos/avito.svg" alt="Avito" loading="lazy">
+      <img class="pl-logo" src="logos/sbermarket.png" alt="Sbermarket" loading="lazy">
+      <span class="pl-wordmark">T&#8209;Bank</span>
+      <img class="pl-logo" src="logos/monetate.svg" alt="Monetate" loading="lazy">
+      <span class="pl-wordmark">AEJuice</span>
     </div>
   </div>
 
