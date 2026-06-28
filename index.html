@@ -75,7 +75,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--parchment); color:var(--iron); font-family:var(--sans); -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;}
+  body{background:var(--parchment); color:var(--iron); font-family:var(--serif); -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;}
   /* paper grain — single inline data-URI, ~5% multiply, fixed (Phase 4) */
   body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.05; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -99,7 +99,7 @@
 
   header{position:sticky;top:0;z-index:30;backdrop-filter:blur(8px);background:linear-gradient(var(--burgundy),rgba(30,27,22,.78));border-bottom:1px solid var(--cream-faint)}
   .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
-  .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:.01em}
+  .mark{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.02em}
   .nav-right{display:flex;align-items:center;gap:26px}
   .nav-links{display:flex;align-items:center;gap:24px}
   .nav-links a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--iron);opacity:.82;text-decoration:none;transition:opacity .2s ease, color .2s ease}
@@ -108,23 +108,20 @@
   .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(122,42,34,.28)}
 
   /* hero — left-aligned copy + portrait at right (revision) */
-  .hero{padding:54px 0 50px;position:relative;z-index:1}
-  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center}
-  .hero-copy{text-align:left}
-  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,72px);line-height:1.07;letter-spacing:.005em;margin:10px 0 0}
+  .hero{padding:52px 0 0;position:relative;z-index:1}
+  .hero-grid{display:grid;grid-template-columns:1.32fr .9fr;gap:40px;align-items:stretch;min-height:540px}
+  .hero-copy{text-align:left;align-self:center;padding:6px 0 56px}
+  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.6vw,54px);line-height:1.0;letter-spacing:.01em;margin:10px 0 0}
   .hero h1 em{font-style:normal;color:var(--oxblood)}
-  .hero .lead{font-size:clamp(17px,1.7vw,20px);max-width:46ch;margin:18px 0 24px;color:var(--cream-dim);font-weight:400}
+  .hero .lead{font-size:clamp(17px,1.6vw,19.5px);max-width:42ch;margin:20px 0 24px;color:var(--cream-dim);font-weight:400;line-height:1.55}
   .hero .lead b{color:var(--iron);font-weight:600}
   .hero .ornline{justify-content:flex-start;margin:0 0 24px}
   .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:0;justify-content:flex-start}
-  /* portrait at right of hero — framed in an arched niche so it's grounded, not floating */
-  .hero-portrait{position:relative;display:flex;justify-content:center;align-items:center}
-  .hero-niche{position:relative;width:100%;max-width:360px;aspect-ratio:36/49;
-    background:linear-gradient(168deg, var(--panel) 0%, var(--parchment-deep) 62%, rgba(122,42,34,.12) 100%);
-    border:1.5px solid var(--line-strong);border-radius:188px 188px 16px 16px;overflow:hidden;
-    box-shadow:0 26px 54px rgba(30,27,22,.20)}
-  .hero-niche::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(122,42,34,.16);pointer-events:none}
-  .hero-niche img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
+  /* portrait at right — cutout over an abstract data-flow backdrop, grounded by a base shadow (no frame) */
+  .hero-portrait{position:relative;align-self:end;display:flex;justify-content:center;align-items:flex-end}
+  .hero-art{position:absolute;z-index:0;left:50%;bottom:0;transform:translateX(-50%);width:118%;height:108%;pointer-events:none;overflow:visible}
+  .hero-portrait picture{position:relative;z-index:1;display:block}
+  .hero-portrait img{display:block;width:100%;max-width:380px;height:auto;filter:drop-shadow(0 24px 26px rgba(30,27,22,.22))}
   /* rounded buttons (revision: rounded reads friendlier than square) */
   .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:999px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
   .btn-primary{background:var(--oxblood);color:var(--parchment)}
@@ -742,9 +739,10 @@
     --cream-faint:rgba(230,220,195,.16); --cream-soft:rgba(230,220,195,.26);
     --gold-dim:rgba(181,120,28,.18);
   }
-  /* hero sits on parchment with a soft oxblood wash from the top */
-  .hero{position:relative; overflow:hidden;
-    background:radial-gradient(120% 80% at 50% -10%, rgba(122,42,34,.08), transparent 60%);}
+  /* hero band — a slightly deeper parchment so it reads as its own panel above the page,
+     plus a soft oxblood wash from the top and a hairline to separate it (Phase rev) */
+  .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 80% at 72% -10%, rgba(122,42,34,.10), transparent 58%), var(--parchment-deep);}
   /* translucent parchment header (was a burgundy gradient) */
   header{background:rgba(230,220,195,.92); backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);}
@@ -795,12 +793,11 @@
         <div class="guarantee rv" style="--i:7"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--pine)" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3"/></svg><span><b>Guarantee:</b> a finding that changes a shipping decision, or you don't pay.</span></div>
       </div>
       <div class="hero-portrait rv" style="--i:2">
-        <div class="hero-niche">
-          <picture>
-            <source srcset="david-portrait.webp" type="image/webp">
-            <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="679" height="1000" loading="eager" decoding="async">
-          </picture>
-        </div>
+        <svg class="hero-art" viewBox="0 0 420 540" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g opacity="0.9"><path d="M -20 106 C 10 106 10 147 40 147 C 70 147 70 161 100 161 C 130 161 130 146 160 146 C 190 146 190 135 220 135 C 250 135 250 134 280 134 C 310 134 310 118 340 118 C 370 118 370 84 400 84" stroke="#7A2A22" stroke-width="1.6" opacity="0.3"/><path d="M -20 230 C 10 230 10 287 40 287 C 70 287 70 306 100 306 C 130 306 130 286 160 286 C 190 286 190 271 220 271 C 250 271 250 270 280 270 C 310 270 310 247 340 247 C 370 247 370 200 400 200" stroke="#B5781C" stroke-width="1.4" opacity="0.34" stroke-dasharray="2 6"/><path d="M -20 348 C 10 348 10 382 40 382 C 70 382 70 394 100 394 C 130 394 130 382 160 382 C 190 382 190 373 220 373 C 250 373 250 372 280 372 C 310 372 310 358 340 358 C 370 358 370 330 400 330" stroke="#36473A" stroke-width="1.5" opacity="0.24"/><path d="M -20 51 C 10 51 10 76 40 76 C 70 76 70 85 100 85 C 130 85 130 76 160 76 C 190 76 190 69 220 69 C 250 69 250 69 280 69 C 310 69 310 59 340 59 C 370 59 370 38 400 38" stroke="#7A2A22" stroke-width="1.4" opacity="0.14" stroke-dasharray="1 7"/><circle cx="40" cy="147" r="1.6" fill="#7A2A22" opacity="0.45"/><circle cx="100" cy="161" r="1.6" fill="#7A2A22" opacity="0.45"/><circle cx="160" cy="146" r="2.4" fill="#7A2A22" opacity="0.45"/><circle cx="220" cy="135" r="2.4" fill="#7A2A22" opacity="0.45"/><circle cx="280" cy="134" r="2.4" fill="#7A2A22" opacity="0.45"/><circle cx="340" cy="118" r="1.6" fill="#7A2A22" opacity="0.45"/><circle cx="400" cy="84" r="1.6" fill="#7A2A22" opacity="0.45"/><circle cx="40" cy="287" r="2.4" fill="#B5781C" opacity="0.45"/><circle cx="100" cy="306" r="2.4" fill="#B5781C" opacity="0.45"/><circle cx="160" cy="286" r="1.6" fill="#B5781C" opacity="0.45"/><circle cx="220" cy="271" r="2.4" fill="#B5781C" opacity="0.45"/><circle cx="340" cy="247" r="2.0" fill="#B5781C" opacity="0.45"/><circle cx="400" cy="200" r="1.6" fill="#B5781C" opacity="0.45"/><path d="M 30 459 L 40 458 L 50 457 L 60 454 L 70 451 L 80 445 L 90 437 L 100 428 L 110 418 L 120 407 L 130 398 L 140 392 L 150 390 L 160 392 L 170 398 L 180 407 L 190 418 L 200 428 L 210 437 L 220 445 L 230 451 L 240 454 L 250 457 L 260 458 L 270 459" stroke="#7A2A22" stroke-width="1.6" opacity="0.3"/><path d="M 110 459 L 120 458 L 130 456 L 140 453 L 150 449 L 160 442 L 170 433 L 180 422 L 190 409 L 200 397 L 210 386 L 220 379 L 230 376 L 240 379 L 250 386 L 260 397 L 270 409 L 280 422 L 290 433 L 300 442 L 310 449 L 320 453 L 330 456 L 340 458 L 350 459" stroke="#B5781C" stroke-width="1.6" opacity="0.32"/><line x1="20" y1="460" x2="400" y2="460" stroke="#1E1B16" stroke-width="1" opacity="0.16"/><text x="70" y="90" font-family="Inter,sans-serif" font-size="12" fill="#7A2A22" opacity="0.20" font-weight="600">p &lt; .05</text><text x="300" y="150" font-family="Inter,sans-serif" font-size="15" fill="#7A2A22" opacity="0.20" font-weight="600">z = 1.96</text><text x="60" y="300" font-family="Inter,sans-serif" font-size="12" fill="#7A2A22" opacity="0.20" font-weight="600">+2.1%</text><text x="330" y="330" font-family="Inter,sans-serif" font-size="13" fill="#7A2A22" opacity="0.20" font-weight="600">95% CI</text><text x="250" y="70" font-family="Inter,sans-serif" font-size="13" fill="#7A2A22" opacity="0.20" font-weight="600">σ</text><text x="110" y="420" font-family="Inter,sans-serif" font-size="12" fill="#7A2A22" opacity="0.20" font-weight="600">OBF</text><text x="300" y="440" font-family="Inter,sans-serif" font-size="15" fill="#7A2A22" opacity="0.20" font-weight="600">n = 12k</text><text x="40" y="200" font-family="Inter,sans-serif" font-size="12" fill="#7A2A22" opacity="0.20" font-weight="600">0.42</text><text x="350" y="240" font-family="Inter,sans-serif" font-size="15" fill="#7A2A22" opacity="0.20" font-weight="600">−0.18</text><text x="180" y="200" font-family="Inter,sans-serif" font-size="13" fill="#7A2A22" opacity="0.20" font-weight="600">Δ</text></g></svg>
+        <picture>
+          <source srcset="david-portrait.webp" type="image/webp">
+          <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="679" height="1000" loading="eager" decoding="async">
+        </picture>
       </div>
     </div>
   </section>
