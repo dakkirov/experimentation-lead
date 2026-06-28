@@ -878,7 +878,7 @@
             <div class="diag-cta-sub">The Audit is $4,000, 14 days, fixed fee. At least one finding that changes a shipping decision, or you don't pay.</div>
             <div class="diag-cta-row">
               <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="btn btn-primary">Book a 20-min call <span>→</span></a>
-              <a href="mailto:dkarzumanian@gmail.com?subject=My pipeline diagnostic results" class="btn btn-ghost">Email me about my results</a>
+              <a href="mailto:dkarzumanian@gmail.com?subject=My pipeline diagnostic results" class="btn btn-ghost" id="diag-email-link">Email me my scorecard</a>
             </div>
           </div>
         </div>
@@ -892,7 +892,7 @@
       <div class="eyebrow rv showcase-head"><span class="bar"></span>Selected work · five systems in production</div>
       <h2 class="sec-head rv">The fix isn't a smarter analyst — it's <em>the layer above the default tool.</em></h2>
       <p class="sec-sub rv">Each card has two sides. <b>Front:</b> the one-line idea. <b>Click to flip:</b> full case, interactive demos, real metrics.</p>
-      <div class="showcase-hint rv">Scroll on cards · <b>hover to flip</b></div>
+      <div class="showcase-hint rv">Scroll on cards · <b>tap a card to flip</b></div>
     </div>
 
     <div class="showcase-track-wrap rv">
@@ -1640,6 +1640,20 @@
       tagEl.className = 'diag-verdict-tag ' + verdict.tag;
       document.getElementById('diag-verdict').textContent = verdict.text;
       document.getElementById('diag-risks-list').innerHTML = risks.map((r,i) => `<div class="diag-risk"><span class="diag-risk-num">${i+1}</span><div class="diag-risk-title">${r.t}</div><div class="diag-risk-desc">${r.d}</div></div>`).join('');
+      // Make the optional "email my scorecard" link a real handoff: prefill the
+      // visitor's score + top risks. No gate, no backend — the diagnostic itself
+      // never needs an email; this is value-first capture only.
+      const emailLink = document.getElementById('diag-email-link');
+      if (emailLink) {
+        const plain = s => s.replace(/<[^>]+>/g, '');
+        const body = `My pipeline trustworthiness score: ${score}/100 (${verdict.label}).\n\nTop risks for my setup:\n`
+          + risks.map((r,i) => `${i+1}. ${plain(r.t)}`).join('\n')
+          + `\n\nI'd like to talk about finding and fixing these in my actual data.`;
+        emailLink.setAttribute('href',
+          'mailto:dkarzumanian@gmail.com'
+          + '?subject=' + encodeURIComponent(`My pipeline diagnostic results (${score}/100)`)
+          + '&body=' + encodeURIComponent(body));
+      }
       const scoreEl = document.getElementById('diag-score-num');
       const startT = performance.now(), dur = 1200;
       function tick(t){
