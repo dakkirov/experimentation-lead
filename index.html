@@ -36,8 +36,8 @@
 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Kazimir (hero H1 + ДА mark only) is loaded via Adobe Fonts; kit + CSP wired in Phase 8 -->
+<link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Display face = Ruslan Display (hero H1 + ДА mark only). Swap to Kazimir here when the Adobe kit lands. -->
 <!-- ADOBE-FONTS-KIT -->
 
 <style>
@@ -61,8 +61,8 @@
     --cream:var(--iron); --gold:var(--oxblood);
     --cream-dim:rgba(30,27,22,.82); --cream-meta:rgba(30,27,22,.56); --cream-faint:var(--line); --cream-soft:var(--line-strong);
     --gold-dim:var(--oxblood-soft);
-    /* Type system: --display = Kazimir (hero H1 + ДА mark ONLY), serif fallback until the Adobe kit is wired */
-    --display:'Kazimir','PT Serif',Georgia,serif;
+    /* Type system: --display = the distinctive Slavic display face for hero H1 + ДА mark ONLY */
+    --display:'Ruslan Display','PT Serif',Georgia,serif;
     --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
     --ease:cubic-bezier(.22,1,.36,1);
   }
@@ -92,20 +92,30 @@
 
   header{position:sticky;top:0;z-index:30;backdrop-filter:blur(8px);background:linear-gradient(var(--burgundy),rgba(30,27,22,.78));border-bottom:1px solid var(--cream-faint)}
   .nav{max-width:1080px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
-  .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:18px;letter-spacing:.01em}
-  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--burgundy);background:var(--gold);padding:9px 18px;border-radius:0;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
+  .mark{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:.01em}
+  .nav-right{display:flex;align-items:center;gap:26px}
+  .nav-links{display:flex;align-items:center;gap:24px}
+  .nav-links a{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--iron);opacity:.82;text-decoration:none;transition:opacity .2s ease, color .2s ease}
+  .nav-links a:hover{opacity:1;color:var(--oxblood)}
+  .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--parchment);background:var(--oxblood);padding:9px 18px;border-radius:10px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
   .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(122,42,34,.28)}
 
-  /* hero — centered, single dominant CTA, ДА mark + ornament (Phase 6) */
-  .hero{padding:60px 0 54px;position:relative;text-align:center;z-index:1}
-  .hero .logo{margin:0 auto 22px}
-  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(42px,8vw,82px);line-height:1.04;letter-spacing:-.005em;margin:6px auto 0;max-width:16ch}
+  /* hero — left-aligned copy + portrait at right (revision) */
+  .hero{padding:54px 0 50px;position:relative;z-index:1}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center}
+  .hero-copy{text-align:left}
+  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,72px);line-height:1.07;letter-spacing:.005em;margin:10px 0 0}
   .hero h1 em{font-style:normal;color:var(--oxblood)}
-  .hero .lead{font-size:clamp(17px,2.1vw,20px);max-width:52ch;margin:20px auto 24px;color:var(--cream-dim);font-weight:400}
+  .hero .lead{font-size:clamp(17px,1.7vw,20px);max-width:46ch;margin:18px 0 24px;color:var(--cream-dim);font-weight:400}
   .hero .lead b{color:var(--iron);font-weight:600}
-  .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin:0;justify-content:center}
-  /* letterpress buttons: square, 1.5px oxblood frame, Inter 600 (Phase 5) */
-  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:0;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+  .hero .ornline{justify-content:flex-start;margin:0 0 24px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:0;justify-content:flex-start}
+  /* portrait at right of hero */
+  .hero-portrait{position:relative;display:flex;justify-content:center;align-items:flex-end}
+  .hero-portrait::before{content:"";position:absolute;z-index:0;width:110%;height:86%;left:-5%;bottom:0;background:radial-gradient(58% 58% at 50% 42%, rgba(122,42,34,.13), transparent 72%)}
+  .hero-portrait img{position:relative;z-index:1;width:100%;max-width:360px;height:auto;display:block;filter:drop-shadow(0 22px 38px rgba(30,27,22,.22))}
+  /* rounded buttons (revision: rounded reads friendlier than square) */
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:10px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
   .btn-primary{background:var(--oxblood);color:var(--parchment)}
   .btn-primary:hover{transform:translateY(-2px);background:#681F18;box-shadow:0 10px 28px rgba(122,42,34,.26)}
   .btn-ghost{background:transparent;color:var(--oxblood)}
@@ -128,7 +138,7 @@
   .stickybar .msg{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--parchment)}
   .stickybar .msg span{font-family:var(--sans);font-weight:400;font-size:12.5px;opacity:.85;display:block}
   .stickybar .acts{display:flex;gap:10px;flex:none}
-  .stickybar .acts a{font-family:var(--sans);font-size:13px;font-weight:600;padding:10px 16px;border:1.5px solid var(--parchment);color:var(--parchment);white-space:nowrap;text-decoration:none}
+  .stickybar .acts a{font-family:var(--sans);font-size:13px;font-weight:600;padding:10px 16px;border-radius:10px;border:1.5px solid var(--parchment);color:var(--parchment);white-space:nowrap;text-decoration:none}
   .stickybar .acts a.solid{background:var(--parchment);color:var(--oxblood)}
   .avail{font-size:13.5px;color:var(--cream-dim);letter-spacing:.02em}
   .avail .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--oxblood);margin-right:9px;box-shadow:0 0 0 0 rgba(122,42,34,.6);animation:pulse 2.6s infinite}
@@ -203,8 +213,8 @@
   .diag-q-label .num{color:var(--gold);font-family:var(--serif);font-style:italic;font-weight:500;margin-right:8px}
   .diag-options{display:flex;flex-wrap:wrap;gap:8px}
   .diag-options-stacked{flex-direction:column;gap:8px}
-  .diag-opt{background:transparent;border:1.5px solid var(--cream-faint);color:var(--cream-dim);padding:10px 16px;border-radius:0;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;text-align:left;transition:all .2s ease}
-  .diag-options-stacked .diag-opt{border-radius:0;padding:13px 18px;line-height:1.5}
+  .diag-opt{background:transparent;border:1.5px solid var(--cream-faint);color:var(--cream-dim);padding:10px 16px;border-radius:8px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;text-align:left;transition:all .2s ease}
+  .diag-options-stacked .diag-opt{border-radius:8px;padding:13px 18px;line-height:1.5}
   .diag-opt strong{color:var(--cream);font-weight:600;margin-right:4px}
   .diag-opt:hover{border-color:var(--gold);color:var(--cream)}
   .diag-opt.is-selected{background:var(--gold);color:var(--burgundy);border-color:var(--gold);font-weight:600}
@@ -215,7 +225,7 @@
   .diag-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--burgundy-2);cursor:pointer}
   .diag-slider-val{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--gold);font-weight:500;min-width:110px;letter-spacing:-.01em}
   .diag-foot{margin-top:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .diag-submit{background:var(--gold);color:var(--burgundy);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:0;border-radius:0;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .2s ease}
+  .diag-submit{background:var(--gold);color:var(--burgundy);font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:0;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .2s ease}
   .diag-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 30px rgba(122,42,34,.32)}
   .diag-submit:disabled{opacity:.30;cursor:not-allowed}
   .diag-progress{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-meta);font-weight:600}
@@ -253,7 +263,7 @@
   .diag-email-form{display:inline-flex;gap:6px;align-items:center;background:var(--burgundy-2);border:1px solid var(--cream-faint);border-radius:0;padding:4px 4px 4px 18px}
   .diag-email-form input{background:transparent;border:0;outline:none;color:var(--cream);font-family:var(--sans);font-size:13.5px;min-width:240px;padding:8px 0}
   .diag-email-form input::placeholder{color:var(--cream-meta)}
-  .diag-email-form button{background:var(--gold);color:var(--burgundy);border:0;border-radius:0;padding:10px 18px;font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.04em;cursor:pointer}
+  .diag-email-form button{background:var(--gold);color:var(--burgundy);border:0;border-radius:8px;padding:10px 18px;font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.04em;cursor:pointer}
   .diag-email-success{margin-top:14px;color:var(--gold);font-size:14px;font-style:italic;display:none}
   .diag-email-success.is-shown{display:block}
 
@@ -475,7 +485,7 @@
   .proj-metric .v{font-family:var(--serif); font-weight:500; font-size:18px; color:var(--gold); line-height:1; letter-spacing:-.02em}
   .proj-metric .k{font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--cream-meta); margin-top:4px; font-weight:600}
   .proj-foot{padding-top:14px}
-  .proj-cta{display:inline-flex; align-items:center; gap:10px; font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--burgundy); text-decoration:none; padding:10px 18px; background:var(--gold); border-radius:0; transition:transform .2s ease, gap .2s ease, box-shadow .2s ease}
+  .proj-cta{display:inline-flex; align-items:center; gap:10px; font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--burgundy); text-decoration:none; padding:10px 18px; background:var(--gold); border-radius:10px; transition:transform .2s ease, gap .2s ease, box-shadow .2s ease}
   .proj-cta:hover{transform:translateY(-1px); gap:14px; box-shadow:0 8px 22px rgba(122,42,34,.32)}
   .proj-cta.muted{background:transparent; color:var(--gold); border:1.5px solid var(--gold); padding:8.5px 16.5px}
   .proj-cta.muted:hover{background:var(--gold); color:var(--burgundy)}
@@ -656,9 +666,12 @@
 
   @media(max-width:760px){
     .wrap,.nav{padding-left:22px;padding-right:22px}
-    /* tighter eyebrow tracking + smaller hero head so nothing clips on narrow screens (Phase 9) */
+    /* tighter eyebrow tracking + smaller hero head on narrow screens */
     .eyebrow{letter-spacing:.16em;font-size:11px}
-    .hero h1{font-size:clamp(30px,7.5vw,48px);max-width:18ch}
+    .hero-grid{grid-template-columns:1fr;gap:26px}
+    .hero-portrait{max-width:260px;margin:0 auto}
+    .hero-portrait img{max-width:240px}
+    .hero h1{font-size:clamp(30px,8.5vw,46px)}
     .card{padding:30px 24px}
     .card h3{font-size:25px}
     .proofstrip .p{font-size:12.5px}
@@ -744,24 +757,38 @@
 <header>
   <nav class="nav">
     <div class="mark"><span class="logo" style="--logo:34px;--logo-ink:#7A2A22;--logo-krin:#B5781C"><svg viewBox="0 0 122 122" aria-hidden="true"><g fill="none" stroke="var(--logo-ink,#7A2A22)" stroke-width="4"><circle cx="61" cy="61" r="56"/><circle cx="61" cy="61" r="49" stroke-width="2" opacity=".45"/></g><g fill="none" stroke="var(--logo-krin,#B5781C)" stroke-width="4" stroke-linecap="round"><path d="M61 18 C56 13 56 6 61 2 C66 6 66 13 61 18Z"/><path d="M61 19 C54 17 49 11 51 5 C56 8 60 13 61 19"/><path d="M61 19 C68 17 73 11 71 5 C66 8 62 13 61 19"/></g><g fill="var(--logo-ink,#7A2A22)"><circle cx="12" cy="61" r="4.5"/><circle cx="110" cy="61" r="4.5"/><circle cx="61" cy="110" r="4.5"/></g></svg><span class="logo__glyph">ДА</span></span><span>David&nbsp;Arzumanian</span></div>
-    <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#services">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener" class="cta-mini">Book a call</a>
+    </div>
   </nav>
 </header>
 
 <main>
   <section class="hero">
-    <div class="wrap">
-      <span class="logo rv" style="--logo:120px;--logo-ink:#7A2A22;--logo-krin:#B5781C;--i:0" aria-hidden="true"><svg viewBox="0 0 122 122" aria-hidden="true"><g fill="none" stroke="var(--logo-ink,#7A2A22)" stroke-width="2.4"><circle cx="61" cy="61" r="56"/><circle cx="61" cy="61" r="49" stroke-width="1.2" opacity=".45"/></g><g fill="none" stroke="var(--logo-krin,#B5781C)" stroke-width="2.4" stroke-linecap="round"><path d="M61 18 C56 13 56 6 61 2 C66 6 66 13 61 18Z"/><path d="M61 19 C54 17 49 11 51 5 C56 8 60 13 61 19"/><path d="M61 19 C68 17 73 11 71 5 C66 8 62 13 61 19"/></g><g fill="var(--logo-ink,#7A2A22)"><circle cx="12" cy="61" r="2.6"/><circle cx="110" cy="61" r="2.6"/><circle cx="61" cy="110" r="2.6"/></g></svg><span class="logo__glyph">ДА</span></span>
-      <div class="eyebrow rv" style="--i:1">Experimentation · Causal Inference</div>
-      <h1 class="rv" style="--i:2">I make A/B testing <em>trustworthy.</em></h1>
-      <p class="lead rv" style="--i:3">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious — and tells you which numbers are safe to ship on.</p>
-      <div class="ornline rv" style="--i:4"><span class="l"></span><svg width="42" height="18" viewBox="0 0 42 18" fill="none" stroke="var(--oxblood)" stroke-width="1.5" aria-hidden="true"><path d="M2 9 q9.5 -10 19 0 q9.5 10 19 0"/><path d="M2 9 q9.5 10 19 0 q9.5 -10 19 0"/></svg><span class="l"></span></div>
-      <div class="cta-row rv" style="--i:5">
-        <a href="#diagnostic" class="btn btn-primary">Take the 90-second diagnostic ↓</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow rv" style="--i:0">Experimentation · Causal Inference</div>
+        <h1 class="rv" style="--i:1">I make A/B testing <em>trustworthy.</em></h1>
+        <p class="lead rv" style="--i:2">You ship "wins" that are noise. You kill tests that were real. I'm the fractional senior owner who makes the difference obvious — and tells you which numbers are safe to ship on.</p>
+        <div class="ornline rv" style="--i:3"><svg width="42" height="18" viewBox="0 0 42 18" fill="none" stroke="var(--oxblood)" stroke-width="1.5" aria-hidden="true"><path d="M2 9 q9.5 -10 19 0 q9.5 10 19 0"/><path d="M2 9 q9.5 10 19 0 q9.5 -10 19 0"/></svg><span class="l"></span></div>
+        <div class="cta-row rv" style="--i:4">
+          <a href="#diagnostic" class="btn btn-primary">Take the 90-second diagnostic ↓</a>
+        </div>
+        <p class="micro rv" style="--i:5">Free · no email required &nbsp;·&nbsp; or <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">book a 20-min call</a> to skip ahead</p>
+        <p class="micro rv" style="--i:6">Fractional · 2–3 days/week · remote, full US-timezone overlap</p>
+        <div class="guarantee rv" style="--i:7"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--pine)" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3"/></svg><span><b>Guarantee:</b> a finding that changes a shipping decision, or you don't pay.</span></div>
       </div>
-      <p class="micro rv" style="--i:6">Free · no email required &nbsp;·&nbsp; or <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">book a 20-min call</a> to skip ahead</p>
-      <p class="micro rv" style="--i:7">Fractional · 2–3 days/week · remote, full US-timezone overlap</p>
-      <div class="guarantee rv" style="--i:8"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--pine)" stroke-width="2" aria-hidden="true"><path d="M2 7l3.5 3.5L12 3"/></svg><span><b>Guarantee:</b> a finding that changes a shipping decision, or you don't pay.</span></div>
+      <div class="hero-portrait rv" style="--i:2">
+        <picture>
+          <source srcset="david-portrait.webp" type="image/webp">
+          <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="679" height="1000" loading="eager" decoding="async">
+        </picture>
+      </div>
     </div>
   </section>
 
@@ -1373,7 +1400,7 @@
     </div>
   </section>
 
-  <section style="border-top:1px solid var(--cream-faint)">
+  <section id="faq" style="border-top:1px solid var(--cream-faint)">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>Common questions</div>
       <h2 class="sec-head rv">Questions I get from <em>product teams</em></h2>
