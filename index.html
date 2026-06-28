@@ -656,6 +656,12 @@
 
   @media(max-width:760px){
     .wrap,.nav{padding-left:22px;padding-right:22px}
+    /* tighter eyebrow tracking + smaller hero head so nothing clips on narrow screens (Phase 9) */
+    .eyebrow{letter-spacing:.16em;font-size:11px}
+    .hero h1{font-size:clamp(30px,7.5vw,48px);max-width:18ch}
+    .card{padding:30px 24px}
+    .card h3{font-size:25px}
+    .proofstrip .p{font-size:12.5px}
     .stats{grid-template-columns:1fr;gap:0}
     .stat{border-left:none;border-top:1px solid var(--cream-faint);padding:26px 0}
     .stat:first-child{border-top:none;padding-top:0}
