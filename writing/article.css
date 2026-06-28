@@ -1,4 +1,9 @@
 :root{
+  /* ── Natural-dye brand tokens (Phase 1) ── */
+  --parchment:#E6DCC3; --parchment-deep:#DDCFB0; --panel-warm:#EFE7D5;
+  --oxblood:#7A2A22; --iron:#1E1B16; --ochre:#B5781C; --pine:#36473A;
+  --oxblood-soft:rgba(122,42,34,.08); --line-strong:rgba(30,27,22,.38);
+  /* ── Legacy palette (still referenced until Phase 4 recolor) ── */
   --burgundy:#4A1019; --paper:#FAF4E8; --panel:#FFFFFF;
   --ink:#3A0C13; --ink-dim:rgba(58,12,19,.82); --ink-meta:rgba(58,12,19,.55);
   --line:rgba(58,12,19,.13); --accent:#7C1A27; --gold:#F2C744;
@@ -6,7 +11,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
+body{background:var(--parchment);color:var(--iron);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
 a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(124,26,39,.28)}
 a:hover{border-color:var(--accent)}
 /* header */

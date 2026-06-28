@@ -37,6 +37,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
+    /* ── Natural-dye brand tokens (Phase 1) ───────────────────────── */
+    --parchment:#E6DCC3;   /* page bg (flax/linen) */
+    --parchment-deep:#DDCFB0;
+    --panel:#EFE7D5;       /* card surface */
+    --oxblood:#7A2A22;     /* primary accent: CTAs, mark, emphasis */
+    --iron:#1E1B16;        /* body text, dark sections */
+    --ochre:#B5781C;       /* secondary highlight, big numbers, krin */
+    --pine:#36473A;        /* positives: guarantee, ✓ lists */
+    --line:rgba(30,27,22,.2);
+    --line-strong:rgba(30,27,22,.38);
+    --oxblood-soft:rgba(122,42,34,.08);
+
+    /* ── Legacy palette (still referenced until Phase 4 recolor) ──── */
     --burgundy:#4A1019; --burgundy-2:#3A0C13; --burgundy-3:#2A080E;
     --cream:#F2E8D5; --gold:#F2C744;
     --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6); --cream-faint:rgba(242,232,213,.14); --cream-soft:rgba(242,232,213,.20);
@@ -46,7 +59,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--burgundy); color:var(--cream); font-family:var(--sans); -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;}
+  body{background:var(--parchment); color:var(--iron); font-family:var(--sans); -webkit-font-smoothing:antialiased; line-height:1.65; overflow-x:hidden;}
   body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; background:none;}
   body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.02; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
