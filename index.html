@@ -73,10 +73,13 @@
   body::before{content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.05; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
-  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--cream-dim)}
-  .eyebrow .bar{display:inline-block;width:28px;height:2px;background:var(--gold);vertical-align:middle;margin-right:14px;transform:translateY(-2px)}
+  .eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--oxblood)}
+  .eyebrow .bar{display:inline-block;width:28px;height:2px;background:var(--oxblood);vertical-align:middle;margin-right:14px;transform:translateY(-2px)}
   .gold{color:var(--gold)}
   .serif{font-family:var(--serif)}
+  /* pletenka divider: centered ornament between two hairlines (accent only) */
+  .ornline{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 30px;color:var(--oxblood)}
+  .ornline .l{height:1px;width:56px;background:var(--line-strong)}
 
   /* ── ДА monogram (one mark: nav · hero · footer) ─────────────────
      ring + krin/pletenka are SVG; the ДА is webfont text layered on top.
@@ -99,11 +102,12 @@
   .hero .lead{font-size:clamp(17px,2.1vw,21px);max-width:60ch;color:var(--cream-dim);font-weight:400}
   .hero .lead b{color:var(--cream);font-weight:600}
   .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin:40px 0 22px}
-  .btn{font-weight:600;font-size:15px;letter-spacing:.01em;text-decoration:none;padding:15px 28px;border-radius:0;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
-  .btn-primary{background:var(--gold);color:var(--burgundy)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(122,42,34,.32)}
-  .btn-ghost{border:1.5px solid var(--cream-faint);color:var(--cream)}
-  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  /* letterpress buttons: square, 1.5px oxblood frame, Inter 600 (Phase 5) */
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.01em;text-decoration:none;padding:13px 24px;border:1.5px solid var(--oxblood);border-radius:0;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+  .btn-primary{background:var(--oxblood);color:var(--parchment)}
+  .btn-primary:hover{transform:translateY(-2px);background:#681F18;box-shadow:0 10px 28px rgba(122,42,34,.26)}
+  .btn-ghost{background:transparent;color:var(--oxblood)}
+  .btn-ghost:hover{background:var(--oxblood-soft)}
   .avail{font-size:13.5px;color:var(--cream-dim);letter-spacing:.02em}
   .avail .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:9px;box-shadow:0 0 0 0 rgba(122,42,34,.6);animation:pulse 2.6s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(122,42,34,.5)}70%{box-shadow:0 0 0 8px rgba(122,42,34,0)}100%{box-shadow:0 0 0 0 rgba(122,42,34,0)}}
@@ -601,11 +605,12 @@
   .hero .rv{transition-delay:calc(var(--i,0)*.09s)}
 
   /* GUARANTEE + COMPARISON */
-  .card-guarantee{margin-top:22px;padding:15px 17px;background:rgba(122,42,34,.08);border:1px solid rgba(122,42,34,.30);border-radius:0;display:flex;gap:13px;align-items:flex-start}
-  .card-guarantee .ico{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:1px;font-family:var(--sans)}
+  /* guarantee = positive callout → pine left-accent (Phase 5) */
+  .card-guarantee{margin-top:22px;padding:15px 17px;background:rgba(54,71,58,.07);border:1px solid rgba(54,71,58,.30);border-left:3px solid var(--pine);border-radius:0;display:flex;gap:13px;align-items:flex-start}
+  .card-guarantee .ico{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--pine);color:var(--pine);display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:1px;font-family:var(--sans)}
   .card-guarantee .txt{font-size:13.5px;color:var(--cream);line-height:1.5}
-  .card-guarantee .lbl{display:block;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
-  .card-guarantee .txt b{color:var(--gold);font-weight:700}
+  .card-guarantee .lbl{display:block;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pine);margin-bottom:3px}
+  .card-guarantee .txt b{color:var(--pine);font-weight:700}
 
   .compare{margin-top:48px;border:1px solid var(--cream-faint);border-radius:0;overflow:hidden;background:var(--burgundy-2);box-shadow:0 14px 36px rgba(0,0,0,.22)}
   .compare-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr}
