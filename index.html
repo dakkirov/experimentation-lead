@@ -34,7 +34,10 @@
 <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Kazimir (hero H1 + ДА mark only) is loaded via Adobe Fonts; kit + CSP wired in Phase 8 -->
+<!-- ADOBE-FONTS-KIT -->
+
 <style>
   :root{
     /* ── Natural-dye brand tokens (Phase 1) ───────────────────────── */
@@ -54,7 +57,9 @@
     --cream:#F2E8D5; --gold:#F2C744;
     --cream-dim:rgba(242,232,213,.80); --cream-meta:rgba(242,232,213,.6); --cream-faint:rgba(242,232,213,.14); --cream-soft:rgba(242,232,213,.20);
     --gold-dim:rgba(242,199,68,.16);
-    --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+    /* Type system: --display = Kazimir (hero H1 + ДА mark ONLY), serif fallback until the Adobe kit is wired */
+    --display:'Kazimir','PT Serif',Georgia,serif;
+    --serif:'PT Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
     --ease:cubic-bezier(.22,1,.36,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -75,7 +80,7 @@
   .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(242,199,68,.28)}
 
   .hero{padding:120px 0 90px;position:relative}
-  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,8vw,86px);line-height:1.02;letter-spacing:-.015em;margin:26px 0 28px;max-width:14ch}
+  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(44px,8vw,86px);line-height:1.02;letter-spacing:-.015em;margin:26px 0 28px;max-width:14ch}
   .hero h1 em{font-style:normal;color:var(--gold)}
   .hero .lead{font-size:clamp(17px,2.1vw,21px);max-width:60ch;color:var(--cream-dim);font-weight:400}
   .hero .lead b{color:var(--cream);font-weight:600}
