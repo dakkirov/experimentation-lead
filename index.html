@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://assets.calendly.com; frame-src https://calendly.com https://assets.calendly.com; connect-src 'self' https://calendly.com https://*.calendly.com; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Experimentation & Causal Inference Lead — David Arzumanian</title>
-<meta name="description" content="Fractional experimentation lead. I make A/B testing trustworthy for Seed–Series B product teams. Free 90-second pipeline diagnostic, $4k fixed-fee audit.">
+<meta name="description" content="Fractional experimentation lead. I make A/B testing trustworthy for Seed–Series B product teams. Free 90-second pipeline diagnostic, fixed-fee trust audit, launch impact studies.">
 <link rel="canonical" href="https://arzumaniandavid.com/">
 <meta name="author" content="David Arzumanian">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="David Arzumanian">
 <meta property="og:url" content="https://arzumaniandavid.com/">
 <meta property="og:title" content="I make A/B testing trustworthy">
-<meta property="og:description" content="Fractional experimentation and causal-inference lead for Seed–Series B teams. Free 90-second pipeline trustworthiness diagnostic, then a $4k fixed-fee audit.">
+<meta property="og:description" content="Fractional experimentation and causal-inference lead for Seed–Series B teams. Free 90-second trustworthiness diagnostic, then a fixed-fee trust audit or launch impact study.">
 <meta property="og:image" content="https://arzumaniandavid.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,11 +24,11 @@
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="I make A/B testing trustworthy">
-<meta name="twitter:description" content="Fractional experimentation lead for Seed–Series B teams. Free 90-second diagnostic, $4k fixed-fee audit.">
+<meta name="twitter:description" content="Fractional experimentation lead for Seed–Series B teams. Free 90-second diagnostic, fixed-fee trust audit, launch impact studies.">
 <meta name="twitter:image" content="https://arzumaniandavid.com/og-image.png">
 <!-- Structured data -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"David Arzumanian — Fractional Experimentation Lead","image":"https://arzumaniandavid.com/og-image.png","url":"https://arzumaniandavid.com/","description":"Fractional experimentation and causal-inference lead for Seed–Series B product teams. Makes A/B testing trustworthy: catches false wins, installs statistical rigor, speeds up decisions.","areaServed":"Remote, US time zones","founder":{"@type":"Person","name":"David Arzumanian","jobTitle":"Fractional Experimentation & Causal Inference Lead","url":"https://arzumaniandavid.com/","sameAs":["https://www.linkedin.com/in/dkarzumanian"]},"makesOffer":[{"@type":"Offer","name":"Experimentation Pipeline Audit","priceCurrency":"USD","price":"4000"},{"@type":"Offer","name":"Fractional Experimentation Lead","priceCurrency":"USD","price":"8000"}]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"David Arzumanian — Fractional Experimentation Lead","image":"https://arzumaniandavid.com/og-image.png","url":"https://arzumaniandavid.com/","description":"Fractional experimentation and causal-inference lead for Seed–Series B product teams. Makes A/B testing trustworthy: catches false wins, installs statistical rigor, speeds up decisions.","areaServed":"Remote, US time zones","founder":{"@type":"Person","name":"David Arzumanian","jobTitle":"Fractional Experimentation & Causal Inference Lead","url":"https://arzumaniandavid.com/","sameAs":["https://www.linkedin.com/in/dkarzumanian"]},"makesOffer":[{"@type":"Offer","name":"Experimentation Trust Audit","priceCurrency":"USD","price":"6500"},{"@type":"Offer","name":"Launch Impact Study","priceCurrency":"USD","price":"9500"},{"@type":"Offer","name":"Fractional Experimentation Lead","priceCurrency":"USD","price":"10000"}]}
 </script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -265,6 +265,9 @@
   .diag-cta{margin-top:28px;padding-top:24px;border-top:1px solid var(--cream-faint);text-align:center}
   .diag-cta-headline{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--cream);margin-bottom:16px;letter-spacing:-.01em}
   .diag-cta-headline em{font-style:italic;color:var(--gold)}
+  .diag-study-link{display:inline-block;margin-top:16px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--gold-dim)}
+  .diag-study-link:hover{border-color:var(--oxblood)}
+  .diag-study-link[hidden]{display:none}
   .diag-cta-row{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
   .diag-cta-row .btn-primary,.diag-cta-row .btn-ghost{padding:13px 22px;font-size:13px}
 
@@ -780,14 +783,16 @@
   .tr-wo{font-size:14px;color:var(--cream-dim);line-height:1.5}
   .tr-wm{font-family:var(--serif);font-style:italic;font-weight:700;font-size:14px;color:var(--ochre);white-space:nowrap;text-align:right}
   /* Pricing */
-  .pr-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:46px}
-  .pr-card{background:#fff;padding:34px 32px 32px;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(30,27,22,.06)}
+  .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  .pr-card{background:#fff;padding:30px 26px 28px;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(30,27,22,.06)}
   .pr-card.feat{box-shadow:0 0 0 2px var(--cta) inset,0 2px 12px rgba(30,27,22,.06)}
   .pr-tag{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--cta);padding:4px 11px;margin-bottom:16px}
-  .pr-name{font-family:var(--serif);font-weight:700;font-size:26px;letter-spacing:-.01em}
-  .pr-price{font-family:var(--serif);font-weight:700;font-size:42px;color:var(--ochre);letter-spacing:-.02em;margin-top:8px;line-height:1}
-  .pr-price small{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--cream-meta);letter-spacing:0;margin-left:4px}
-  .pr-terms{font-size:14px;color:var(--cream-dim);margin-top:8px}
+  .pr-name{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-.01em;line-height:1.2;min-height:2.4em}
+  .pr-price{font-family:var(--serif);font-weight:700;font-size:36px;color:var(--ochre);letter-spacing:-.02em;margin-top:8px;line-height:1}
+  .pr-price small{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--cream-meta);letter-spacing:0;margin-left:4px}
+  .pr-founding{font-family:var(--sans);font-size:12px;color:var(--cream-meta);margin-top:7px}
+  .pr-terms{font-size:13.5px;color:var(--cream-dim);margin-top:10px;line-height:1.5}
+  .pr-found-note{font-family:var(--sans);font-size:12.5px;color:var(--cream-meta);margin-top:18px;text-align:center}
   .pr-list{list-style:none;margin:22px 0 0;padding-top:20px;border-top:1px solid var(--cream-faint)}
   .pr-list li{position:relative;padding:7px 0 7px 26px;font-size:14.5px;color:var(--iron)}
   .pr-list li::before{content:"";position:absolute;left:0;top:13px;width:10px;height:10px;border:1.5px solid var(--cta);border-radius:50%}
@@ -863,7 +868,7 @@
           <a href="#diagnostic" class="btn btn-primary">Take the 90-second diagnostic ↓</a>
         </div>
         <p class="micro rv" style="--i:5">Free · no email required &nbsp;·&nbsp; or <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=f2c744" target="_blank" rel="noopener">book a 20-min call</a> to skip ahead</p>
-        <div class="guarantee rv" style="--i:6"><span class="shield"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2.6 L33.4 7.3 V18.8 C33.4 27.4 27.6 33.4 20 37.4 C12.4 33.4 6.6 27.4 6.6 18.8 V7.3 Z" fill="#2E9E5C"/><path d="M13.6 20.2 l4.6 4.6 L27.2 13.8" fill="none" stroke="#fff" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="guarantee-txt"><b>Guarantee</b> a finding that changes a shipping decision, or you don't pay.</span></div>
+        <div class="guarantee rv" style="--i:6"><span class="shield"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2.6 L33.4 7.3 V18.8 C33.4 27.4 27.6 33.4 20 37.4 C12.4 33.4 6.6 27.4 6.6 18.8 V7.3 Z" fill="#2E9E5C"/><path d="M13.6 20.2 l4.6 4.6 L27.2 13.8" fill="none" stroke="#fff" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="guarantee-txt"><b>Guarantee</b> a written verdict on decisions we name together, or you don't pay.</span></div>
       </div>
       <div class="hero-portrait rv" style="--i:2">
         <picture>
@@ -899,10 +904,10 @@
       <div class="diag-panel rv">
         <div class="diag-wiz-top">
           <div class="diag-dots" aria-hidden="true">
-            <span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span>
+            <span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span>
           </div>
           <div class="diag-shield" role="status" aria-live="polite" aria-atomic="true">
-            <span class="diag-shield-txt"><span class="sr-only">Step </span><b id="diag-step-cur">1</b> of 5</span>
+            <span class="diag-shield-txt"><span class="sr-only">Step </span><b id="diag-step-cur">1</b> of 6</span>
           </div>
         </div>
         <form id="diag-form" novalidate>
@@ -956,6 +961,14 @@
                 <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="review" data-v="none">No review</button>
               </div>
             </div>
+            <div class="diag-wstep" data-step="6" data-q-id="shipped">
+              <div class="diag-q-label" id="diag-lbl-shipped"><span class="num">06</span>Did you recently ship something you couldn't A/B test?</div>
+              <div class="diag-options diag-seg" role="radiogroup" aria-labelledby="diag-lbl-shipped">
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="shipped" data-v="yes" aria-describedby="diag-help-shipped">Yes</button>
+                <button type="button" class="diag-opt" role="radio" aria-checked="false" data-q="shipped" data-v="no" aria-describedby="diag-help-shipped">No</button>
+              </div>
+              <div class="diag-help" id="diag-help-shipped">A pricing change, redesign, rebrand, or market rollout with no control group. This doesn't affect your score; it tells me which service fits you.</div>
+            </div>
           </div>
           <div class="diag-wiz-nav">
             <button type="button" class="diag-back" id="diag-back" hidden>← Back</button>
@@ -982,11 +995,12 @@
             <div id="diag-risks-list"></div>
           </div>
           <div class="diag-cta">
-            <div class="diag-cta-headline">Want me to find and fix these in your <em>actual data?</em></div>
+            <div class="diag-cta-headline" id="diag-cta-headline">Want me to find and fix these in your <em>actual data?</em></div>
             <div class="diag-cta-row">
               <a href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener" class="btn btn-primary">Book a 20-min call <span>→</span></a>
               <a href="mailto:dkarzumanian@gmail.com?subject=My pipeline diagnostic results" class="btn btn-ghost" id="diag-email-link">Email me my scorecard</a>
             </div>
+            <a class="diag-study-link" id="diag-study-link" href="#services" hidden>You said you shipped something you couldn't A/B test. See the Launch Impact Study &rarr;</a>
           </div>
         </div>
       </div>
@@ -997,14 +1011,14 @@
   <section class="sec-audit" id="audit">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>What you get</div>
-      <h2 class="sec-head rv">The <em>Experimentation Audit</em></h2>
-      <p class="sec-sub rv">A two-week, fixed-fee review of your A/B testing. I find the numbers you can't trust, show you which "wins" are noise, and hand you a clear way to fix it.</p>
+      <h2 class="sec-head rv">The <em>Experimentation Trust Audit</em></h2>
+      <p class="sec-sub rv">A two-week, fixed-fee review of your A/B testing. I find the numbers you can't trust, show you which "wins" are noise, and hand you a clear way to fix it. Agencies sell this as a 30&ndash;60 day engagement starting at $20,000; mine is two weeks from data access, at a third of that.</p>
       <div class="aud-deliver rv">
         <div class="aud-item"><div class="aud-n">01</div><div class="aud-t">A trustworthiness scorecard</div><div class="aud-d">Every recent test scored out of 100, with the false wins flagged and the statistical reason each one is shaky.</div></div>
         <div class="aud-item"><div class="aud-n">02</div><div class="aud-t">A prioritized fix roadmap</div><div class="aud-d">The handful of changes that move your reads from hopeful to trustworthy, in the order they pay off.</div></div>
         <div class="aud-item"><div class="aud-n">03</div><div class="aud-t">A team walkthrough</div><div class="aud-d">A working session so the fixes stick after I leave. Not a PDF nobody opens.</div></div>
       </div>
-      <p class="aud-foot rv">Fixed fee, two weeks, remote. <a href="#services">See the pricing &rarr;</a></p>
+      <p class="aud-foot rv">$6,500 fixed fee, two weeks from data access, remote. <a href="#services">See the pricing &rarr;</a></p>
     </div>
   </section>
 
@@ -1034,25 +1048,37 @@
   <section class="sec-price" id="services">
     <div class="wrap">
       <div class="eyebrow rv"><span class="bar"></span>What it costs</div>
-      <h2 class="sec-head rv">Two ways to <em>work together.</em></h2>
+      <h2 class="sec-head rv">Three ways to <em>work together.</em></h2>
       <div class="pr-grid rv">
         <div class="pr-card feat">
           <div class="pr-tag">Start here</div>
-          <div class="pr-name">The Audit</div>
-          <div class="pr-price">$4,000 <small>fixed</small></div>
-          <div class="pr-terms">Two weeks, remote.</div>
-          <ul class="pr-list"><li>Trustworthiness scorecard</li><li>Prioritized fix roadmap</li><li>Team walkthrough</li></ul>
-          <div class="pr-guar"><b>Guarantee.</b> A finding that changes a shipping decision, or you don't pay.</div>
+          <div class="pr-name">Experimentation Trust Audit</div>
+          <div class="pr-price">$6,500 <small>fixed</small></div>
+          <div class="pr-founding">Founding rate. List price $7,500.</div>
+          <div class="pr-terms">Two weeks from data access, remote.</div>
+          <ul class="pr-list"><li>Trustworthiness scorecard</li><li>Fix roadmap, written as your data lead's 90-day plan</li><li>Live team walkthrough</li></ul>
+          <div class="pr-guar"><b>Guarantee.</b> A written verdict, with evidence you didn't have, on 2&ndash;3 shipping decisions we name together, or you don't pay.</div>
           <a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a 20-minute call <span>&rarr;</span></a>
         </div>
         <div class="pr-card">
+          <div class="pr-name">Launch Impact Study</div>
+          <div class="pr-price">$9,500 <small>fixed</small></div>
+          <div class="pr-founding">Founding rate. List price $11,000.</div>
+          <div class="pr-terms">You shipped it. Did it work? Three weeks, starting with a $2,000 feasibility check that is fully credited.</div>
+          <ul class="pr-list"><li>For pricing changes, redesigns, rollouts: anything you couldn't A/B test</li><li>Week 1: a board-ready feasibility memo</li><li>Either side can stop at $2,000, you keep the memo</li><li>A defensible causal read: interrupted time series, diff-in-diff</li></ul>
+          <div class="pr-guar"><b>The gate is the guarantee.</b> If week one shows your data can't support a credible answer, we stop at $2,000.</div>
+          <a class="btn btn-ghost" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a call <span>&rarr;</span></a>
+        </div>
+        <div class="pr-card">
           <div class="pr-name">Fractional Lead</div>
-          <div class="pr-price">from $8,000 <small>/mo</small></div>
-          <div class="pr-terms">2&ndash;3 days a week. Month-to-month after a 3-month start.</div>
-          <ul class="pr-list"><li>I run the roadmap I built in the audit</li><li>Own the experiment review</li><li>Causal measurement for launches you can't A/B test</li><li>Level up your team</li></ul>
+          <div class="pr-price">$10,000 <small>/mo</small></div>
+          <div class="pr-founding">First two client slots. Then $12,000/mo.</div>
+          <div class="pr-terms">2 days a week plus 2 flex days around launches. Month-to-month after a 3-month start. Typically follows an audit or study.</div>
+          <ul class="pr-list"><li>I run the roadmap from your audit</li><li>Own the experiment review and decision rituals</li><li>Sequential testing policy, rolled out with your team</li><li>Level up your team</li></ul>
           <a class="btn btn-ghost" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a call <span>&rarr;</span></a>
         </div>
       </div>
+      <p class="pr-found-note rv">Founding pricing holds for the first five project engagements or until June 30, 2027, whichever comes first. The list prices above apply after that.</p>
     </div>
   </section>
 
@@ -1085,8 +1111,8 @@
       <h2 class="rv">Which of your numbers are <em>safe to ship on?</em></h2>
       <div class="fin-stair rv">
         <div class="fin-step"><div class="fin-v">90 sec</div><div class="fin-k"><b>Free diagnostic.</b> No email. Score your pipeline and see your top 3 trust risks.</div></div>
-        <div class="fin-step"><div class="fin-v">$4,000</div><div class="fin-k"><b>Two-week fixed-fee audit.</b> I find the single riskiest number in your reads.</div></div>
-        <div class="fin-step"><div class="fin-v">Guarantee</div><div class="fin-k">A finding that changes a shipping decision, or <b>you don't pay.</b></div></div>
+        <div class="fin-step"><div class="fin-v">$6,500</div><div class="fin-k"><b>Two-week fixed-fee Trust Audit.</b> I find the single riskiest number in your reads.</div></div>
+        <div class="fin-step"><div class="fin-v">Guarantee</div><div class="fin-k">A written verdict on decisions we name together, or <b>you don't pay.</b></div></div>
       </div>
       <div class="fin-cta rv">
         <a class="btn btn-primary" href="https://calendly.com/dkarzumanian/discovery-call?hide_gdpr_banner=1&amp;primary_color=2e9e5c" target="_blank" rel="noopener">Book a 20-minute call <span>&rarr;</span></a>
@@ -1116,7 +1142,7 @@
   (function(){
     const form = document.getElementById('diag-form');
     if (!form) return;
-    const state = { tool: null, volume: 5, peek: null, mcc: null, review: null };
+    const state = { tool: null, volume: 5, peek: null, mcc: null, review: null, shipped: null };
     const diagPanel = document.querySelector('.diag-panel');
     const stepsWrap = document.getElementById('diag-steps');
     const steps = Array.from(stepsWrap.querySelectorAll('.diag-wstep'));
@@ -1127,7 +1153,7 @@
     const submitBtn = document.getElementById('diag-submit');
     const dots = Array.from(document.querySelectorAll('.diag-dot'));
     const stepCurEl = document.getElementById('diag-step-cur');
-    const REQUIRED = ['tool','peek','mcc','review'];
+    const REQUIRED = ['tool','peek','mcc','review','shipped'];   // shipped is routing-only, never scored
     const reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     let current = 1;
     let advanceTimer = null;     // pending auto-advance after a selection (cancelled on any navigation)
@@ -1276,6 +1302,18 @@
       if (!REQUIRED.every(k => state[k] !== null)) return;
       const score = computeScore(), risks = generateRisks(), verdict = getVerdict(score);
       if (state.tool === 'none') { verdict.label = 'Not testing yet'; verdict.color = '#D29A1C'; verdict.pill = '#8E6810'; verdict.tint = 'rgba(210,154,28,.18)'; verdict.text = "There's nothing to trust or distrust yet. The risk is shipping blind, and a rigorous setup is where to start."; }
+      // Question 6 routes the result CTA: un-A/B-able launch -> Launch Impact Study; otherwise -> audit framing
+      const ctaHead = document.getElementById('diag-cta-headline');
+      const studyLink = document.getElementById('diag-study-link');
+      if (ctaHead && studyLink) {
+        if (state.shipped === 'yes') {
+          ctaHead.innerHTML = 'You shipped something you couldn\'t A/B test. Want a <em>definitive read</em> on whether it worked?';
+          studyLink.hidden = false;
+        } else {
+          ctaHead.innerHTML = 'Want me to find and fix these in your <em>actual data?</em>';
+          studyLink.hidden = true;
+        }
+      }
       const resultEl = document.getElementById('diag-result');
       const tagEl = document.getElementById('diag-verdict-tag');
       tagEl.textContent = verdict.label;
