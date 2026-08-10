@@ -110,24 +110,25 @@
   .nav a.cta-mini{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--cta-ink);background:var(--cta);padding:9px 18px;border-radius:999px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
   .nav a.cta-mini:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(46,158,92,.32)}
 
-  /* hero — left-aligned copy + portrait at right (revision) */
+  /* hero — portrait + motif at LEFT, copy at right (mirrored revision).
+     DOM keeps copy first so mobile stacks copy -> portrait; desktop flips via explicit grid placement. */
   .hero{padding:52px 0 0;position:relative;z-index:1}
-  .hero-grid{display:grid;grid-template-columns:1.62fr .8fr;gap:34px;align-items:stretch;min-height:540px}
-  .hero-copy{text-align:left;align-self:center;padding:6px 0 56px}
+  .hero-grid{display:grid;grid-template-columns:.8fr 1.62fr;gap:34px;align-items:stretch;min-height:540px}
+  .hero-copy{text-align:left;align-self:center;padding:6px 0 56px;grid-column:2;grid-row:1}
   .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6.2vw,70px);line-height:1.05;letter-spacing:-.015em;margin:10px 0 4px}
   .hero h1 em{font-style:italic;color:var(--oxblood);display:block}
   .hero .lead{font-size:clamp(17px,1.6vw,19.5px);max-width:42ch;margin:20px 0 24px;color:var(--cream-dim);font-weight:400;line-height:1.55}
   .hero .lead b{color:var(--iron);font-weight:600}
   .hero .ornline{justify-content:flex-start;margin:0 0 24px}
   .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:0;justify-content:flex-start}
-  /* portrait at right — cutout over an abstract data-flow backdrop, grounded by a base shadow (no frame) */
-  .hero-portrait{position:relative;align-self:end;display:flex;justify-content:center;align-items:flex-end}
-  /* analytical motif spanning the hero — faint behind the text, fading IN toward the portrait;
+  /* portrait at left — cutout over an abstract data-flow backdrop, grounded by a base shadow (no frame) */
+  .hero-portrait{position:relative;align-self:end;display:flex;justify-content:center;align-items:flex-end;grid-column:1;grid-row:1}
+  /* analytical motif spanning the hero — faint behind the text (right), fading IN toward the portrait (left);
      soft top/bottom fade so it dissolves into the band (no hard edges) */
   .hero-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.5;
-    -webkit-mask-image:linear-gradient(to right, transparent 16%, rgba(0,0,0,.10) 46%, #000 80%), linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    -webkit-mask-image:linear-gradient(to left, transparent 16%, rgba(0,0,0,.10) 46%, #000 80%), linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
     -webkit-mask-composite:source-in;
-    mask-image:linear-gradient(to right, transparent 16%, rgba(0,0,0,.10) 46%, #000 80%), linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    mask-image:linear-gradient(to left, transparent 16%, rgba(0,0,0,.10) 46%, #000 80%), linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
     mask-composite:intersect}
   .hero-portrait picture{position:relative;z-index:1;display:block}
   .hero-portrait img{display:block;width:100%;max-width:380px;height:auto;filter:drop-shadow(0 24px 26px rgba(30,27,22,.22))}
@@ -673,6 +674,7 @@
     /* tighter eyebrow tracking + smaller hero head on narrow screens */
     .eyebrow{letter-spacing:.16em;font-size:11px}
     .hero-grid{grid-template-columns:1fr;gap:26px}
+    .hero-copy,.hero-portrait{grid-column:auto;grid-row:auto}   /* stack in DOM order: copy first, portrait below */
     .hero-portrait{max-width:260px;margin:0 auto}
     .hero-portrait img{max-width:240px}
     .hero h1{font-size:clamp(33px,9vw,50px)}
