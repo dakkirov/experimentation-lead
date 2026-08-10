@@ -719,6 +719,15 @@
   @media(max-width:620px){
     .stickybar .msg span{display:none}
     .stickybar .acts a.ghost{display:none}
+    /* phone nav: the DA monogram carries identity; the wordmark text won't fit beside 3 links + CTA */
+    .nav{padding:14px 16px}
+    .nav .mark > span:last-child{display:none}
+    .nav-right{gap:14px}
+    .nav-links{gap:14px}
+    .nav-links a{font-size:13px}
+    .nav a.cta-mini{padding:8px 13px;font-size:12.5px}
+    /* portrait sits flush on the logo band, like desktop (no floating bottom cut) */
+    .hero{padding-bottom:0}
     .proofstrip .wrap{flex-wrap:wrap;gap:10px 20px}
     .pl-logo{font-size:16px}
     .pl-label{width:100%;text-align:center;margin:0 0 2px}
@@ -873,7 +882,7 @@
       <div class="hero-portrait rv" style="--i:2">
         <picture>
           <source srcset="david-portrait.webp" type="image/webp">
-          <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="679" height="1000" loading="eager" decoding="async">
+          <img src="david-portrait.png" alt="David Arzumanian, fractional experimentation lead" width="760" height="1119" loading="eager" decoding="async">
         </picture>
       </div>
     </div>
